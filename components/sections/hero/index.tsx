@@ -3,8 +3,10 @@ import Intro from "./intro";
 
 export default function HeroSection() {
   return (
-    <main>
-      <Intro />
-    </main>
+    <div className="w-full flex justify-center">
+      <main className="container">
+        <Intro />
+      </main>
+    </div>
   );
 }
