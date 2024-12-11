@@ -68,6 +68,17 @@
   --background-color: #000000;
 }
 
+[data-theme="system"] {
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+    --background-color: #000000;
+  }
+  @media (prefers-color-scheme: light) {
+    color-scheme: light;
+    --background-color: #ffffff;
+  }
+}
+
 html,
 body {
   background-color: var(--background-color);
