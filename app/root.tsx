@@ -1,4 +1,9 @@
-import { json, createCookie, type LoaderFunctionArgs } from "@remix-run/node";
+import {
+  json,
+  createCookie,
+  type LoaderFunctionArgs,
+  type ActionFunctionArgs,
+} from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -8,20 +13,23 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 
+import { parse } from "cookie";
+
 import "./global.css";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const cookieHeader = request.headers.get("Cookie");
-  const themeCookie = createCookie("theme", {
-    path: "/",
-  });
-  const theme = (await themeCookie.parse(cookieHeader)) || "system";
+  if (!cookieHeader) {
+    return json({ theme: "system" });
+  }
+  const cookies = parse(cookieHeader);
+  const theme = cookies.theme || "system";
   return json({ theme });
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { theme } = useLoaderData<typeof loader>();
-
+  console.log(theme);
   return (
     <html lang="en" data-theme={theme}>
       <head>
