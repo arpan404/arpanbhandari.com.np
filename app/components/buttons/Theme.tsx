@@ -1,44 +1,25 @@
-import { useFetcher } from "@remix-run/react";
 import { useEffect, useState } from "react";
+import { getCurrentTheme, setTheme } from "~/helpers/theme";
+import type { Theme } from "~/helpers/types";
 
 export default function Theme() {
-  //   const fetcher = useFetcher();
-  //   const [theme, setTheme] = useState(() =>
-  //     typeof document !== 'undefined'
-  //       ? document.documentElement.getAttribute('data-theme') || 'light'
-  //       : 'light'
-  //   );
-
-  //   const toggleTheme = () => {
-  //     const newTheme = theme === "light" ? "dark" : "light";
-  //     setTheme(newTheme);
-  //     localStorage.setItem("theme", newTheme);
-  //     fetcher.submit(
-  //       { theme: newTheme },
-  //       { method: "post" }
-  //     );
-  //     document.documentElement.setAttribute("data-theme", newTheme);
-  //   };
-
-  //   useEffect(() => {
-  //     const currentTheme = document.documentElement.getAttribute('data-theme');
-  //     if (currentTheme) setTheme(currentTheme);
-  //   }, []);
-
+  const [currentTheme, setCurrentTheme] = useState<Theme>("system");
+  useEffect(() => {
+    setCurrentTheme(getCurrentTheme());
+  }, []);
   const toggleTheme = () => {
-    console.log("toggleTheme");
+    const newTheme = currentTheme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    setCurrentTheme(newTheme);
   };
 
   return (
-    <>
-      {/* <button
-        onClick={toggleTheme}
-        className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
-      >
-        {theme === "light" ? "1" : "0"}
-      </button> */}
-
-      <button onClick={toggleTheme}>Toggle Theme</button>
-    </>
+    <button
+      type="button"
+      onClick={toggleTheme}
+      className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+    >
+      {currentTheme === "light" ? "1" : "0"}
+    </button>
   );
 }

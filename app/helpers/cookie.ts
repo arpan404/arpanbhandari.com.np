@@ -7,7 +7,7 @@ export function getCookie(name: string) {
   return null;
 }
 
-export function setCookie(name: string, value: string, days: number = 7) {
+export function addCookie(name: string, value: string, days: number = 7) {
   const expirationDate = new Date();
   expirationDate.setDate(expirationDate.getDate() + days);
   document.cookie = `${name}=${value}; expires=${expirationDate.toUTCString()}; path=/`;

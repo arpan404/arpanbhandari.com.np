@@ -10,13 +10,11 @@ import {
 
 import "./global.css";
 
-// Add theme cookie
-export const themeCookie = createCookie("theme", {
-  path: "/",
-});
-
 export async function loader({ request }: LoaderFunctionArgs) {
   const cookieHeader = request.headers.get("Cookie");
+  const themeCookie = createCookie("theme", {
+    path: "/",
+  });
   const theme = (await themeCookie.parse(cookieHeader)) || "system";
   return json({ theme });
 }
