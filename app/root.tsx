@@ -1,21 +1,48 @@
+import { json, createCookie, type LoaderFunctionArgs } from "@remix-run/node";
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 
 import "./global.css";
 
+// Add theme cookie
+export const themeCookie = createCookie("theme", {
+  path: "/",
+});
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const cookieHeader = request.headers.get("Cookie");
+  const theme = (await themeCookie.parse(cookieHeader)) || "light";
+  return json({ theme });
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { theme } = useLoaderData<typeof loader>();
+
   return (
-    <html lang="en">
+    <html lang="en" data-theme={theme}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = window.localStorage.getItem('theme') || '${theme}';
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body>
         {children}

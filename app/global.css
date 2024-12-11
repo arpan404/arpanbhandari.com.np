@@ -57,3 +57,19 @@
   font-style: normal;
   font-display: swap;
 }
+
+:root {
+  color-scheme: light;
+  --background-color: #ffffff;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background-color: #000000;
+}
+
+html,
+body {
+  background-color: var(--background-color);
+  min-height: 100%;
+}
