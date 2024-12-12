@@ -1,14 +1,19 @@
 import Github from '../buttons/Github';
 import ViewResume from '../buttons/ViewResume';
 import Linkedin from '../buttons/Linkedin';
-
+import AnimatedBackground from '../common/AnimatedBackground';
+import { ClientOnly } from 'remix-utils/client-only';
 export default function Hero() {
   return (
     <div className="flex items-center justify-center h-[calc(100dvh-60px)]">
       <div>
+        <ClientOnly fallback={<span />}>
+          {() => <AnimatedBackground />}
+        </ClientOnly>
         {/* <div className="mb-8 flex justify-center">
           <ViewResume />
         </div> */}
+
         <div>
           <div className="text-center">
             <span className="text-3xl sm:text-4xl lg:text-5xl font-bold">

@@ -16,7 +16,7 @@ export default function Index() {
         <Settings />
       </nav>
       <div className="flex justify-center">
-        <main className="container px-4">
+        <main className="px-4">
           <Hero />
         </main>
       </div>
