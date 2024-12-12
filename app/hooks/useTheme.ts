@@ -6,9 +6,17 @@ export default function useTheme() {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>("system");
 
   useEffect(() => {
-    setCurrentTheme(getCurrentTheme());
-
+    const theme = getCurrentTheme();
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    
+    setCurrentTheme(theme);
+
+    if (theme === "system") {
+      setTheme(mediaQuery.matches ? "dark" : "light");
+    } else {
+      setTheme(theme);
+    }
+
     const handleThemeChange = () => {
       const newTheme = mediaQuery.matches ? "dark" : "light";
       setTheme(newTheme);

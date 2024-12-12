@@ -72,6 +72,10 @@ export default {
           "5": "hsl(var(--chart-5))",
         },
       },
+      cursor: {
+        customPointer: "url('/cursors/pointer.png'), default",
+        customHand: "url('/cursors/hand.png'), pointer",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
