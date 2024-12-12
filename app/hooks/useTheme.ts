@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getCurrentTheme, setTheme } from '~/helpers/theme';
-import type { Theme as ThemeType } from '~/helpers/types';
+import { getCurrentTheme, setTheme } from '~/lib/theme';
+import type { Theme as ThemeType } from '~/lib/types';
 
 export default function useTheme() {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>('system');
