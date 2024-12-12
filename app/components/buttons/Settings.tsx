@@ -1,10 +1,7 @@
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuGroup,
-  DropdownMenuSeparator,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import {
@@ -16,38 +13,12 @@ import {
   SpeakerIcon,
   VolumeOffIcon,
 } from "lucide-react";
-import { useEffect, useState } from "react";
-import { getCurrentTheme, setTheme } from "~/helpers/theme";
-import type { Theme as ThemeType } from "~/helpers/types";
+import { useState } from "react";
+import useTheme from "~/hooks/useTheme";
 
 export default function Settings() {
-  const [currentTheme, setCurrentTheme] = useState<ThemeType>("system");
+  const { currentTheme, changeTheme } = useTheme();
   const [music, setMusic] = useState<boolean>(false);
-
-  useEffect(() => {
-    setCurrentTheme(getCurrentTheme());
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleThemeChange = () => {
-      const newTheme = mediaQuery.matches ? "dark" : "light";
-      setTheme(newTheme);
-    };
-
-    if (currentTheme === "system") {
-      mediaQuery.addEventListener("change", handleThemeChange);
-    } else {
-      mediaQuery.removeEventListener("change", handleThemeChange);
-    }
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleThemeChange);
-    };
-  }, [currentTheme]);
-
-  const changeTheme = (theme: ThemeType) => {
-    setTheme(theme);
-    setCurrentTheme(theme);
-  };
 
   const toggleMusic = () => {
     setMusic(!music);
@@ -59,57 +30,57 @@ export default function Settings() {
         <Button
           variant="ghost"
           size="icon"
-          className="active:rotate-45 active:scale-125 transition-transform"
+          className="rounded-full p-0 outline-none ring-0"
         >
-          <SettingsIcon className="h-[1.5rem] w-[1.5rem] active:translate-y-0.5" />
+          <SettingsIcon className="" />
           <span className="sr-only">Settings</span>
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="py-3 px-2">
-        <div className="flex items-center justify-center w-full">
-          <span className="text-xs">Theme</span>
-        </div>
-        <DropdownMenuGroup className="space-x-2 hover:bg-transparent">
-          <Button
-            onClick={() => changeTheme("system")}
-            variant="ghost"
-            disabled={currentTheme === "system"}
-            className={``}
-          >
-            <Monitor />
-          </Button>
+      <DropdownMenuContent className="py-3 px-2 w-60 relative">
+        <Button
+          onClick={() => changeTheme("system")}
+          variant="ghost"
+          disabled={currentTheme === "system"}
+          className={`h-8 w-8 rounded-full p-2`}
+        >
+          <Monitor />
+        </Button>
 
-          <Button
-            onClick={() => changeTheme("light")}
-            variant="ghost"
-            disabled={currentTheme === "light"}
-          >
-            <Sun />
-          </Button>
+        <Button
+          onClick={() => changeTheme("light")}
+          variant="ghost"
+          disabled={currentTheme === "light"}
+          className="h-8 w-8 rounded-full p-2"
+        >
+          <Sun />
+        </Button>
 
-          <Button
-            onClick={() => changeTheme("dark")}
-            variant="ghost"
-            disabled={currentTheme === "dark"}
-          >
-            <Moon />
-          </Button>
-        </DropdownMenuGroup>
+        <Button
+          onClick={() => changeTheme("dark")}
+          variant="ghost"
+          disabled={currentTheme === "dark"}
+          className="h-8 w-8 rounded-full p-2"
+        >
+          <Moon />
+        </Button>
 
-        <DropdownMenuSeparator />
-
-        <div className="flex items-center justify-center w-full">
-          <span className="text-xs">Music</span>
-        </div>
-        <DropdownMenuGroup className="space-x-2 hover:bg-transparent">
-          <Button variant="ghost" onClick={toggleMusic} disabled={music}>
-            <Music />
-          </Button>
-          <Button variant="ghost" onClick={toggleMusic} disabled={!music}>
-            <VolumeOffIcon />
-          </Button>
-        </DropdownMenuGroup>
+        <Button
+          variant="ghost"
+          onClick={toggleMusic}
+          disabled={music}
+          className="h-8 w-8 rounded-full p-2"
+        >
+          <Music />
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={toggleMusic}
+          disabled={!music}
+          className="h-8 w-8 rounded-full p-2"
+        >
+          <VolumeOffIcon />
+        </Button>
       </DropdownMenuContent>
     </DropdownMenu>
   );
