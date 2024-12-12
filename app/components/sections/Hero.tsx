@@ -13,7 +13,7 @@ export default function Hero() {
           <div className="text-center">
             <span className="text-3xl sm:text-4xl lg:text-5xl font-bold">
               <h2>
-                Hey There! <br />
+                Hey there! <br />
               </h2>
 
               <h1 className="pt-1 pb-2">

@@ -58,33 +58,6 @@
   font-display: swap;
 }
 
-/* :root {
-  color-scheme: light;
-  --background-color: #ffffff;
-}
-
-[data-theme="dark"] {
-  color-scheme: dark;
-  --background-color: #000000;
-}
-
-[data-theme="system"] {
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-    --background-color: #000000;
-  }
-  @media (prefers-color-scheme: light) {
-    color-scheme: light;
-    --background-color: #ffffff;
-  }
-}
-
-html,
-body {
-  background-color: var(--background-color);
-  min-height: 100%;
-} */
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -150,19 +123,19 @@ body {
   }
 }
 
-
 :root {
-  cursor: url('/cursors/default.png'), default;
+  cursor: url("/cursors/default.png"), default;
 }
 
-a, button, 
-input[type="submit"], 
-input[type="button"], 
+a,
+button,
+input[type="submit"],
+input[type="button"],
 input[type="reset"],
 [role="button"],
 select,
 summary,
 .cursor-pointer,
 [onclick] {
-  cursor: url('/cursors/pointer.png'), pointer !important;
+  cursor: url("/cursors/pointer.png"), pointer !important;
 }

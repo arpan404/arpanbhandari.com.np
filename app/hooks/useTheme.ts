@@ -8,7 +8,7 @@ export default function useTheme() {
   useEffect(() => {
     const theme = getCurrentTheme();
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    
+
     setCurrentTheme(theme);
 
     if (theme === "system") {
