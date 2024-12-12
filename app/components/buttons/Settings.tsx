@@ -15,6 +15,12 @@ import {
 import { useState } from "react";
 import type { Theme as ThemeType } from "~/helpers/types";
 import useTheme from "~/hooks/useTheme";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 export default function Settings() {
   const { currentTheme, changeTheme } = useTheme();
@@ -37,32 +43,69 @@ export default function Settings() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="py-3 px-2 w-60 relative">
-        {themeButtons.map((button) => (
-          <Button
-            key={button.label}
-            onClick={() => changeTheme(button.label)}
-            variant="ghost"
-            disabled={currentTheme === button.label}
-            className={`h-8 w-8 rounded-full p-2`}
-          >
-            {button.icon}
-            <span className="sr-only">{button.srOnly}</span>
-          </Button>
-        ))}
+      <DropdownMenuContent className="py-2 px-2 w-fit relative">
+        <div className="flex items-center gap-1">
+          <div className="">
+            {themeButtons.map((button) => (
+              <TooltipProvider key={button.label}>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button
+                      onClick={() => changeTheme(button.label)}
+                      variant="ghost"
+                      disabled={currentTheme === button.label}
+                      className={`h-8 w-8 rounded-full p-2`}
+                    >
+                      {button.icon}
+                      <span className="sr-only">{button.srOnly}</span>
+                    </Button>
+                  </TooltipTrigger>
 
-        {musicButtons.map((button) => (
-          <Button
-            key={button.label}
-            variant="ghost"
-            onClick={toggleMusic}
-            disabled={music}
-            className="h-8 w-8 rounded-full p-2"
-          >
-            {button.icon}
-            <span className="sr-only">{button.srOnly}</span>
-          </Button>
-        ))}
+                  <TooltipContent className="p-0 px-3 py-1">
+                    <p className="text-[0.65rem]">
+                      {currentTheme === button.label
+                        ? "Current Theme"
+                        : button.srOnly}
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            ))}
+          </div>
+          <div className="divider-vertical border border-secondary h-6 mx-1"></div>
+          <div>
+            {musicButtons.map((button) => (
+              <TooltipProvider key={button.label}>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button
+                      key={button.label}
+                      variant="ghost"
+                      onClick={toggleMusic}
+                      disabled={
+                        (button.label === "music-on" && music) ||
+                        (button.label === "music-off" && !music)
+                      }
+                      className="h-8 w-8 rounded-full p-2"
+                    >
+                      {button.icon}
+                      <span className="sr-only">{button.srOnly}</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className="p-0 px-3 py-1">
+                    <p className="text-[0.65rem]">
+                      {button.label === "music-on" && music
+                        ? "Volume is On"
+                        : button.label === "music-off" && !music
+                        ? "Volume is Off"
+                        : button.srOnly}
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            ))}
+          </div>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -98,11 +141,11 @@ const musicButtons: Array<{
   {
     icon: <Music />,
     label: "music-on",
-    srOnly: "Turn Music On",
+    srOnly: "Turn Volume On",
   },
   {
     icon: <VolumeOffIcon />,
     label: "music-off",
-    srOnly: "Turn Music Off",
+    srOnly: "Turn Volume Off",
   },
 ];
