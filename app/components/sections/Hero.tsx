@@ -1,6 +1,6 @@
-import Github from "../buttons/Github";
-import ViewResume from "../buttons/ViewResume";
-import Linkedin from "../buttons/Linkedin";
+import Github from '../buttons/Github';
+import ViewResume from '../buttons/ViewResume';
+import Linkedin from '../buttons/Linkedin';
 
 export default function Hero() {
   return (
@@ -17,7 +17,7 @@ export default function Hero() {
               </h2>
 
               <h1 className="pt-1 pb-2">
-                I'm{" "}
+                I'm{' '}
                 <span className="dark:text-[#ff7d37] text-[#ff6730]">
                   Arpan Bhandari.
                 </span>

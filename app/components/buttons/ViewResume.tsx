@@ -1,6 +1,6 @@
-import { ArrowRightIcon } from "lucide-react";
-import React from "react";
-import { Button } from "../ui/button";
+import { ArrowRightIcon } from 'lucide-react';
+import React from 'react';
+import { Button } from '../ui/button';
 
 export default function ViewResume() {
   return (

@@ -3,7 +3,7 @@ import {
   createCookie,
   type LoaderFunctionArgs,
   type ActionFunctionArgs,
-} from "@remix-run/node";
+} from '@remix-run/node';
 import {
   Links,
   Meta,
@@ -11,25 +11,25 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-} from "@remix-run/react";
+} from '@remix-run/react';
 
-import { parse } from "cookie";
+import { parse } from 'cookie';
 
-import "./global.css";
+import './global.css';
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const cookieHeader = request.headers.get("Cookie");
+  const cookieHeader = request.headers.get('Cookie');
   if (!cookieHeader) {
-    return json({ theme: "system" });
+    return json({ theme: 'system' });
   }
   const cookies = parse(cookieHeader);
-  const theme = cookies.theme || "system";
+  const theme = cookies.theme || 'system';
   return json({ theme });
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { theme } = useLoaderData<typeof loader>();
-  const currentTheme = theme === "system" ? "" : theme;
+  const currentTheme = theme === 'system' ? '' : theme;
   return (
     <html lang="en" className={currentTheme} data-theme={theme}>
       <head>
@@ -54,42 +54,42 @@ export default function App() {
 export function links() {
   return [
     {
-      rel: "icon",
-      type: "image/x-icon",
-      href: "/favicons/favicon.ico",
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicons/favicon.ico',
     },
     {
-      rel: "apple-touch-icon",
-      sizes: "180x180",
-      href: "/favicons/apple-touch-icon.png",
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      href: '/favicons/apple-touch-icon.png',
     },
     {
-      rel: "icon",
-      type: "image/png",
-      sizes: "32x32",
-      href: "/favicons/favicon-32x32.png",
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '32x32',
+      href: '/favicons/favicon-32x32.png',
     },
     {
-      rel: "icon",
-      type: "image/png",
-      sizes: "16x16",
-      href: "/favicons/favicon-16x16.png",
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '16x16',
+      href: '/favicons/favicon-16x16.png',
     },
     {
-      rel: "manifest",
-      href: "/site.webmanifest",
+      rel: 'manifest',
+      href: '/site.webmanifest',
     },
     {
-      rel: "prefetch",
-      href: "/cursors/default.png",
-      as: "image",
-      type: "image/png",
+      rel: 'prefetch',
+      href: '/cursors/default.png',
+      as: 'image',
+      type: 'image/png',
     },
     {
-      rel: "prefetch",
-      href: "/cursors/pointer.png",
-      as: "image",
-      type: "image/png",
+      rel: 'prefetch',
+      href: '/cursors/pointer.png',
+      as: 'image',
+      type: 'image/png',
     },
   ];
 }

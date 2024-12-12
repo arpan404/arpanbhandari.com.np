@@ -1,25 +1,25 @@
-import { addCookie, getCookie } from "./cookie";
-import type { Theme } from "./types";
+import { addCookie, getCookie } from './cookie';
+import type { Theme } from './types';
 
 export function getCurrentTheme() {
-  const theme = getCookie("theme");
-  if (theme === "light" || theme === "dark") {
+  const theme = getCookie('theme');
+  if (theme === 'light' || theme === 'dark') {
     return theme;
   }
-  return "system";
+  return 'system';
 }
 
 export function setTheme(theme: Theme) {
-  let newTheme = theme === "system" ? "" : theme;
-  if (theme === "system") {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  let newTheme = theme === 'system' ? '' : theme;
+  if (theme === 'system') {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     if (mediaQuery.matches) {
-      newTheme = "dark";
+      newTheme = 'dark';
     } else {
-      newTheme = "light";
+      newTheme = 'light';
     }
   }
-  document.documentElement.setAttribute("class", newTheme);
-  document.documentElement.setAttribute("data-theme", theme);
-  addCookie("theme", theme);
+  document.documentElement.setAttribute('class', newTheme);
+  document.documentElement.setAttribute('data-theme', theme);
+  addCookie('theme', theme);
 }

@@ -1,11 +1,11 @@
-import type { MetaFunction } from "@remix-run/node";
-import Settings from "~/components/buttons/Settings";
-import Hero from "~/components/sections/Hero";
+import type { MetaFunction } from '@remix-run/node';
+import Settings from '~/components/buttons/Settings';
+import Hero from '~/components/sections/Hero';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Arpan Bhandari | The Developer" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: 'Arpan Bhandari | The Developer' },
+    { name: 'description', content: 'Welcome to Remix!' },
   ];
 };
 

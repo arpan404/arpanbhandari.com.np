@@ -1,6 +1,6 @@
-import { Link } from "@remix-run/react";
-import React from "react";
-import { AiFillGithub } from "react-icons/ai";
+import { Link } from '@remix-run/react';
+import React from 'react';
+import { AiFillGithub } from 'react-icons/ai';
 
 export default function Github({ url }: { url: string }) {
   return (

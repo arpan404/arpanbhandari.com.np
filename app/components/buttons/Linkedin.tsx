@@ -1,5 +1,5 @@
-import { Link } from "@remix-run/react/dist/components";
-import { AiFillLinkedin } from "react-icons/ai";
+import { Link } from '@remix-run/react/dist/components';
+import { AiFillLinkedin } from 'react-icons/ai';
 
 export default function Linkedin({ url }: { url: string }) {
   return (

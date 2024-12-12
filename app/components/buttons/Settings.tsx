@@ -2,8 +2,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
+} from '../ui/dropdown-menu';
+import { Button } from '../ui/button';
 import {
   Monitor,
   SettingsIcon,
@@ -11,16 +11,16 @@ import {
   Moon,
   Music,
   VolumeOffIcon,
-} from "lucide-react";
-import { useState } from "react";
-import type { Theme as ThemeType } from "~/helpers/types";
-import useTheme from "~/hooks/useTheme";
+} from 'lucide-react';
+import { useState } from 'react';
+import type { Theme as ThemeType } from '~/helpers/types';
+import useTheme from '~/hooks/useTheme';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../ui/tooltip";
+} from '../ui/tooltip';
 
 export default function Settings() {
   const { currentTheme, changeTheme } = useTheme();
@@ -46,7 +46,7 @@ export default function Settings() {
       <DropdownMenuContent className="py-2 px-2 w-fit relative">
         <div className="flex items-center gap-1">
           <div className="">
-            {themeButtons.map((button) => (
+            {themeButtons.map(button => (
               <TooltipProvider key={button.label}>
                 <Tooltip>
                   <TooltipTrigger>
@@ -64,7 +64,7 @@ export default function Settings() {
                   <TooltipContent className="p-0 px-3 py-1">
                     <p className="text-[0.65rem]">
                       {currentTheme === button.label
-                        ? "Current Theme"
+                        ? 'Current Theme'
                         : button.srOnly}
                     </p>
                   </TooltipContent>
@@ -74,7 +74,7 @@ export default function Settings() {
           </div>
           <div className="divider-vertical border border-secondary h-6 mx-1"></div>
           <div>
-            {musicButtons.map((button) => (
+            {musicButtons.map(button => (
               <TooltipProvider key={button.label}>
                 <Tooltip>
                   <TooltipTrigger>
@@ -83,8 +83,8 @@ export default function Settings() {
                       variant="ghost"
                       onClick={toggleMusic}
                       disabled={
-                        (button.label === "music-on" && music) ||
-                        (button.label === "music-off" && !music)
+                        (button.label === 'music-on' && music) ||
+                        (button.label === 'music-off' && !music)
                       }
                       className="h-8 w-8 rounded-full p-2 cursor-pointer"
                     >
@@ -94,10 +94,10 @@ export default function Settings() {
                   </TooltipTrigger>
                   <TooltipContent className="p-0 px-3 py-1">
                     <p className="text-[0.65rem]">
-                      {button.label === "music-on" && music
-                        ? "Volume is On"
-                        : button.label === "music-off" && !music
-                        ? "Volume is Off"
+                      {button.label === 'music-on' && music
+                        ? 'Volume is On'
+                        : button.label === 'music-off' && !music
+                        ? 'Volume is Off'
                         : button.srOnly}
                     </p>
                   </TooltipContent>
@@ -118,18 +118,18 @@ const themeButtons: Array<{
 }> = [
   {
     icon: <Monitor />,
-    label: "system",
-    srOnly: "Use System Theme",
+    label: 'system',
+    srOnly: 'Use System Theme',
   },
   {
     icon: <Sun />,
-    label: "light",
-    srOnly: "Use Light Theme",
+    label: 'light',
+    srOnly: 'Use Light Theme',
   },
   {
     icon: <Moon />,
-    label: "dark",
-    srOnly: "Use Dark Theme",
+    label: 'dark',
+    srOnly: 'Use Dark Theme',
   },
 ];
 
@@ -140,12 +140,12 @@ const musicButtons: Array<{
 }> = [
   {
     icon: <Music />,
-    label: "music-on",
-    srOnly: "Turn Volume On",
+    label: 'music-on',
+    srOnly: 'Turn Volume On',
   },
   {
     icon: <VolumeOffIcon />,
-    label: "music-off",
-    srOnly: "Turn Volume Off",
+    label: 'music-off',
+    srOnly: 'Turn Volume Off',
   },
 ];
