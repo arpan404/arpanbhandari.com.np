@@ -79,5 +79,17 @@ export function links() {
       rel: "manifest",
       href: "/site.webmanifest",
     },
+    {
+      rel: "prefetch",
+      href: "/cursors/default.png",
+      as: "image",
+      type: "image/png",
+    },
+    {
+      rel: "prefetch",
+      href: "/cursors/pointer.png",
+      as: "image",
+      type: "image/png",
+    },
   ];
 }

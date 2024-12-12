@@ -149,3 +149,20 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+:root {
+  cursor: url('/cursors/default.png'), default;
+}
+
+a, button, 
+input[type="submit"], 
+input[type="button"], 
+input[type="reset"],
+[role="button"],
+select,
+summary,
+.cursor-pointer,
+[onclick] {
+  cursor: url('/cursors/pointer.png'), pointer !important;
+}

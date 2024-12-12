@@ -73,8 +73,8 @@ export default {
         },
       },
       cursor: {
-        customPointer: "url('/cursors/pointer.png'), default",
-        customHand: "url('/cursors/hand.png'), pointer",
+        default: "url(/cursors/default.png), default",
+        pointer: "url(/cursors/pointer.png), pointer",
       },
     },
   },

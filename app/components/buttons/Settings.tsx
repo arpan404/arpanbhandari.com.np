@@ -36,7 +36,7 @@ export default function Settings() {
         <Button
           variant="ghost"
           size="icon"
-          className="rounded-full p-0 outline-none ring-0"
+          className="rounded-full p-0 outline-none ring-0 cursor-pointer"
         >
           <SettingsIcon className="" />
           <span className="sr-only">Settings</span>
@@ -54,7 +54,7 @@ export default function Settings() {
                       onClick={() => changeTheme(button.label)}
                       variant="ghost"
                       disabled={currentTheme === button.label}
-                      className={`h-8 w-8 rounded-full p-2`}
+                      className={`h-8 w-8 rounded-full p-2 cursor-pointer`}
                     >
                       {button.icon}
                       <span className="sr-only">{button.srOnly}</span>
@@ -86,7 +86,7 @@ export default function Settings() {
                         (button.label === "music-on" && music) ||
                         (button.label === "music-off" && !music)
                       }
-                      className="h-8 w-8 rounded-full p-2"
+                      className="h-8 w-8 rounded-full p-2 cursor-pointer"
                     >
                       {button.icon}
                       <span className="sr-only">{button.srOnly}</span>

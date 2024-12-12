@@ -24,7 +24,7 @@ export default function Hero() {
               </h1>
             </span>
             <p className="text-sm sm:text-base lg:text-lg font-medium text-muted-foreground py-1">
-              An aspiring scholar and experienced developer, and sometimes a
+              An aspiring scholar, experienced developer, and sometimes a
               writer.
             </p>
             <p></p>
