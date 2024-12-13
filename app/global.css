@@ -124,7 +124,10 @@
 }
 
 :root {
-  cursor: url('/cursors/default.png'), default;
+  cursor: url('/cursors/default.png'), default !important;
+}
+canvas {
+  cursor: url('/cursors/default.png'), default !important   ;
 }
 
 a,
