@@ -13,8 +13,8 @@ import {
   VolumeOffIcon,
 } from 'lucide-react';
 import { useState } from 'react';
-import type { Theme as ThemeType } from '~/lib/types';
-import useTheme from '~/hooks/useTheme';
+import type { Theme as ThemeType } from 'old/app/lib/types';
+import useTheme from 'old/app/hooks/useTheme';
 import {
   Tooltip,
   TooltipContent,

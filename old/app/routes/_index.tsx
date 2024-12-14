@@ -1,6 +1,6 @@
 import type { MetaFunction } from '@remix-run/node';
-import Settings from '~/components/buttons/Settings';
-import Hero from '~/components/sections/Hero';
+import Settings from 'old/app/components/buttons/Settings';
+import Hero from 'old/app/components/sections/Hero';
 
 export const meta: MetaFunction = () => {
   return [
