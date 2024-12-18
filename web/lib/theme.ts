@@ -1,6 +1,10 @@
 import { addCookie, getCookie } from './cookie';
 import { Theme } from './types';
 
+/**
+ *
+ * @returns value in 'theme' cookie [ default = 'system']
+ */
 export function getCurrentTheme() {
   const theme = getCookie('theme');
   if (theme === 'light' || theme === 'dark') {
@@ -9,7 +13,12 @@ export function getCurrentTheme() {
   return 'system';
 }
 
-export function setTheme(theme: Theme) {
+/**
+ *
+ * @param theme
+ * Set 'dark' or 'light' to html class according to theme passed. Also sets 'data-theme' to the actual theme passed.
+ */
+export function updateTheme(theme: Theme) {
   let newTheme = theme === 'system' ? '' : theme;
   if (theme === 'system') {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -19,7 +28,9 @@ export function setTheme(theme: Theme) {
       newTheme = 'light';
     }
   }
-  document.documentElement.setAttribute('class', newTheme);
+  document.documentElement.classList.remove('dark', 'light');
+  document.documentElement.classList.add(newTheme);
   document.documentElement.setAttribute('data-theme', theme);
+
   addCookie('theme', theme);
 }

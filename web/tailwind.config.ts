@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 export default {
   darkMode: ['class'],
@@ -82,5 +83,29 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        /* Custom scrollbar styles */
+        '.custom_scroll': {
+          'scrollbar-width': 'thin', // For Firefox
+          'scrollbar-color': '#ff8e00 inherit', // For Firefox
+        },
+        '.custom_scroll::-webkit-scrollbar': {
+          width: '5px',
+        },
+        '.custom_scroll::-webkit-scrollbar-track': {
+          'background-color': 'inherit',
+        },
+        '.custom_scroll::-webkit-scrollbar-thumb': {
+          'background-color': '#ff8e00',
+          'border-radius': '200px',
+        },
+        '.custom_scroll::-webkit-scrollbar-thumb:hover': {
+          'background-color': '#ff5003',
+        },
+      });
+    }),
+  ],
 } satisfies Config;

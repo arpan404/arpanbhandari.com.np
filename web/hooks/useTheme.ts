@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getCurrentTheme, setTheme } from '../lib/theme';
-import { Theme as ThemeType } from '../lib/types';
+import { getCurrentTheme, updateTheme } from '@/lib/theme';
+import { Theme as ThemeType } from '@/lib/types';
 
 export default function useTheme() {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>('system');
@@ -8,34 +8,25 @@ export default function useTheme() {
   useEffect(() => {
     const theme = getCurrentTheme();
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
     setCurrentTheme(theme);
+    updateTheme(theme);
 
-    if (theme === 'system') {
-      setTheme(mediaQuery.matches ? 'dark' : 'light');
-    } else {
-      setTheme(theme);
-    }
-
-    const handleThemeChange = () => {
-      const newTheme = mediaQuery.matches ? 'dark' : 'light';
-      setTheme(newTheme);
+    const handleDeviceThemeChange = () => {
+      updateTheme(theme);
     };
-
     if (currentTheme === 'system') {
-      mediaQuery.addEventListener('change', handleThemeChange);
+      mediaQuery.addEventListener('change', handleDeviceThemeChange);
     } else {
-      mediaQuery.removeEventListener('change', handleThemeChange);
+      mediaQuery.removeEventListener('change', handleDeviceThemeChange);
     }
-
     return () => {
-      mediaQuery.removeEventListener('change', handleThemeChange);
+      mediaQuery.removeEventListener('change', handleDeviceThemeChange);
     };
   }, [currentTheme]);
 
   const changeTheme = (theme: ThemeType) => {
-    setTheme(theme);
     setCurrentTheme(theme);
+    updateTheme(theme);
   };
 
   return { currentTheme, changeTheme };

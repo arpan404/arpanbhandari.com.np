@@ -22,8 +22,8 @@ import {
   TooltipTrigger,
 } from '../ui/tooltip';
 
-import useTheme from '@/hooks/useTheme';
 import { Theme as ThemeType } from '@/lib/types';
+import useTheme from '@/hooks/useTheme';
 
 export default function Settings() {
   const { currentTheme, changeTheme } = useTheme();
@@ -53,15 +53,15 @@ export default function Settings() {
               <TooltipProvider key={button.label}>
                 <Tooltip>
                   <TooltipTrigger>
-                    <Button
+                    <div
                       onClick={() => changeTheme(button.label)}
-                      variant="ghost"
-                      disabled={currentTheme === button.label}
+                      // variant="ghost"
+                      // disabled={currentTheme === button.label}
                       className={`h-8 w-8 rounded-full p-2 cursor-pointer`}
                     >
                       {button.icon}
                       <span className="sr-only">{button.srOnly}</span>
-                    </Button>
+                    </div>
                   </TooltipTrigger>
 
                   <TooltipContent className="p-0 px-3 py-1">
@@ -81,19 +81,18 @@ export default function Settings() {
               <TooltipProvider key={button.label}>
                 <Tooltip>
                   <TooltipTrigger>
-                    <Button
-                      key={button.label}
-                      variant="ghost"
+                    <div
+                      // variant="ghost"
                       onClick={toggleMusic}
-                      disabled={
-                        (button.label === 'music-on' && music) ||
-                        (button.label === 'music-off' && !music)
-                      }
+                      // disabled={
+                      //   (button.label === 'music-on' && music) ||
+                      //   (button.label === 'music-off' && !music)
+                      // }
                       className="h-8 w-8 rounded-full p-2 cursor-pointer"
                     >
                       {button.icon}
                       <span className="sr-only">{button.srOnly}</span>
-                    </Button>
+                    </div>
                   </TooltipTrigger>
                   <TooltipContent className="p-0 px-3 py-1">
                     <p className="text-[0.65rem]">
