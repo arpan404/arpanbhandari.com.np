@@ -1,9 +1,9 @@
-import { Link } from '@remix-run/react/dist/components';
+import Link from 'next/link';
 import { AiFillLinkedin } from 'react-icons/ai';
 
 export default function Linkedin({ url }: { url: string }) {
   return (
-    <Link to={url} target="_blank" className="cursor-pointer">
+    <Link href={url} target="_blank" className="cursor-pointer">
       <button className="group hover:bg-sky-600 relative bg-sky-700 rounded-full text-neutral-50 duration-500 font-bold flex justify-start gap-2 items-center py-2 px-6 cursor-pointer">
         <AiFillLinkedin className="text-3xl" />
         <span className="border-l-2 px-2 border-gray-400">arpan404</span>
