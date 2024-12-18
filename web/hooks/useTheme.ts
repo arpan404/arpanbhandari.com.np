@@ -2,6 +2,13 @@ import { useEffect, useState } from 'react';
 import { getCurrentTheme, updateTheme } from '@/lib/theme';
 import { Theme as ThemeType } from '@/lib/types';
 
+/**
+ *
+ * @returns currentTheme, changeTheme
+ * currentTheme - returns the current theme ['dark' , 'system', 'light']
+ * changeTheme - theme ['dark', 'system', or 'light'] must be passed
+ *
+ */
 export default function useTheme() {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>('system');
 
