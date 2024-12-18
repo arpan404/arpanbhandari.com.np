@@ -2,7 +2,6 @@ import { addCookie, getCookie } from './cookie';
 import { Theme } from './types';
 
 /**
- *
  * @returns value in 'theme' cookie [ default = 'system']
  */
 export function getCurrentTheme() {
@@ -14,9 +13,10 @@ export function getCurrentTheme() {
 }
 
 /**
- *
  * @param theme
- * Set 'dark' or 'light' to html class according to theme passed. Also sets 'data-theme' to the actual theme passed.
+ * Required
+ * - Set 'dark' or 'light' to html class according to theme passed.
+ * - Also sets 'data-theme' to the actual theme passed.
  */
 export function updateTheme(theme: Theme) {
   let newTheme = theme === 'system' ? '' : theme;
