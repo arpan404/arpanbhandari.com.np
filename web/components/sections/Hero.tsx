@@ -9,7 +9,7 @@ export default function Hero() {
       <div>
         <AnimatedBackground />
         <div>
-          <div className="text-center">
+          <div className="text-center select-none">
             <span className="text-3xl sm:text-4xl lg:text-5xl font-bold">
               <h2>
                 Hey there! <br />
@@ -17,7 +17,7 @@ export default function Hero() {
 
               <h1 className="pt-1 pb-2">
                 I'm{' '}
-                <span className="dark:text-[#ff7d37] text-[#ff6730]">
+                <span className="dark:text-[#ff7d37] text-[#ff6730] hover:cursor-pointer saturate-[110%] hover:saturate-[130%] select">
                   Arpan Bhandari.
                 </span>
               </h1>
