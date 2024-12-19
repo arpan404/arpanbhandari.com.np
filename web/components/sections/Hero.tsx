@@ -1,7 +1,6 @@
-import Github from '../buttons/Github';
-import ViewResume from '../buttons/ViewResume';
-import Linkedin from '../buttons/Linkedin';
-import AnimatedBackground from '../common/AnimatedBackground';
+import Github from "@/components/buttons/Github";
+import Linkedin from "@/components/buttons/Linkedin";
+import AnimatedBackground from "@/components/common/AnimatedBackground";
 
 export default function Hero() {
   return (
@@ -17,7 +16,7 @@ export default function Hero() {
 
               <h1 className="pt-1 pb-2">
                 I'm{' '}
-                <span className="dark:text-[#ff7d37] text-[#ff6730] hover:cursor-pointer saturate-[110%] hover:saturate-[130%] select">
+                <span className="dark:text-[#ff7d37] text-[#ff6730] hover:cursor-pointer saturate-[110%] hover:saturate-[130%] select-none transition-all delay-75 ease-linear">
                   Arpan Bhandari.
                 </span>
               </h1>
