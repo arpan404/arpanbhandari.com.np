@@ -1,6 +1,7 @@
-import Github from "@/components/buttons/Github";
-import Linkedin from "@/components/buttons/Linkedin";
-import AnimatedBackground from "@/components/common/AnimatedBackground";
+import Github from '@/components/buttons/Github';
+import Linkedin from '@/components/buttons/Linkedin';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
+import AnimatedChevron from '../common/ScrollHint';
 
 export default function Hero() {
   return (
@@ -32,6 +33,9 @@ export default function Hero() {
         <div className="flex justify-center gap-4 mt-6 flex-wrap">
           <Linkedin url="https://www.linkedin.com/in/arpan404/" />
           <Github url="https://github.com/arpan404/" />
+        </div>
+        <div className="relative top-10">
+          <AnimatedChevron />
         </div>
       </div>
     </div>
