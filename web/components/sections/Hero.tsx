@@ -15,7 +15,7 @@ export default function Hero() {
               </h2>
 
               <h1 className="pt-1 pb-2">
-                I'm{' '}
+                I&apos;m{' '}
                 <span className="dark:text-[#ff7d37] text-[#ff6730] hover:cursor-pointer saturate-[110%] hover:saturate-[130%] select-none transition-all delay-75 ease-linear">
                   Arpan Bhandari.
                 </span>

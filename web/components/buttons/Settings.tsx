@@ -24,6 +24,7 @@ import {
 
 import { Theme as ThemeType } from '@/lib/types';
 import useTheme from '@/hooks/useTheme';
+import { Tabs, TabsContent, TabsList } from '../ui/tabs';
 
 export default function Settings() {
   const { currentTheme, changeTheme } = useTheme();
@@ -32,6 +33,7 @@ export default function Settings() {
   const toggleMusic = () => {
     setMusic(!music);
   };
+  console.log(themeButtons);
 
   return (
     <DropdownMenu>
@@ -46,34 +48,41 @@ export default function Settings() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="py-2 px-2 w-fit relative">
+      <DropdownMenuContent className="py-2 px-2 w-fit relative h-40">
         <div className="flex items-center gap-1">
           <div className="">
-            {themeButtons.map(button => (
-              <TooltipProvider key={button.label}>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <div
-                      onClick={() => changeTheme(button.label)}
-                      // variant="ghost"
-                      // disabled={currentTheme === button.label}
-                      className={`h-8 w-8 rounded-full p-2 cursor-pointer`}
-                    >
-                      {button.icon}
-                      <span className="sr-only">{button.srOnly}</span>
-                    </div>
-                  </TooltipTrigger>
+            <Tabs
+              defaultValue={currentTheme}
+              value={currentTheme}
+              onValueChange={(value: string) => changeTheme(value as ThemeType)}
+              className="w-40"
+            >
+              <TabsList className="w-full">
+                {themeButtons.map(button => (
+                  <TooltipProvider key={button.label}>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <TabsContent
+                          value={button.label}
+                          className={`h-8 w-8 rounded-full p-2 cursor-pointer`}
+                        >
+                          {button.icon}
+                          <span className="sr-only">{button.srOnly}</span>
+                        </TabsContent>
+                      </TooltipTrigger>
 
-                  <TooltipContent className="p-0 px-3 py-1">
-                    <p className="text-[0.65rem]">
-                      {currentTheme === button.label
-                        ? 'Current Theme'
-                        : button.srOnly}
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            ))}
+                      <TooltipContent className="p-0 px-3 py-1">
+                        <p className="text-[0.65rem]">
+                          {currentTheme === button.label
+                            ? 'Current Theme'
+                            : button.srOnly}
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                ))}
+              </TabsList>
+            </Tabs>
           </div>
           <div className="divider-vertical border border-secondary h-6 mx-1"></div>
           <div>
@@ -82,13 +91,16 @@ export default function Settings() {
                 <Tooltip>
                   <TooltipTrigger>
                     <div
-                      // variant="ghost"
                       onClick={toggleMusic}
-                      // disabled={
-                      //   (button.label === 'music-on' && music) ||
-                      //   (button.label === 'music-off' && !music)
-                      // }
-                      className="h-8 w-8 rounded-full p-2 cursor-pointer"
+                      className={`h-8 w-8 rounded-full p-2 cursor-pointer ${
+                        button.label === 'music-on' && music
+                          ? 'bg-gray-200'
+                          : ''
+                      } ${
+                        button.label === 'music-off' && !music
+                          ? 'bg-gray-200'
+                          : ''
+                      }`}
                     >
                       {button.icon}
                       <span className="sr-only">{button.srOnly}</span>

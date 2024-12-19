@@ -9,7 +9,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const theme = await getTheme();
-  const currentThemeMode = theme === 'system' ? '' : theme;
+  const currentThemeMode = theme === 'system' ? 'dark' : theme;
   return (
     <html
       lang="en"
