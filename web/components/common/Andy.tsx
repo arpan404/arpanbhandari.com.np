@@ -1,12 +1,10 @@
 'use client';
 import {
-  ModalTrigger,
-  Modal,
-  ModalContent,
-  ModalBody,
-} from '../ui/animated-modal';
-import { Button } from '../ui/button';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '../ui/sheet';
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
 export default function Andy({ buttonText }: Readonly<{ buttonText: string }>) {
   return (
