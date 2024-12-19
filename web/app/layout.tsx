@@ -13,10 +13,10 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${currentThemeMode} custom_scroll`}
+      className={`${currentThemeMode}`}
       data-theme={theme}
     >
-      <body>
+      <body className="custom_page_scroll">
         <Header />
         {children}
         <Footer />

@@ -4,11 +4,11 @@ import AnimatedBackground from "@/components/common/AnimatedBackground";
 
 export default function Hero() {
   return (
-    <div className="flex items-center justify-center h-[calc(100dvh-60px)]">
+    <div className="flex items-center justify-center h-[calc(100dvh-52px)]">
       <div>
         <AnimatedBackground />
         <div>
-          <div className="text-center select-none">
+          <div className="text-center select-none px-2">
             <span className="text-3xl sm:text-4xl lg:text-5xl font-bold">
               <h2>
                 Hey there! <br />
