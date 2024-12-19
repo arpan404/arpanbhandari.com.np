@@ -25,7 +25,7 @@ export default function AnimatedBackground() {
   const particlesOptions: ISourceOptions = {
     particles: {
       number: {
-        value: 80,
+        value: 100,
         density: {
           enable: true,
         },
@@ -77,7 +77,7 @@ export default function AnimatedBackground() {
           },
         },
         push: {
-          quantity: 4,
+          quantity: 0,
           limit: 4,
         },
       },
