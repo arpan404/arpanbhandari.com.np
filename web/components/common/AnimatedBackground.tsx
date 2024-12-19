@@ -18,7 +18,8 @@ export default function AnimatedBackground() {
   }, []);
 
   const particlesLoaded = useCallback(async (container?: Container) => {
-    console.log('Particles container loaded', container);
+    if (container) {
+    }
   }, []);
 
   const particlesOptions: ISourceOptions = {
@@ -77,6 +78,7 @@ export default function AnimatedBackground() {
         },
         push: {
           quantity: 4,
+          limit: 4,
         },
       },
     },

@@ -13,7 +13,6 @@ import {
   Music,
   VolumeOffIcon,
 } from 'lucide-react';
-import { useState } from 'react';
 
 import {
   Tooltip,
@@ -24,16 +23,12 @@ import {
 
 import { Theme as ThemeType } from '@/lib/types';
 import useTheme from '@/hooks/useTheme';
-import { Tabs, TabsContent, TabsList } from '../ui/tabs';
+import useMusic from '@/hooks/useMusic';
+import React from 'react';
 
 export default function Settings() {
   const { currentTheme, changeTheme } = useTheme();
-  const [music, setMusic] = useState<boolean>(false);
-
-  const toggleMusic = () => {
-    setMusic(!music);
-  };
-  console.log(themeButtons);
+  const { music, toggleMusic } = useMusic();
 
   return (
     <DropdownMenu>
@@ -48,41 +43,37 @@ export default function Settings() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="py-2 px-2 w-fit relative h-40">
+      <DropdownMenuContent className="py-2 px-2 w-fit relative">
         <div className="flex items-center gap-1">
           <div className="">
-            <Tabs
-              defaultValue={currentTheme}
-              value={currentTheme}
-              onValueChange={(value: string) => changeTheme(value as ThemeType)}
-              className="w-40"
-            >
-              <TabsList className="w-full">
-                {themeButtons.map(button => (
-                  <TooltipProvider key={button.label}>
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <TabsContent
-                          value={button.label}
-                          className={`h-8 w-8 rounded-full p-2 cursor-pointer`}
-                        >
-                          {button.icon}
-                          <span className="sr-only">{button.srOnly}</span>
-                        </TabsContent>
-                      </TooltipTrigger>
+            {themeButtons.map(button => (
+              <TooltipProvider key={button.label}>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <div
+                      onClick={() => changeTheme(button.label)}
+                      className={`h-8 w-8 rounded-full flex justify-center items-center p-2 ${
+                        currentTheme === button.label
+                          ? 'text-muted-foreground cursor-default'
+                          : 'text-primary hover:bg-secondary cursor-pointer'
+                      }`}
+                      role="button"
+                    >
+                      {button.icon}
+                      <span className="sr-only">{button.srOnly}</span>
+                    </div>
+                  </TooltipTrigger>
 
-                      <TooltipContent className="p-0 px-3 py-1">
-                        <p className="text-[0.65rem]">
-                          {currentTheme === button.label
-                            ? 'Current Theme'
-                            : button.srOnly}
-                        </p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                ))}
-              </TabsList>
-            </Tabs>
+                  <TooltipContent className="p-0 px-3 py-1">
+                    <p className="text-[0.65rem]">
+                      {currentTheme === button.label
+                        ? 'Current Theme'
+                        : button.srOnly}
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            ))}
           </div>
           <div className="divider-vertical border border-secondary h-6 mx-1"></div>
           <div>
@@ -91,16 +82,14 @@ export default function Settings() {
                 <Tooltip>
                   <TooltipTrigger>
                     <div
-                      onClick={toggleMusic}
-                      className={`h-8 w-8 rounded-full p-2 cursor-pointer ${
-                        button.label === 'music-on' && music
-                          ? 'bg-gray-200'
-                          : ''
-                      } ${
-                        button.label === 'music-off' && !music
-                          ? 'bg-gray-200'
-                          : ''
+                      onClick={() => toggleMusic()}
+                      className={`h-8 w-8 rounded-full flex justify-center items-center p-2 ${
+                        (button.label === 'music-on' && music) ||
+                        (button.label === 'music-off' && !music)
+                          ? 'text-muted-foreground cursor-default'
+                          : 'text-primary hover:bg-secondary cursor-pointer'
                       }`}
+                      role="button"
                     >
                       {button.icon}
                       <span className="sr-only">{button.srOnly}</span>
@@ -109,9 +98,9 @@ export default function Settings() {
                   <TooltipContent className="p-0 px-3 py-1">
                     <p className="text-[0.65rem]">
                       {button.label === 'music-on' && music
-                        ? 'Volume is On'
+                        ? 'Music is On'
                         : button.label === 'music-off' && !music
-                        ? 'Volume is Off'
+                        ? 'Music is Off'
                         : button.srOnly}
                     </p>
                   </TooltipContent>
@@ -131,7 +120,7 @@ const themeButtons: Array<{
   srOnly: string;
 }> = [
   {
-    icon: <Monitor />,
+    icon: <Monitor className="" />,
     label: 'system',
     srOnly: 'Use System Theme',
   },
@@ -155,11 +144,11 @@ const musicButtons: Array<{
   {
     icon: <Music />,
     label: 'music-on',
-    srOnly: 'Turn Volume On',
+    srOnly: 'Turn Music On',
   },
   {
     icon: <VolumeOffIcon />,
     label: 'music-off',
-    srOnly: 'Turn Volume Off',
+    srOnly: 'Turn Music Off',
   },
 ];
