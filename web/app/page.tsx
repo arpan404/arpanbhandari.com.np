@@ -1,3 +1,4 @@
+import About from '@/components/sections/About';
 import Hero from '@/components/sections/Hero';
 import { Metadata } from 'next';
 
@@ -21,6 +22,7 @@ export default function Home() {
       <main>
         <Hero />
       </main>
+      <About />
     </>
   );
 }
