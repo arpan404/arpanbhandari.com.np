@@ -43,7 +43,7 @@ export default function Settings() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="py-2 px-2 w-fit relative">
+      <DropdownMenuContent className="py-1 px-2 w-fit relative rounded-full">
         <div className="flex items-center gap-1">
           <div className="">
             {themeButtons.map(button => (

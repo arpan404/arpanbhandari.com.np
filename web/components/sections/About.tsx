@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section className="py-10 bg-background">
+    <section className="py-10 bg-background px-4">
       <div className="">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center">
           Who am{' '}
@@ -9,7 +9,9 @@ export default function About() {
           </span>
         </h2>
       </div>
-      <div></div>
+      <div className="flex justify-center">
+        <div className="container"></div>
+      </div>
     </section>
   );
 }
