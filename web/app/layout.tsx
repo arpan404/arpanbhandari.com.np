@@ -11,11 +11,7 @@ export default async function RootLayout({
   const theme = await getTheme();
   const currentThemeMode = theme === 'system' ? 'dark' : theme;
   return (
-    <html
-      lang="en"
-      className={`${currentThemeMode}`}
-      data-theme={theme}
-    >
+    <html lang="en" className={`${currentThemeMode}`} data-theme={theme}>
       <body className="custom_page_scroll">
         <Header />
         {children}
