@@ -1,7 +1,7 @@
 import Github from '@/components/buttons/Github';
 import Linkedin from '@/components/buttons/Linkedin';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
-import AnimatedChevron from '../common/ScrollHint';
+import ScrollHint from '@/components/common/ScrollHint';
 
 export default function Hero() {
   return (
@@ -34,7 +34,7 @@ export default function Hero() {
           <Github url="https://github.com/arpan404/" />
         </div>
         <div className="relative top-10">
-          <AnimatedChevron />
+          <ScrollHint />
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ export default function Header() {
       <nav className="bg-transparent py-2 fixed w-full">
         <div className="flex justify-end">
           <div className="flex items-center gap-2 px-2 sm:px-4 md:px-6">
-            <Andy buttonText="Chat with Andy" />
+            <Andy buttonText="Chat with Andy" className="opacity-100" />
             <Settings />
           </div>
         </div>
