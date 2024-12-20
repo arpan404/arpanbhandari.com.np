@@ -48,19 +48,8 @@ export default function About() {
               . Along with my studies, I&apos;m working on various open-source
               and personal projects to enhance my skills and knowledge in the
               field of computer science, although I already have solid
-              experience in programming and software development.
+              experience in this field.
             </div>
-            <p className="text-base hidden">
-              I am a dedicated scholar, a fervent tech enthusiast, and an adept
-              software developer with a passion for unraveling complex problems
-              using an array of programming tools and languages. My affinity for
-              technology propels me into the realm of new innovations, while my
-              unwavering commitment to the craft fuels my continuous journey as
-              a developer. Fueled by a perpetual eagerness to learn and adapt to
-              the dynamic tech landscape, I thrive on the challenges that
-              accompany staying at the forefront of the ever-evolving digital
-              realm.
-            </p>
             <div>
               <p className="text-base">
                 Want to learn more about me? Just ask my assistant, Andy!
