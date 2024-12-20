@@ -1,6 +1,7 @@
 import About from '@/components/sections/About';
 import Hero from '@/components/sections/Hero';
 import Technologies from '@/components/sections/Technologies';
+import { Separator } from '@radix-ui/react-dropdown-menu';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function Home() {
         <Hero />
       </main>
       <About />
+      <div className="bg-secondary h-[2px]" />
       <Technologies />
     </>
   );
