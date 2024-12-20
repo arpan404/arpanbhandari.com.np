@@ -4,7 +4,7 @@ import { LinkPreview } from '@/components/ui/link-preview';
 
 export default function About() {
   return (
-    <section className="py-10 bg-background px-4" id="about">
+    <section className="py-10 sm:py-16 md:py-20 bg-background px-4" id="about">
       <div className="">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center">
           Who am{' '}
