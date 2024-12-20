@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "expertises",
+  "info": {
+    "singularName": "expertise",
+    "pluralName": "expertises",
+    "displayName": "expertise",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "skills": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.skills"
+    }
+  }
+}

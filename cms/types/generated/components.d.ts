@@ -50,6 +50,19 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedSkills extends Struct.ComponentSchema {
+  collectionName: 'components_shared_skills';
+  info: {
+    displayName: 'Skills';
+    icon: 'command';
+  };
+  attributes: {
+    skills: Schema.Attribute.Enumeration<
+      ['Typescript', 'Javascript', 'Python']
+    >;
+  };
+}
+
 export interface SharedSlider extends Struct.ComponentSchema {
   collectionName: 'components_shared_sliders';
   info: {
@@ -69,6 +82,7 @@ declare module '@strapi/strapi' {
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
+      'shared.skills': SharedSkills;
       'shared.slider': SharedSlider;
     }
   }

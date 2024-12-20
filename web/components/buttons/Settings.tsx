@@ -36,9 +36,9 @@ export default function Settings() {
         <Button
           variant="ghost"
           size="icon"
-          className="rounded-full p-0 outline-none ring-0 cursor-pointer"
+          className="rounded-full p-0 outline-none ring-0 cursor-pointer scale-110"
         >
-          <SettingsIcon className="" />
+          <SettingsIcon className="" size={40}/>
           <span className="sr-only">Settings</span>
         </Button>
       </DropdownMenuTrigger>
@@ -64,7 +64,7 @@ export default function Settings() {
                     </div>
                   </TooltipTrigger>
 
-                  <TooltipContent className="p-0 px-3 py-1">
+                  <TooltipContent className="p-0 px-3 py-1 z-[100] rounded-full">
                     <p className="text-[0.65rem]">
                       {currentTheme === button.label
                         ? 'Current Theme'
@@ -95,7 +95,7 @@ export default function Settings() {
                       <span className="sr-only">{button.srOnly}</span>
                     </div>
                   </TooltipTrigger>
-                  <TooltipContent className="p-0 px-3 py-1">
+                  <TooltipContent className="p-0 px-3 py-1 z-[100] rounded-full">
                     <p className="text-[0.65rem]">
                       {button.label === 'music-on' && music
                         ? 'Music is On'

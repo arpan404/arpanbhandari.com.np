@@ -16,13 +16,13 @@ export default function Andy({
     <Sheet>
       <SheetTrigger
         className={cn(
-          'text-xs px-6 py-[0.6rem] rounded-full font-semibold text-pretty cursor-pointer dark:bg-[#ff7d37] bg-[#ff6730] hover:dark:bg-[#ff7d37] hover:bg-[#ff6730] hover:cursor-pointer saturate-[110%] hover:saturate-[130%] active:opacity-50 transition-all delay-0 ease-linear m-0 text-white',
+          'text-xs px-6 py-3 rounded-full font-semibold text-pretty cursor-pointer dark:bg-[#ff7d37] bg-[#ff6730] hover:dark:bg-[#ff7d37] hover:bg-[#ff6730] hover:cursor-pointer saturate-[110%] hover:saturate-[130%] active:opacity-50 transition-all delay-0 ease-linear m-0 text-white',
           className
         )}
       >
         <h3>{buttonText}</h3>
       </SheetTrigger>
-      <SheetContent className="w-full sm:w-[400px] md:w-[500px] lg:w-[600px] cursor-default">
+      <SheetContent className="w-full sm:w-[400px] md:w-[500px] lg:w-[600px] cursor-default z-[101]">
         <SheetTitle>
           <div className="flex gap-4 items-center">
             <div className="flex items-center">

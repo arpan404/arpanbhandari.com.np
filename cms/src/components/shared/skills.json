@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_skills",
+  "info": {
+    "displayName": "Skills",
+    "icon": "command"
+  },
+  "options": {},
+  "attributes": {
+    "skills": {
+      "type": "enumeration",
+      "enum": [
+        "Typescript",
+        "Javascript",
+        "Python"
+      ]
+    }
+  }
+}
