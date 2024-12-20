@@ -14,7 +14,7 @@ export default function About() {
           </span>
         </h2>
       </div>
-      <div className="flex justify-center mt-5 md:mt-6">
+      <div className="flex justify-center mt-5 md:mt-8">
         <div className="container flex justify-between items-center flex-wrap gap-10">
           <div className="flex items-center justify-center md:flex-1 w-full ">
             <Image
@@ -25,7 +25,7 @@ export default function About() {
               className="rounded-full"
             />
           </div>
-          <div className="md:flex-1 space-y-2 md:space-y-8">
+          <div className="md:flex-1 space-y-2 md:space-y-6">
             <p>
               <span className="text-lg font-semibold text-primary opacity-80">
                 In short, a person who loves tech and is intrigued by its
