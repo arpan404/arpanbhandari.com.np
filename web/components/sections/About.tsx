@@ -1,5 +1,7 @@
 import Image from 'next/image';
-import Andy from '../common/Andy';
+import Andy from '@/components/common/Andy';
+import Link from 'next/link';
+import { LinkPreview } from '@/components/ui/link-preview';
 
 export default function About() {
   return (
@@ -24,7 +26,32 @@ export default function About() {
             />
           </div>
           <div className="md:flex-1 space-y-2 md:space-y-8">
-            <p className="text-base">
+            <p>
+              <span className="text-lg font-semibold text-primary opacity-80">
+                In short, a person who loves tech and is intrigued by its
+                endless possibilities.
+              </span>
+            </p>
+            <div className="text-base">
+              I believe life is a journey of continuous learning, which is why I
+              consider myself a learner first and foremost. For me, learning new
+              aspects of tech, especially computer science, is what makes me
+              enjoy the journey of life. Currently, I am pursuing my
+              Bachelor&apos;s in Computer Science at{' '}
+              <LinkPreview
+                url={'https://usm.edu'}
+                height={150}
+                width={280}
+                className="font-medium underline"
+              >
+                the University of Southern Mississippi
+              </LinkPreview>
+              . Along with my studies, I&apos;m working on various open-source
+              and personal projects to enhance my skills and knowledge in the
+              field of computer science, although I already have solid
+              experience in programming and software development.
+            </div>
+            <p className="text-base hidden">
               I am a dedicated scholar, a fervent tech enthusiast, and an adept
               software developer with a passion for unraveling complex problems
               using an array of programming tools and languages. My affinity for
@@ -37,10 +64,13 @@ export default function About() {
             </p>
             <div>
               <p className="text-base">
-                Wanna learn more about me? Why not ask my assistant, Andy?
+                Want to learn more about me? Just ask my assistant, Andy!
               </p>
-              <div>
-                <Andy buttonText="Chat with Andy" />
+              <div className="flex justify-center md:justify-start mt-4">
+                <Andy
+                  buttonText="Ask Andy"
+                  className="py-[10px] px-12 text-base opacity-100 rounded-3xl"
+                />
               </div>
             </div>
           </div>
