@@ -14,7 +14,7 @@ export default function About() {
           </span>
         </h2>
       </div>
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-center mt-5 md:mt-6">
         <div className="container flex justify-between items-center flex-wrap gap-10">
           <div className="flex items-center justify-center md:flex-1 w-full ">
             <Image
@@ -69,7 +69,7 @@ export default function About() {
               <div className="flex justify-center md:justify-start mt-4">
                 <Andy
                   buttonText="Ask Andy"
-                  className="py-[10px] px-12 text-base opacity-100 rounded-3xl"
+                  className="py-[10px] px-12 text-base opacity-100 rounded-3xl hover:scale-110 transition-all delay-150 ease-in-out"
                 />
               </div>
             </div>

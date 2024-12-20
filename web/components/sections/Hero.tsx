@@ -5,7 +5,7 @@ import AnimatedChevron from '../common/ScrollHint';
 
 export default function Hero() {
   return (
-    <div className="flex items-center justify-center h-[calc(100dvh-52px)]">
+    <div className="flex items-center justify-center h-[calc(100dvh-0px)] pt-[52px]">
       <div>
         <AnimatedBackground />
         <div>
@@ -26,7 +26,6 @@ export default function Hero() {
               An aspiring scholar, experienced developer, and sometimes a
               writer.
             </p>
-            <p></p>
           </div>
         </div>
 
