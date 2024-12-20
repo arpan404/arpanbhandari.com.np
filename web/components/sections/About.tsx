@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Andy from '@/components/common/Andy';
-import Link from 'next/link';
 import { LinkPreview } from '@/components/ui/link-preview';
 
 export default function About() {
