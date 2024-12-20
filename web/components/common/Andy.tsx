@@ -6,6 +6,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import AndyAvatar from './AndyAvatar';
 
 export default function Andy({
   buttonText,
@@ -21,8 +22,21 @@ export default function Andy({
       >
         <h3>{buttonText}</h3>
       </SheetTrigger>
-      <SheetContent className="w-full sm:w-[400px] md:w-[500px] lg:w-[600px]">
-        <SheetTitle>Hello</SheetTitle>
+      <SheetContent className="w-full sm:w-[400px] md:w-[500px] lg:w-[600px] cursor-default">
+        <SheetTitle>
+          <div className="flex gap-4 items-center">
+            <div className="flex items-center">
+              <AndyAvatar />
+            </div>
+            <div className="text-primary">
+              <div className="text-sm font-medium">Andy</div>
+              <div className="font-light text-xs opacity-80">
+                A friendly yet intelligent assistant, here to answer all your
+                questions about me.
+              </div>
+            </div>
+          </div>
+        </SheetTitle>
       </SheetContent>
     </Sheet>
   );
