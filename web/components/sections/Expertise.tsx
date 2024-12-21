@@ -1,12 +1,14 @@
 import getSpecializations from '@/actions/getSpecializations';
 import Skill from '@/components/buttons/Skill';
 import getResume from '@/actions/getResume';
-import ViewResume from '../buttons/ViewResume';
+import ViewResume from '@/components/buttons/ViewResume';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import OrangeButton from '../buttons/OrangeButton';
 
 export default async function Expertise() {
   const specializations = await getSpecializations();
   const resume = await getResume();
-  console.log(resume);
   return (
     <section
       className="py-10 sm:py-16 md:py-20 bg-background"
@@ -29,7 +31,7 @@ export default async function Expertise() {
             </span>
           </p>
         </div>
-        <div className="flex justify-center mb-8 md:mb-10">
+        <div className="flex justify-center py-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 container gap-2 md:gap-4">
             {specializations.data &&
               specializations.data.specializations.map(specialization => (
@@ -62,16 +64,17 @@ export default async function Expertise() {
                 </div>
                 <div className="flex gap-4 flex-wrap">
                   <div className="flex justify-center w-full lg:w-fit">
-                    {resume.data?.resume.resume.url && (
-                      <ViewResume
-                        url={`${process.env.NEXT_PUBLIC_STRAPI_URL}${resume.data?.resume.resume.url}`}
-                      />
-                    )}
+                    <Link href="/projects">
+                      <Button className="text-xs md:text-sm font-medium rounded-full px-6 py-3 hover:scale-110 transition-all ease-in delay-75">
+                        View My Projects
+                      </Button>
+                    </Link>
                   </div>
                   <div className="flex justify-center w-full lg:w-fit">
                     {resume.data?.resume.resume.url && (
                       <ViewResume
                         url={`${process.env.NEXT_PUBLIC_STRAPI_URL}${resume.data?.resume.resume.url}`}
+                        className="text-xs md:text-sm font-medium rounded-full px-6 py-3 hover:scale-110 transition-all ease-in delay-75"
                       />
                     )}
                   </div>

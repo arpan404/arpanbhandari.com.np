@@ -1,12 +1,12 @@
-import { ArrowRightIcon } from 'lucide-react';
 import React from 'react';
-import { Button } from '../ui/button';
+import { cn } from '@/lib/utils';
+import OrangeButton from './OrangeButton';
 
-export default function ViewResume({ url }: Readonly<{ url: string }>) {
-  console.log(url);
+export default function ViewResume({
+  url,
+  className,
+}: Readonly<{ url: string; className?: string }>) {
   return (
-    <Button className="text-xs sm:text-sm font-light rounded-full px-6 sm:px-10">
-      View My Resume
-    </Button>
+    <OrangeButton className={cn('', className)}>View My Resume</OrangeButton>
   );
 }
