@@ -23,7 +23,7 @@ export default function About() {
               height={400}
               className="rounded-full"
               priority={true}
-              
+              draggable={false}
             />
           </div>
           <div className="md:flex-1 space-y-2 md:space-y-6">

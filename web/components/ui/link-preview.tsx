@@ -85,6 +85,7 @@ export const LinkPreview = ({
             quality={quality}
             priority={true}
             alt="hidden image"
+            draggable={false}
           />
         </div>
       ) : null}
@@ -145,6 +146,7 @@ export const LinkPreview = ({
                     priority={true}
                     className="rounded-lg"
                     alt="preview image"
+                    draggable={false}
                   />
                 </Link>
               </motion.div>
