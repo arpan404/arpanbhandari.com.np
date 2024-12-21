@@ -1,10 +1,9 @@
 import getSpecializations from '@/actions/getSpecializations';
 import Skill from '@/components/buttons/Skill';
 import getResume from '@/actions/getResume';
-import ViewResume from '@/components/buttons/ViewResume';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import OrangeButton from '../buttons/OrangeButton';
+import PdfViewer from '@/components/common/PdfViewer';
 
 export default async function Expertise() {
   const specializations = await getSpecializations();
@@ -72,10 +71,12 @@ export default async function Expertise() {
                   </div>
                   <div className="flex justify-center w-full lg:w-fit">
                     {resume.data?.resume.resume.url && (
-                      <ViewResume
-                        url={`${process.env.NEXT_PUBLIC_STRAPI_URL}${resume.data?.resume.resume.url}`}
-                        className="text-xs md:text-sm font-medium rounded-full px-6 py-3 hover:scale-110 transition-all ease-in delay-75"
-                      />
+                      <PdfViewer
+                        pdfUrl={resume.data?.resume.resume.url}
+                        modalTriggerClassName="text-xs md:text-sm font-medium rounded-full px-6 py-2 hover:scale-110 transition-all ease-in delay-75 rounded-full font-semibold text-pretty cursor-pointer dark:bg-[#ff7d37] bg-[#ff6730] hover:dark:bg-[#ff7d37] hover:bg-[#ff6730] hover:cursor-pointer saturate-[110%] hover:saturate-[130%] active:opacity-50 transition-all delay-0 ease-linear m-0 text-white"
+                      >
+                        View My Resume
+                      </PdfViewer>
                     )}
                   </div>
                 </div>
