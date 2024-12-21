@@ -22,6 +22,8 @@ export default function About() {
               width={400}
               height={400}
               className="rounded-full"
+              priority={true}
+              
             />
           </div>
           <div className="md:flex-1 space-y-2 md:space-y-6">

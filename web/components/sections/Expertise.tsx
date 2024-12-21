@@ -16,16 +16,26 @@ export default async function Expertise() {
           </span>
         </h2>
       </div>
-      <div className="flex justify-center mt-8 px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 container gap-4">
-          {specializations.data &&
-            specializations.data.specializations.map(specialization => (
-              <Skill
-                key={specialization.skill.uid}
-                name={specialization.skill.name}
-                uid={specialization.skill.uid}
-              />
-            ))}
+      <div className="mt-5 md:mt-8 px-4 md:flex-1 space-y-4 md:space-y-6">
+        <div className="flex justify-center">
+          <p>
+            <span className="text-lg font-semibold text-primary opacity-80">
+              Worked on a variety of technologies and tools, but right now,
+              I&apos;m actively working with:
+            </span>
+          </p>
+        </div>
+        <div className="flex justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 container gap-2 md:gap-4">
+            {specializations.data &&
+              specializations.data.specializations.map(specialization => (
+                <Skill
+                  key={specialization.skill.uid}
+                  name={specialization.skill.name}
+                  uid={specialization.skill.uid}
+                />
+              ))}
+          </div>
         </div>
       </div>
     </section>
