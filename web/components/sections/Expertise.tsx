@@ -72,7 +72,10 @@ export default async function Expertise() {
                   <div className="flex justify-center w-full lg:w-fit">
                     {resume.data?.resume.resume.url && (
                       <PdfViewer
-                        pdfUrl={resume.data?.resume.resume.url}
+                        pdfUrl={
+                          process.env.NEXT_PUBLIC_STRAPI_URL +
+                          resume.data?.resume.resume.url
+                        }
                         modalTriggerClassName="text-xs md:text-sm font-medium rounded-full px-6 py-2 hover:scale-110 transition-all ease-in delay-75 rounded-full font-semibold text-pretty cursor-pointer dark:bg-[#ff7d37] bg-[#ff6730] hover:dark:bg-[#ff7d37] hover:bg-[#ff6730] hover:cursor-pointer saturate-[110%] hover:saturate-[130%] active:opacity-50 transition-all delay-0 ease-linear m-0 text-white"
                       >
                         View My Resume
