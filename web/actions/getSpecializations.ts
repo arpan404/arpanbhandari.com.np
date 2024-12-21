@@ -39,7 +39,7 @@ const query = gql`
   }
 `;
 let lastFetchTime = 0;
-const REFRESH_INTERVAL = 60 * 1000;
+const REFRESH_INTERVAL = 60 * 1000 * 60;
 
 export default async function getSpecializations() {
   const currentTime = Date.now();

@@ -1,4 +1,5 @@
 import getSpecializations from '@/actions/getSpecializations';
+import Skill from '../buttons/Skill';
 
 export default async function Expertise() {
   const specializations = await getSpecializations();
@@ -15,11 +16,17 @@ export default async function Expertise() {
           </span>
         </h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        {specializations.data &&
-          specializations.data.specializations.map(specialization => (
-            <div>{specialization.skill.name}</div>
-          ))}
+      <div className="flex justify-center mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 container gap-4">
+          {specializations.data &&
+            specializations.data.specializations.map(specialization => (
+              <Skill
+                key={specialization.skill.uid}
+                name={specialization.skill.name}
+                uid={specialization.skill.uid}
+              />
+            ))}
+        </div>
       </div>
     </section>
   );
