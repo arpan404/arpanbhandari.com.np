@@ -1,7 +1,7 @@
-import getSpecializedSkills from '@/actions/getSpecializedSkills';
+import getSpecializations from '@/actions/getSpecializations';
 
 export default async function Expertise() {
-  await getSpecializedSkills();
+  const specializations = await getSpecializations();
   return (
     <section
       className="py-10 sm:py-16 md:py-20 bg-background"
@@ -15,7 +15,12 @@ export default async function Expertise() {
           </span>
         </h2>
       </div>
-      <div></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        {specializations.data &&
+          specializations.data.specializations.map(specialization => (
+            <div>{specialization.skill.name}</div>
+          ))}
+      </div>
     </section>
   );
 }
