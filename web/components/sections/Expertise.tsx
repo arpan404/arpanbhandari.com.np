@@ -1,4 +1,7 @@
+import getSpecializedSkills from '@/actions/getSpecializedSkills';
+
 export default async function Expertise() {
+  await getSpecializedSkills();
   return (
     <section
       className="py-10 sm:py-16 md:py-20 bg-background"
