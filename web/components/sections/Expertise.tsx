@@ -16,7 +16,7 @@ export default async function Expertise() {
           </span>
         </h2>
       </div>
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-8 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 container gap-4">
           {specializations.data &&
             specializations.data.specializations.map(specialization => (
