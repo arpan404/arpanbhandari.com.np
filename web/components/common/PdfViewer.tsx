@@ -9,7 +9,7 @@ import {
   ModalTrigger,
 } from '@/components/ui/animated-modal';
 
-import { CloudDownload } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CloudDownload } from 'lucide-react';
 
 import {
   Tooltip,
@@ -38,6 +38,14 @@ export default function PdfViewer({
   const [pageNumber, setPageNumber] = useState(1);
   const pdfViewerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState<number>(0);
+
+  useEffect(() => {
+    pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+      `${process.env.NEXT_PUBLIC_WEBSITE_URL}/pdf.worker.min.mjs`,
+      import.meta.url
+    ).toString();
+  }, []);
+
   useEffect(() => {
     const updateDimensions = () => {
       if (pdfViewerRef.current) {
@@ -51,11 +59,9 @@ export default function PdfViewer({
     return () => window.removeEventListener('resize', updateDimensions);
   }, [pdfViewerRef]);
 
-  useEffect(() => {
-    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.mjs';
-  }, []);
   const onLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
+    if (pdfViewerRef.current) setWidth(pdfViewerRef.current.clientWidth);
   };
 
   const goToNextPage = () => {
@@ -83,31 +89,65 @@ export default function PdfViewer({
               modalClassName
             )}
           >
-            <div className="flex justify-end">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger className="bg-secondary p-3 rounded-full opacity-80 hover:opacity-100 transition-all ease-in-out delay-75 relative right-4">
-                    <a href={pdfUrl} target="_blank" download>
-                      <CloudDownload size={20} />
-                      <span className="sr-only">Download this file</span>
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent className="z-[210] text-xs bg-primary py-1 px-3 text-[0.65rem] rounded-full">
-                    <div>Download</div>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+            <div className="flex justify-evenly px-1">
+              <div className="flex gap-2">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger
+                      className="bg-secondary p-3 rounded-full opacity-80 hover:opacity-100 transition-all ease-in-out delay-75 relative"
+                      onClick={goToPreviousPage}
+                    >
+                      <ChevronLeft size={20} />
+                      <span className="sr-only">Previous Page</span>
+                    </TooltipTrigger>
+                    <TooltipContent className="z-[210] text-xs bg-primary py-1 px-3 text-[0.65rem] rounded-full">
+                      <div>Previous Page</div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger
+                      className="bg-secondary p-3 rounded-full opacity-80 hover:opacity-100 transition-all ease-in-out delay-75 relative"
+                      onClick={goToNextPage}
+                    >
+                      <ChevronRight size={20} />
+                      <span className="sr-only">Next Page</span>
+                    </TooltipTrigger>
+                    <TooltipContent className="z-[210] text-xs bg-primary py-1 px-3 text-[0.65rem] rounded-full">
+                      <div>Next Page</div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+
+              <div className="flex items-center relative flex-1 justify-center">
+                <span className="text-primary opacity-80 font-medium text-sm">
+                  {pageNumber} / {numPages}
+                </span>
+              </div>
+              <div className="">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger className="bg-secondary p-3 rounded-full opacity-80 hover:opacity-100 transition-all ease-in-out delay-75">
+                      <a href={pdfUrl} target="_blank" download>
+                        <CloudDownload size={20} />
+                        <span className="sr-only">Download this file</span>
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent className="z-[210] text-xs bg-primary py-1 px-3 text-[0.65rem] rounded-full">
+                      <div>Download</div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
             </div>
             <div
-              className="justify-center mt-2 flex justify-center overflow-hidden"
+              className="justify-center mt-2 flex overflow-hidden"
               ref={pdfViewerRef}
             >
-              <div className="w-fit border-2 border-b-0 overflow-y-scroll custom_page_scroll rounded-xl rounded-b-[0px]">
-                <Document
-                  file={pdfUrl}
-                  onLoadSuccess={onLoadSuccess}
-                  className=""
-                >
+              <div className="w-fit border-2 border-b-0 overflow-y-scroll custom_page_scroll rounded-xl rounded-b-[0px] overflow-x-hidden">
+                <Document file={pdfUrl} onLoadSuccess={onLoadSuccess}>
                   <Page pageNumber={pageNumber} width={width} />
                 </Document>
               </div>

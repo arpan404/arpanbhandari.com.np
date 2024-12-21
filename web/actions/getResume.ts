@@ -24,14 +24,14 @@ const query = gql`
   }
 `;
 let lastFetchTime = 0;
-const REFRESH_INTERVAL = 60 * 1000 * 60 * 24; // to refresh every 24 hours
+const REFRESH_INTERVAL = 60 * 60 * 1000 * 60 * 1; // to refresh every 1 hour
 
 export default async function getResume() {
   const currentTime = Date.now();
   const shouldRefetch = currentTime - lastFetchTime > REFRESH_INTERVAL;
   const data = await fetchGraphQL<ResumeQueryResponse>(
     query,
-    shouldRefetch ? 'network-only' : 'cache-first'
+    shouldRefetch ? 'network-only' : 'network-only'
   );
   return data;
 }

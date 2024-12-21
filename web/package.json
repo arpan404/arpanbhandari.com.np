@@ -29,7 +29,7 @@
     "graphql": "^16.10.0",
     "lucide-react": "^0.468.0",
     "next": "15.1.1",
-    "pdfjs-dist": "^4.8.69",
+    "pdfjs-dist": "4.8.69",
     "qss": "^3.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
