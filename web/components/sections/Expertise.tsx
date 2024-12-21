@@ -42,39 +42,32 @@ export default async function Expertise() {
           </div>
         </div>
         <div className="flex justify-center py-2 md:py-4">
-          <div className="container flex justify-between">
-            <div className="flex items-center justify-center w-full md:w-1/2">
+          <div className="container flex justify-between flex-wrap gap-8 md:gap-0 w-full">
+            <div className="flex justify-center w-full md:w-1/2 px-2 md:px-4">
               <div className="text-base space-y-4">
                 <p>
-                  In addition to my expertise in these technologies, I bring a
-                  strong and diverse foundation in computer science and
-                  programming. This knowledge has enabled me to design, develop,
-                  and deploy solutions ranging from small-scale applications to
-                  highly sophisticated, large-scale systems tailored to meet
-                  specific requirements. My ability to adapt to various
-                  challenges and deliver impactful results reflects my
-                  commitment to excellence and problem-solving.
+                  I&apos;ve built a strong foundation in computer science and
+                  programming, which has enabled me to design, develop, and
+                  deploy solutions ranging from small applications to large,
+                  complex systems tailored to specific needs. My experience
+                  spans full-stack web and mobile app development, where
+                  I&apos;ve created user-friendly, feature-rich applications.
+                  I&apos;ve also worked extensively on scripting and automation,
+                  streamlining workflows and improving efficiency in various
+                  projects.{' '}
                 </p>
                 <p>
-                  I have extensive experience in full-stack web and mobile app
-                  development, where I&apos;ve successfully built user-friendly,
-                  feature-rich applications. Over the years, I&apos;ve also
-                  contributed actively to open-source projects, collaborating
-                  with global developer communities. These experiences have
-                  sharpened my technical skills and fostered a culture of
-                  innovation, teamwork, and continuous learning.
-                </p>
-
-                <p>
-                  Recently, my interests have evolved toward Artificial
-                  Intelligence (AI) and Machine Learning (ML). I&apos;ve been
-                  deeply engaged in exploring innovative solutions and working
-                  on cutting-edge projects, broadening my expertise to remain at
-                  the forefront of advancements in these dynamic fields.
+                  In addition, I&apos;ve actively contributed to open-source
+                  projects, collaborating with global developer communities,
+                  which has sharpened my technical skills and fostered a culture
+                  of teamwork and continuous learning. Recently, I&apos;ve been
+                  focusing on Artificial Intelligence (AI) and Machine Learning
+                  (ML), working on innovative and exciting projects to stay at
+                  the forefront of these rapidly evolving fields.
                 </p>
               </div>
             </div>
-            <div className="flex items-center justify-center w-full md:w-1/2">
+            <div className="flex items-center justify-center w-full md:w-1/2 px-2 md:px-4">
               aa
             </div>
           </div>
