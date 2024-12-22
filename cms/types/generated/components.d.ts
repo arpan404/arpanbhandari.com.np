@@ -1,5 +1,16 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ProjectsTags extends Struct.ComponentSchema {
+  collectionName: 'components_projects_tags';
+  info: {
+    displayName: 'Tags';
+    icon: 'chartBubble';
+  };
+  attributes: {
+    skill: Schema.Attribute.Relation<'oneToOne', 'api::skill.skill'>;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -65,6 +76,7 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'projects.tags': ProjectsTags;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;

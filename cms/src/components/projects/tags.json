@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_projects_tags",
+  "info": {
+    "displayName": "Tags",
+    "icon": "chartBubble"
+  },
+  "options": {},
+  "attributes": {
+    "skill": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::skill.skill"
+    }
+  }
+}

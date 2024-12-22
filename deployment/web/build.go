@@ -11,7 +11,6 @@ func build() {
 	if err != nil {
 		fmt.Printf("Error changing directory to %s\n", webDir)
 	}
-
 	fmt.Println("Building web app...")
 
 }
