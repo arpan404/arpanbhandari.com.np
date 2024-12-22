@@ -1,3 +1,4 @@
+'use server';
 import { gql } from '@apollo/client';
 import fetchGraphQL from '@/actions/fetchGraphQL';
 import { cookies } from 'next/headers';
@@ -31,12 +32,5 @@ export default async function getMusic() {
     query,
     shouldRefetch ? 'network-only' : 'cache-first'
   );
-  const cookieStore = await cookies();
-  if (cookieStore) {
-    if (data.data && data.data.music) {
-      cookieStore.set('music', data.data.music.file.url);
-      return;
-    }
-    cookieStore.set('music', '');
-  }
+  return data;
 }
