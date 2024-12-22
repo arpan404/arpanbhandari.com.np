@@ -1,15 +1,5 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
-export interface ExpertiseSkills extends Struct.ComponentSchema {
-  collectionName: 'components_expertise_skills';
-  info: {
-    description: '';
-    displayName: 'Skills';
-    icon: 'command';
-  };
-  attributes: {};
-}
-
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -75,7 +65,6 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'expertise.skills': ExpertiseSkills;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
