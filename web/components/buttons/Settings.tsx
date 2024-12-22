@@ -29,8 +29,7 @@ import getMusic from '@/actions/getMusic';
 
 export default function Settings() {
   const { currentTheme, changeTheme } = useTheme();
-  const { musicPlaying, toggleMusic, currentMusic, setCurrentMusic } =
-    useMusic();
+  const { musicPlaying, toggleMusic, currentMusic } = useMusic();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

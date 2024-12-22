@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { getCookie } from '@/lib/cookie';
+import { useEffect, useState } from 'react';
 
 /**
  * Custom hook to manage music playing state.
@@ -16,6 +17,12 @@ export default function useMusic() {
   const toggleMusic = () => {
     setMusicPlaying(prev => !prev);
   };
+  useEffect(() => {
+    const music = getCookie('music');
+    if (music) {
+      setCurrentMusic(music);
+    }
+  }, []);
 
-  return { musicPlaying, toggleMusic, currentMusic, setCurrentMusic };
+  return { musicPlaying, toggleMusic, currentMusic };
 }
