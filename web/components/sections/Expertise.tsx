@@ -8,7 +8,6 @@ import PdfViewer from '@/components/common/PdfViewer';
 export default async function Expertise() {
   const specializations = await getSpecializations();
   const resume = await getResume();
-  console.log(resume);
   return (
     <section
       className="py-10 sm:py-16 md:py-20 bg-background"
