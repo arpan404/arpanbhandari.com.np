@@ -24,12 +24,13 @@ import {
 import { Theme as ThemeType } from '@/lib/types';
 import useTheme from '@/hooks/useTheme';
 import useMusic from '@/hooks/useMusic';
-import React from 'react';
+import React, { Suspense, useEffect } from 'react';
+import getMusic from '@/actions/getMusic';
 
 export default function Settings() {
   const { currentTheme, changeTheme } = useTheme();
-  const { music, toggleMusic } = useMusic();
-
+  const { musicPlaying, toggleMusic, currentMusic, setCurrentMusic } =
+    useMusic();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,7 +39,7 @@ export default function Settings() {
           size="icon"
           className="rounded-full p-0 outline-none ring-0 cursor-pointer scale-110"
         >
-          <SettingsIcon className="" size={40}/>
+          <SettingsIcon className="" size={40} />
           <span className="sr-only">Settings</span>
         </Button>
       </DropdownMenuTrigger>
@@ -84,8 +85,8 @@ export default function Settings() {
                     <div
                       onClick={() => toggleMusic()}
                       className={`h-8 w-8 rounded-full flex justify-center items-center p-2 ${
-                        (button.label === 'music-on' && music) ||
-                        (button.label === 'music-off' && !music)
+                        (button.label === 'music-on' && musicPlaying) ||
+                        (button.label === 'music-off' && !musicPlaying)
                           ? 'text-muted-foreground cursor-default'
                           : 'text-primary hover:bg-secondary cursor-pointer'
                       }`}
@@ -97,9 +98,9 @@ export default function Settings() {
                   </TooltipTrigger>
                   <TooltipContent className="p-0 px-3 py-1 z-[100] rounded-full">
                     <p className="text-[0.65rem]">
-                      {button.label === 'music-on' && music
+                      {button.label === 'music-on' && musicPlaying
                         ? 'Music is On'
-                        : button.label === 'music-off' && !music
+                        : button.label === 'music-off' && !musicPlaying
                         ? 'Music is Off'
                         : button.srOnly}
                     </p>

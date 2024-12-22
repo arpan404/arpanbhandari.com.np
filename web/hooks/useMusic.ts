@@ -1,15 +1,21 @@
 import { useState } from 'react';
 
 /**
+ * Custom hook to manage music playing state.
  *
- * @returns music , toggleMusic
- * - music: determines if music should play or not
- * - toggleMusic: toggles the music state
+ * @returns {Object} An object containing:
+ * - `musicPlaying` (boolean): Indicates if music is currently playing.
+ * - `toggleMusic` (function): Function to toggle the music playing state.
+ * - `currentMusic` (string | null): The current music track.
+ * - `setCurrentMusic` (function): Function to set the current music track.
  */
 export default function useMusic() {
-  const [music, setMusic] = useState<boolean>(false);
+  const [musicPlaying, setMusicPlaying] = useState<boolean>(false);
+  const [currentMusic, setCurrentMusic] = useState<string | null>(null);
+
   const toggleMusic = () => {
-    setMusic(!music);
+    setMusicPlaying(prev => !prev);
   };
-  return { music, toggleMusic };
+
+  return { musicPlaying, toggleMusic, currentMusic, setCurrentMusic };
 }

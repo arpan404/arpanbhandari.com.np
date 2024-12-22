@@ -407,6 +407,32 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMusicMusic extends Struct.SingleTypeSchema {
+  collectionName: 'musics';
+  info: {
+    description: '';
+    displayName: 'Music';
+    pluralName: 'musics';
+    singularName: 'music';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    audio: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::music.music'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiResumeResume extends Struct.SingleTypeSchema {
   collectionName: 'resumes';
   info: {
@@ -1038,6 +1064,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
+      'api::music.music': ApiMusicMusic;
       'api::resume.resume': ApiResumeResume;
       'api::skill-type.skill-type': ApiSkillTypeSkillType;
       'api::skill.skill': ApiSkillSkill;
