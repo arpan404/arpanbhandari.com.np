@@ -2,6 +2,7 @@ import './globals.css';
 import getTheme from '@/actions/getTheme';
 import Header from '@/components/navs/Header';
 import Footer from '@/components/navs/Footer';
+// import { CSPostHogProvider } from '@/components/common/CSPostHogProvider';
 
 export default async function RootLayout({
   children,
@@ -12,11 +13,13 @@ export default async function RootLayout({
   const currentThemeMode = theme === 'system' ? 'dark' : theme;
   return (
     <html lang="en" className={`${currentThemeMode}`} data-theme={theme}>
-      <body className="custom_page_scroll">
-        <Header />
-        {children}
-        <Footer />
-      </body>
+      {/* <CSPostHogProvider> */}
+        <body className="custom_page_scroll">
+          <Header />
+          {children}
+          <Footer />
+        </body>
+      {/* </CSPostHogProvider> */}
     </html>
   );
 }
