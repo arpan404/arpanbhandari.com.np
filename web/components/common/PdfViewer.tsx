@@ -90,37 +90,58 @@ export default function PdfViewer({
             )}
           >
             <div className="flex justify-evenly px-1">
-              <div className="flex gap-2">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger
-                      className="bg-secondary p-3 rounded-full opacity-80 hover:opacity-100 transition-all ease-in-out delay-75 relative"
-                      onClick={goToPreviousPage}
-                    >
-                      <ChevronLeft size={20} />
-                      <span className="sr-only">Previous Page</span>
-                    </TooltipTrigger>
-                    <TooltipContent className="z-[210] text-xs bg-primary py-1 px-3 text-[0.65rem] rounded-full">
-                      <div>Previous Page</div>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger
-                      className="bg-secondary p-3 rounded-full opacity-80 hover:opacity-100 transition-all ease-in-out delay-75 relative"
-                      onClick={goToNextPage}
-                    >
-                      <ChevronRight size={20} />
-                      <span className="sr-only">Next Page</span>
-                    </TooltipTrigger>
-                    <TooltipContent className="z-[210] text-xs bg-primary py-1 px-3 text-[0.65rem] rounded-full">
-                      <div>Next Page</div>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-
+              {numPages > 1 && (
+                <div className="flex gap-2">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger
+                        className={`bg-secondary p-3 rounded-full opacity-90 hover:opacity-100 transition-all ease-in-out delay-75 relative 
+                        text-primary ${
+                          pageNumber === 1 ? 'cursor-default' : 'cursor-pointer'
+                        }`}
+                        onClick={goToPreviousPage}
+                      >
+                        <ChevronLeft
+                          size={20}
+                          className={
+                            pageNumber === 1 ? 'opacity-50' : 'opacity-100'
+                          }
+                        />
+                        <span className="sr-only">Previous Page</span>
+                      </TooltipTrigger>
+                      <TooltipContent className="z-[210] text-xs bg-primary py-1 px-3 text-[0.65rem] rounded-full">
+                        <div>Previous Page</div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger
+                        className={`bg-secondary p-3 rounded-full opacity-90 hover:opacity-100 transition-all ease-in-out delay-75 relative 
+                        text-primary ${
+                          pageNumber === numPages
+                            ? 'cursor-default'
+                            : 'cursor-pointer'
+                        }`}
+                        onClick={goToNextPage}
+                      >
+                        <ChevronRight
+                          size={20}
+                          className={
+                            pageNumber === numPages
+                              ? 'opacity-50'
+                              : 'opacity-100'
+                          }
+                        />
+                        <span className="sr-only">Next Page</span>
+                      </TooltipTrigger>
+                      <TooltipContent className="z-[210] text-xs bg-primary py-1 px-3 text-[0.65rem] rounded-full">
+                        <div>Next Page</div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+              )}
               <div className="flex items-center relative flex-1 justify-center">
                 <span className="text-primary opacity-80 font-medium text-sm">
                   {pageNumber} / {numPages}

@@ -24,7 +24,7 @@ const query = gql`
   }
 `;
 let lastFetchTime = 0;
-const REFRESH_INTERVAL = 60 * 60 * 1000 * 60 * 1; // to refresh every 1 hour
+const REFRESH_INTERVAL = 2 * 60 * 1000 * 60; // to refresh every 2 hours
 
 export default async function getResume() {
   const currentTime = Date.now();
