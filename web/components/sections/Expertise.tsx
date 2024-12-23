@@ -4,10 +4,12 @@ import getResume from '@/actions/getResume';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import PdfViewer from '@/components/common/PdfViewer';
+import getTopSkills from '@/actions/getTopSkills';
 
 export default async function Expertise() {
   const specializations = await getSpecializations();
-  const resume = await getResume();
+  const [topSkills, resume] = await Promise.all([getTopSkills(), getResume()]);
+  console.log(topSkills);
   return (
     <section
       className="py-10 sm:py-16 md:py-20 bg-background"
@@ -32,12 +34,12 @@ export default async function Expertise() {
         </div>
         <div className="flex justify-center py-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 container gap-2 md:gap-4">
-            {specializations.data &&
-              specializations.data.specializations.map(specialization => (
+            {topSkills.data &&
+              topSkills.data.topSkill?.skills.map(skill => (
                 <Skill
-                  key={specialization.skill.uid}
-                  name={specialization.skill.name}
-                  uid={specialization.skill.uid}
+                  key={skill.skill.uid}
+                  name={skill.skill.name}
+                  uid={skill.skill.uid}
                 />
               ))}
           </div>

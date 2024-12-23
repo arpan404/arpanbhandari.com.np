@@ -4,7 +4,8 @@
   "info": {
     "singularName": "specialization",
     "pluralName": "specializations",
-    "displayName": "Specialization"
+    "displayName": "Specialization",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

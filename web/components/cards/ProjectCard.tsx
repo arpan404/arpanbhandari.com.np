@@ -1,3 +1,5 @@
-export default async function ProjectCard({}) {
-  return <div>ProjectsCard</div>;
+import { Project } from '@/lib/types';
+
+export default async function ProjectCard({ project }: { project: Project }) {
+  return <></>;
 }

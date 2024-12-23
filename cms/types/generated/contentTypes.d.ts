@@ -651,6 +651,7 @@ export interface ApiSpecializationSpecialization
   extends Struct.CollectionTypeSchema {
   collectionName: 'specializations';
   info: {
+    description: '';
     displayName: 'Specialization';
     pluralName: 'specializations';
     singularName: 'specialization';
@@ -670,6 +671,64 @@ export interface ApiSpecializationSpecialization
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     skill: Schema.Attribute.Relation<'oneToOne', 'api::skill.skill'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTopProjectTopProject extends Struct.SingleTypeSchema {
+  collectionName: 'top_projects';
+  info: {
+    displayName: 'Top Project';
+    pluralName: 'top-projects';
+    singularName: 'top-project';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::top-project.top-project'
+    > &
+      Schema.Attribute.Private;
+    project: Schema.Attribute.DynamicZone<['projects.project']> &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTopSkillTopSkill extends Struct.SingleTypeSchema {
+  collectionName: 'top_skills';
+  info: {
+    displayName: 'Top Skill';
+    pluralName: 'top-skills';
+    singularName: 'top-skill';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::top-skill.top-skill'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    skill_details: Schema.Attribute.DynamicZone<['projects.tags']> &
+      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1193,6 +1252,8 @@ declare module '@strapi/strapi' {
       'api::skill-type.skill-type': ApiSkillTypeSkillType;
       'api::skill.skill': ApiSkillSkill;
       'api::specialization.specialization': ApiSpecializationSpecialization;
+      'api::top-project.top-project': ApiTopProjectTopProject;
+      'api::top-skill.top-skill': ApiTopSkillTopSkill;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

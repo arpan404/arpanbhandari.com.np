@@ -1,8 +1,9 @@
 {
   "collectionName": "components_projects_tags",
   "info": {
-    "displayName": "Tags",
-    "icon": "chartBubble"
+    "displayName": "Skills",
+    "icon": "chartBubble",
+    "description": ""
   },
   "options": {},
   "attributes": {

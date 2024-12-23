@@ -1,9 +1,21 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ProjectsProject extends Struct.ComponentSchema {
+  collectionName: 'components_projects_projects';
+  info: {
+    displayName: 'project';
+    icon: 'bold';
+  };
+  attributes: {
+    project: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
+  };
+}
+
 export interface ProjectsTags extends Struct.ComponentSchema {
   collectionName: 'components_projects_tags';
   info: {
-    displayName: 'Tags';
+    description: '';
+    displayName: 'Skills';
     icon: 'chartBubble';
   };
   attributes: {
@@ -76,6 +88,7 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'projects.project': ProjectsProject;
       'projects.tags': ProjectsTags;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;

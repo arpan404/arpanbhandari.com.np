@@ -1,0 +1,7 @@
+{
+  "name": "arpanbhandari",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "cd cms && npm run dev & cd web && npm run dev"
+  }
+}

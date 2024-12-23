@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "top_projects",
+  "info": {
+    "singularName": "top-project",
+    "pluralName": "top-projects",
+    "displayName": "Top Project"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "project": {
+      "type": "dynamiczone",
+      "components": [
+        "projects.project"
+      ],
+      "required": true
+    }
+  }
+}
