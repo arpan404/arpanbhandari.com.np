@@ -3,7 +3,12 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ['api.microlink.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api.microlink.io',
+      },
+    ],
   },
   experimental: {
     turbo: {

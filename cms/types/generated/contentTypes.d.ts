@@ -647,36 +647,6 @@ export interface ApiSkillSkill extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiSpecializationSpecialization
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'specializations';
-  info: {
-    description: '';
-    displayName: 'Specialization';
-    pluralName: 'specializations';
-    singularName: 'specialization';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::specialization.specialization'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    skill: Schema.Attribute.Relation<'oneToOne', 'api::skill.skill'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiTopProjectTopProject extends Struct.SingleTypeSchema {
   collectionName: 'top_projects';
   info: {
@@ -1251,7 +1221,6 @@ declare module '@strapi/strapi' {
       'api::resume.resume': ApiResumeResume;
       'api::skill-type.skill-type': ApiSkillTypeSkillType;
       'api::skill.skill': ApiSkillSkill;
-      'api::specialization.specialization': ApiSpecializationSpecialization;
       'api::top-project.top-project': ApiTopProjectTopProject;
       'api::top-skill.top-skill': ApiTopSkillTopSkill;
       'plugin::content-releases.release': PluginContentReleasesRelease;
