@@ -3,9 +3,6 @@ import fetchGraphQL from '@/actions/fetchGraphQL';
 
 interface TopSkill {
   skill: {
-    logo?: {
-      url: string;
-    };
     name: string;
     uid: string;
     type?: {
@@ -28,9 +25,6 @@ const query = gql`
       skills: skill_details {
         ... on ComponentProjectsTags {
           skill {
-            logo {
-              url
-            }
             name: skillName
             uid: skillUID
             type: skillType {
@@ -45,7 +39,7 @@ const query = gql`
 `;
 
 let lastFetchTime = 0;
-const REFRESH_INTERVAL = 60 * 1000 * 60 * 60 * 0; // refresh every 2 hours
+const REFRESH_INTERVAL = 60 * 1000 * 60 * 60 * 2; // refresh every 2 hours
 
 export default async function getTopSkills() {
   const currentTime = Date.now();
