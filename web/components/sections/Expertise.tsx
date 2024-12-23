@@ -1,4 +1,3 @@
-import getSpecializations from '@/actions/getSpecializations';
 import Skill from '@/components/buttons/Skill';
 import getResume from '@/actions/getResume';
 import { Button } from '@/components/ui/button';
@@ -7,9 +6,7 @@ import PdfViewer from '@/components/common/PdfViewer';
 import getTopSkills from '@/actions/getTopSkills';
 
 export default async function Expertise() {
-  const specializations = await getSpecializations();
   const [topSkills, resume] = await Promise.all([getTopSkills(), getResume()]);
-  console.log(topSkills);
   return (
     <section
       className="py-10 sm:py-16 md:py-20 bg-background"
