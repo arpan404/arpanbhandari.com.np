@@ -1,5 +1,5 @@
 import { Project } from '@/lib/types';
 
-export default async function ProjectCard({ project }: { project: Project }) {
-  return <></>;
+export default function ProjectCard({ project }: { project: Project }) {
+  return <div>Hello {project.name}</div>;
 }

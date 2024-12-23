@@ -2,6 +2,7 @@ import About from '@/components/sections/About';
 import Hero from '@/components/sections/Hero';
 import { Metadata } from 'next';
 import Expertise from '@/components/sections/Expertise';
+import TopProjects from '@/components/sections/TopProjects';
 
 export const metadata: Metadata = {
   title: 'Arpan Bhandari | The Developer',
@@ -26,6 +27,7 @@ export default function Home() {
       <About />
       <div className="bg-secondary h-[2px]" role="separator" />
       <Expertise />
+      <TopProjects />
     </>
   );
 }

@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 import fetchGraphQL from '@/actions/fetchGraphQL';
-
 interface TopSkill {
   skill: {
     name: string;

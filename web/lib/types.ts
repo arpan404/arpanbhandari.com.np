@@ -1,3 +1,5 @@
+import { type BlocksContent } from '@strapi/blocks-react-renderer';
+
 export type Theme = 'light' | 'dark' | 'system';
 
 export type Skill = {
@@ -14,7 +16,7 @@ export type Project = {
   name: string;
   uid: string;
   shortDescription: string;
-  detailedDescription: string;
+  detailedDescription: BlocksContent;
   thumnail: string;
   technologiesUsed: Array<Skill>;
   codeURL?: string;

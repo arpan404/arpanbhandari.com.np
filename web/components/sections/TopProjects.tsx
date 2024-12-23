@@ -1,13 +1,13 @@
-import ProjectCard from "@/components/cards/ProjectCard";
+import ProjectCard from '@/components/cards/ProjectCard';
+import getTopProjects from '@/actions/getTopProjects';
 
-export default function TopProjects() {
-  return <section className="p-8">
-    <ProjectCard project={{
-        name: "Project 1",
-        description: "This is a project.",
-        image: "https://via.placeholder.com/150",
-        link: "https://example.com"
-
-    }}/>
-  </section>;
+export default async function TopProjects() {
+  const projects = await getTopProjects();
+  return (
+    <section className="p-8">
+      {projects.data && (
+        <ProjectCard project={projects.data.topProject.project[0].project} />
+      )}
+    </section>
+  );
 }
