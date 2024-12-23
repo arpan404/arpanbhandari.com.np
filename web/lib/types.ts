@@ -17,6 +17,9 @@ export type Project = {
   detailedDescription: string;
   thumnail: string;
   technologiesUsed: Array<Skill>;
-  codeURL: string | null;
-  liveURL: string | null;
+  codeURL?: string;
+  liveURL?: string;
+  article?: {
+    uid: string;
+  };
 };

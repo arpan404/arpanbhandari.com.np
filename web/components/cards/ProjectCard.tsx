@@ -1,4 +1,3 @@
-
-export default function ProjectCard({}) {
+export default async function ProjectCard({}) {
   return <div>ProjectsCard</div>;
 }
