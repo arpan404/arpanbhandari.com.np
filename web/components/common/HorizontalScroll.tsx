@@ -46,6 +46,23 @@ export default function HorizontalScroll({
     };
   }, []);
 
+  useEffect(() => {
+    if (!canScrollLeft && !canScrollRight) {
+      setIsHovered(false);
+    }
+  }, [canScrollLeft, canScrollRight]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      updateScrollButtons();
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div
       className="relative"
@@ -56,7 +73,7 @@ export default function HorizontalScroll({
         onClick={scrollLeft}
         className={`absolute left-0 z-10 top-0 h-full text-gray-300 bg-transparent transition-all duration-75 ${
           isHovered ? 'opacity-100 hover:text-gray-100' : 'opacity-0'
-        } ${canScrollLeft ? 'block' : 'md:hidden block'}`}
+        } ${canScrollLeft ? 'block' : 'hidden'}`}
       >
         <ChevronLeft size={50} fontWeight={900} className="drop-shadow-2xl" />
         <span className="sr-only">Scroll left</span>
@@ -71,7 +88,7 @@ export default function HorizontalScroll({
         onClick={scrollRight}
         className={`absolute right-0 z-10 top-0 h-full text-gray-300 bg-transparent transition-all duration-75 ${
           isHovered ? 'opacity-100 hover:text-gray-100' : 'opacity-0'
-        } ${canScrollRight ? 'block' : 'md:hidden block'}`}
+        } ${canScrollRight ? 'block' : 'hidden'}`}
       >
         <ChevronRight size={50} fontWeight={900} />
         <span className="sr-only">Scroll right</span>
