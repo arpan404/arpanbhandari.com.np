@@ -93,7 +93,7 @@
           "localized": true
         }
       },
-      "type": "text",
+      "type": "string",
       "required": false
     },
     "liveURL": {
@@ -111,7 +111,7 @@
           "localized": true
         }
       },
-      "type": "text",
+      "type": "richtext",
       "required": true
     }
   }

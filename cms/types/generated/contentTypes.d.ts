@@ -478,7 +478,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   };
   attributes: {
     article: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
-    codeURL: Schema.Attribute.Text &
+    codeURL: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -498,7 +498,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::project.project'
     >;
-    long_description: Schema.Attribute.Text &
+    long_description: Schema.Attribute.RichText &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
