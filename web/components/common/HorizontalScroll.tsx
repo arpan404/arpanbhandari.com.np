@@ -54,7 +54,7 @@ export default function HorizontalScroll({
     >
       <button
         onClick={scrollLeft}
-        className={`absolute left-0 z-10 top-0 h-full text-gray-300 dark:text-primary bg-transparent transition-all duration-75 ${
+        className={`absolute left-0 z-10 top-0 h-full text-gray-300 bg-transparent transition-all duration-75 ${
           isHovered ? 'opacity-100 hover:text-gray-100' : 'opacity-0'
         } ${canScrollLeft ? 'block' : 'md:hidden block'}`}
       >
@@ -68,23 +68,21 @@ export default function HorizontalScroll({
       </div>
       <button
         onClick={scrollRight}
-        className={`absolute right-0 z-10 top-0 h-full text-gray-300 dark:text-primary bg-transparent transition-all duration-75 ${
+        className={`absolute right-0 z-10 top-0 h-full text-gray-300 bg-transparent transition-all duration-75 ${
           isHovered ? 'opacity-100 hover:text-gray-100' : 'opacity-0'
         } ${canScrollRight ? 'block' : 'md:hidden block'}`}
       >
         <ChevronRight size={50} fontWeight={900} />
       </button>
       <div
-        className={`absolute top-0 left-0 h-full w-12 bg-transparent dark:bg-gradient-to-r dark:from-background dark:to-transparent pointer-events-none ${
+        className={`absolute top-0 left-0 h-full w-12 bg-transparent pointer-events-none ${
           canScrollLeft ? 'block' : 'hidden'
         } ${isHovered ? 'opacity-100' : 'opacity-0'}`}
       />
-      <div
-        className={`absolute top-0 right-0 h-full bg-transparent dark:bg-gradient-to-l dark:from-background dark:to-transparent pointer-events-none ${
-          canScrollRight ? 'block' : 'hidden'
-        }
-        } ${isHovered ? 'opacity-100' : 'opacity-0'}
-        `}
+     <div
+        className={`absolute top-0 right-0 h-full w-12 bg-transparent pointer-events-none ${
+          canScrollLeft ? 'block' : 'hidden'
+        } ${isHovered ? 'opacity-100' : 'opacity-0'}`}
       />
     </div>
   );
