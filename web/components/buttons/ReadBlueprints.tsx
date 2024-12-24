@@ -13,7 +13,10 @@ export default function ReadBlueprints({ url }: { url: string }) {
       <Tooltip>
         <TooltipTrigger asChild>
           <Link href={url} target="_blank">
-            <Button className="rounded-full h-10 px-6 md:px-8">
+            <Button
+              className="rounded-xl h-10 px-6 md:px-8"
+              variant={'outline'}
+            >
               Read Blueprint
             </Button>
           </Link>
