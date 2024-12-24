@@ -5,7 +5,10 @@ import HorizontalScroll from '../common/HorizontalScroll';
 export default async function TopProjects() {
   const projects = await getTopProjects();
   return (
-    <section className="flex justify-center bg-background" id="projects">
+    <section
+      className="flex justify-center bg-background py-10 sm:py-16 md:py-20"
+      id="projects"
+    >
       <div className="container">
         <HorizontalScroll>
           <>

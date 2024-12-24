@@ -59,6 +59,7 @@ export default function HorizontalScroll({
         } ${canScrollLeft ? 'block' : 'md:hidden block'}`}
       >
         <ChevronLeft size={50} fontWeight={900} className="drop-shadow-2xl" />
+        <span className="sr-only">Scroll left</span>
       </button>
       <div
         ref={scrollRef}
@@ -73,13 +74,14 @@ export default function HorizontalScroll({
         } ${canScrollRight ? 'block' : 'md:hidden block'}`}
       >
         <ChevronRight size={50} fontWeight={900} />
+        <span className="sr-only">Scroll right</span>åå
       </button>
       <div
         className={`absolute top-0 left-0 h-full w-12 bg-transparent pointer-events-none ${
           canScrollLeft ? 'block' : 'hidden'
         } ${isHovered ? 'opacity-100' : 'opacity-0'}`}
       />
-     <div
+      <div
         className={`absolute top-0 right-0 h-full w-12 bg-transparent pointer-events-none ${
           canScrollLeft ? 'block' : 'hidden'
         } ${isHovered ? 'opacity-100' : 'opacity-0'}`}
