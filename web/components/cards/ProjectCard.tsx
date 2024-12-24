@@ -13,18 +13,12 @@ import {
   ModalContent,
   ModalTrigger,
 } from '@/components/common/ProjectModal';
-import Link from 'next/link';
-import { Button } from '../ui/button';
-import { Code, View } from 'lucide-react';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '../ui/tooltip';
+import ReactMarkdown from 'react-markdown';
+
 import ViewProject from '../buttons/ViewProject';
 import ViewCode from '../buttons/ViewCode';
 import ReadBlueprints from '../buttons/ReadBlueprints';
+import TechnologiesTooltip from '../common/Technologies';
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
@@ -76,7 +70,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                   </h2>
                 </div>
                 <div className="flex justify-center items-center pt-1">
-                  <h3 className="text-base text-center text-muted-foreground">
+                  <h3 className="text-sm text-center text-muted-foreground">
                     {project.shortDescription}
                   </h3>
                 </div>
@@ -98,43 +92,16 @@ export default function ProjectCard({ project }: { project: Project }) {
                 className="bg-secondary h-[2px] rounded-full"
                 role="separator"
               />
-              <div>
-                Lorem ipsum odor amet, consectetuer adipiscing elit. Erat magnis
-                consequat himenaeos ipsum velit porta eu orci. Suspendisse
-                mollis mollis congue taciti lacus conubia? Metus odio diam
-                platea quis bibendum maximus donec mus. Sapien nisl tincidunt
-                sagittis erat vehicula. Risus auctor netus pharetra porttitor
-                neque consectetur mattis. Condimentum taciti conubia ridiculus
-                magna conubia ultricies, dolor etiam. Habitant sociosqu
-                adipiscing tellus duis sagittis curabitur morbi. Facilisis
-                laoreet amet ultrices est parturient nullam torquent. Viverra mi
-                imperdiet habitant habitant vestibulum euismod. Rhoncus ac
-                rutrum arcu pulvinar proin quam platea. Laoreet orci cursus
-                sollicitudin rutrum suscipit duis volutpat. Commodo est neque
-                efficitur varius facilisis dapibus vulputate? Lobortis pharetra
-                ultrices tortor sem facilisi elit conubia luctus. Vestibulum
-                augue nisi consectetur molestie pretium quam per. Dolor euismod
-                vivamus gravida massa faucibus facilisis urna nec dui. Ultricies
-                dolor ligula interdum euismod non fusce. Asapien accumsan per
-                varius curae faucibus vehicula fringilla. Quis venenatis dictum
-                nulla felis leo efficitur. Mollis integer ex praesent auctor
-                habitant tempor. Lacus nunc morbi ipsum curae ligula lacinia
-                hendrerit. Ridiculus neque platea iaculis metus consequat
-                fermentum volutpat. Non odio commodo velit senectus in ipsum.
-                Sem accumsan pellentesque pulvinar maximus nam nullam. Hac nisi
-                consectetur porttitor vulputate vulputate. Commodo egestas et at
-                nibh suscipit. Varius cursus blandit feugiat; cras maximus massa
-                volutpat. Placerat eleifend ultrices magnis class, duis sapien.
-                Duis ac ultrices id morbi mus finibus. Est maximus auctor vitae
-                sodales nisi sem. Interdum id morbi nascetur conubia augue
-                fringilla. Felis sociosqu nisi mauris nam; fringilla suscipit.
-                Turpis urna aliquam donec inceptos elementum. Sodales conubia
-                est class mollis consectetur ante fringilla euismod. Accumsan
-                fringilla proin; aliquam etiam dictumst mattis libero mi.
-                Placerat nec neque luctus interdum fringilla egestas. Vitae
-                lacinia vivamus pharetra aliquam hac nisl vestibulum metus.
-                Vestibulum malesuada integer iaculis praesent hendrerit molestie
-                posuere sit.
+              <div className="mt-4">
+                <ReactMarkdown>{project.longDescription}</ReactMarkdown>
+              </div>
+              <div className="mt-4">
+                <h3 className="text-lg font-medium text-primary/85">
+                  Implementation Stack
+                </h3>
+                <div>
+                  <TechnologiesTooltip data={project.technologiesUsed} />
+                </div>
               </div>
             </div>
             {/* </div> */}

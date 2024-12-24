@@ -7,14 +7,16 @@ import {
 } from '../ui/tooltip';
 import { Button } from '../ui/button';
 import OrangeButton from './OrangeButton';
+import { Eye, View } from 'lucide-react';
 export default function ViewProject({ url }: { url: string }) {
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
           <Link href={url} target="_blank">
-            <OrangeButton className="rounded-full h-10 px-6 md:px-8 text-sm">
-              View Project
+            <OrangeButton className="rounded-full h-10 w-10 sm:w-fit px-0 sm:px-6 md:px-8 text-sm">
+              <span className="hidden sm:block">View Project</span>
+              <Eye size={20} className="sm:hidden" />
             </OrangeButton>
           </Link>
         </TooltipTrigger>

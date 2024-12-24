@@ -31,9 +31,8 @@ export default function TechnologiesTooltip({
     x.set(event.nativeEvent.offsetX - halfWidth); // set the x value, which is then used in transform and rotate
   };
 
-  console.log(data);
   return (
-    <div className="flex flex-row items-center justify-center mb-10 w-full">
+    <div className="flex flex-row items-center justify-start mb-10 w-full">
       {data.map((item, idx) => (
         <div
           className="-mr-2  relative group"
@@ -61,22 +60,22 @@ export default function TechnologiesTooltip({
                   rotate: rotate,
                   whiteSpace: 'nowrap',
                 }}
-                className="absolute -top-16 -left-1/2 translate-x-1/2 flex text-xs  flex-col items-center justify-center rounded-md bg-black z-50 shadow-xl px-4 py-2"
+                className="absolute -top-10 -left-1/2 translate-x-1/2 flex text-xs  flex-col items-center justify-center rounded-md bg-primary z-50 shadow-xl px-4 py-2"
               >
-                <div className="absolute inset-x-10 z-30 w-[20%] -bottom-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent h-px " />
-                <div className="absolute left-10 w-[40%] z-30 -bottom-px bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px " />
-                <div className="font-bold text-white relative z-30 text-base">
+                <div className="absolute inset-x-10 z-30 w-[20%] -bottom-px bg-gradient-to-r from-transparent via-orange-500 to-transparent h-px " />
+                <div className="absolute left-10 w-[40%] z-30 -bottom-px bg-gradient-to-r from-transparent via-red-500 to-transparent h-px " />
+                <div className="font-semibold text-background relative z-30 text-sm">
                   {item.skill.name}
                 </div>
-                <div className="text-white text-xs">{item.skill.name}</div>
               </motion.div>
             )}
           </AnimatePresence>
-          <div className="w-[40px] h-[40px] max-w-[40px] max-h-[40px] overflow-hidden cursor-pointer group-hover:scale-105 bg-slate-200 dark:bg-slate-500 rounded-full flex justify-center items-center p-1 group-hover:z-30  relative transition duration-500 border-[1px] border-secondary">
+          <div className="w-[50px] h-[50px] max-w-[40px] max-h-[40px] overflow-hidden cursor-pointer group-hover:scale-105 rounded-full flex justify-center items-center p-1 group-hover:z-30  relative transition duration-500 border-[1px] border-secondary bg-muted drop-shadow-xl">
             <Image
               onMouseMove={handleMouseMove}
               height={100}
               width={100}
+              priority={true}
               src={
                 item.skill.logo
                   ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${item.skill.logo.url}`
