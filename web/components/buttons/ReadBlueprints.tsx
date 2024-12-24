@@ -6,6 +6,7 @@ import {
   TooltipTrigger,
 } from '../ui/tooltip';
 import { Button } from '../ui/button';
+import OrangeButton from './OrangeButton';
 export default function ReadBlueprints({ url }: { url: string }) {
   console.log(url);
   return (
@@ -15,7 +16,7 @@ export default function ReadBlueprints({ url }: { url: string }) {
           <Link href={url} target="_blank">
             <Button
               className="rounded-xl h-10 px-6 md:px-8"
-              variant={'outline'}
+              variant={'default'}
             >
               Read Blueprint
             </Button>
