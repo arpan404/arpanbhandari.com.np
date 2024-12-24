@@ -74,7 +74,7 @@ export default function HorizontalScroll({
         } ${canScrollRight ? 'block' : 'md:hidden block'}`}
       >
         <ChevronRight size={50} fontWeight={900} />
-        <span className="sr-only">Scroll right</span>åå
+        <span className="sr-only">Scroll right</span>
       </button>
       <div
         className={`absolute top-0 left-0 h-full w-12 bg-transparent pointer-events-none ${
