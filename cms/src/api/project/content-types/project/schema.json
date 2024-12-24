@@ -33,7 +33,8 @@
         }
       },
       "type": "uid",
-      "required": true
+      "required": true,
+      "targetField": "name"
     },
     "short_description": {
       "pluginOptions": {
