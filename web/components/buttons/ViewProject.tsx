@@ -12,7 +12,9 @@ export default function ViewProject({ url }: { url: string }) {
       <Tooltip>
         <TooltipTrigger asChild>
           <Link href={url} target="_blank">
-            <Button className="rounded-full h-10 px-6">View Project</Button>
+            <Button className="rounded-full h-10 px-6 md:px-8">
+              View Project
+            </Button>
           </Link>
         </TooltipTrigger>
         <TooltipContent className="p-0 px-3 py-1 rounded-full z-[202] text-[0.6rem]">
