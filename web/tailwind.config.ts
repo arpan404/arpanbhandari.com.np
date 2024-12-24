@@ -85,6 +85,7 @@ export default {
   },
   plugins: [
     require('tailwindcss-animate'),
+    require('tailwind-scrollbar-hide'),
     plugin(function ({ addUtilities }) {
       addUtilities({
         /* Custom scrollbar styles */

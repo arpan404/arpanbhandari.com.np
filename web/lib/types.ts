@@ -16,8 +16,10 @@ export type Project = {
   name: string;
   uid: string;
   shortDescription: string;
-  detailedDescription: BlocksContent;
-  thumnail: string;
+  longDescription: string;
+  thumbnail: {
+    url: string;
+  };
   technologiesUsed: Array<Skill>;
   codeURL?: string;
   liveURL?: string;

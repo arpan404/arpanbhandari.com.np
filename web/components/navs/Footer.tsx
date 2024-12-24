@@ -2,7 +2,7 @@ import { Copyright } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-background py-4 flex justify-center drop-shadow-sm">
+    <footer className="bg-background py-4 flex justify-center drop-shadow-sm z-0">
       <div className="">
         <div className="flex gap-[4px] text-sm items-center text-center text-primary">
           <Copyright size={14} />

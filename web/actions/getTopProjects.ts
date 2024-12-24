@@ -13,8 +13,8 @@ const query = gql`
             thumbnail {
               url
             }
-            short_description
-            detailed_description
+            shortDescription: short_description
+            longDescription: long_description
             liveURL
             codeURL
             technologies_used {
