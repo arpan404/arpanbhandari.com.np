@@ -1,5 +1,10 @@
 import { Project } from '@/lib/types';
-import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from '@/components/ui/card';
 import Image from 'next/image';
 import {
   Modal,
@@ -11,7 +16,7 @@ import {
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Modal>
-      <Card className="w-[300px] p-0 h-[280px] flex-grow-0 flex-shrink-0">
+      <Card className="w-[270px] p-0 h-[250px] flex-grow-0 flex-shrink-0">
         <div>
           <ModalTrigger className="p-0 rounded-none">
             <Image
@@ -26,12 +31,17 @@ export default function ProjectCard({ project }: { project: Project }) {
         </div>
         <CardContent className="p-0">
           <CardTitle className="p-0">
-            <ModalTrigger className="p-0">
-              <h3 className="text-xl font-bold text-muted-foreground">
+            <ModalTrigger className="p-0 mx-2 opacity-80 hover:opacity-100">
+              <h3 className="text-lg font-semibold">
                 {project.name}
               </h3>
             </ModalTrigger>
           </CardTitle>
+          <CardDescription className="p-0">
+            <p className="text-sm text-muted-foreground line-clamp-2">
+              {project.shortDescription} {project.shortDescription} {project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}
+            </p>
+          </CardDescription>
         </CardContent>
       </Card>
       <ModalBody>
