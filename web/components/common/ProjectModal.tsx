@@ -1,6 +1,7 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
+import { X } from 'lucide-react';
 import React, {
   ReactNode,
   createContext,
@@ -128,7 +129,7 @@ export const ModalBody = ({
             stiffness: 260,
             damping: 20,
           }}
-          className="fixed inset-0 flex items-baseline justify-center z-[200] py-10 overflow-y-scroll min-h-screen custom_page_scroll"
+          className="fixed inset-0 flex items-baseline justify-center z-[200] py-10 overflow-y-scroll min-h-screen"
         >
           <Overlay />
 
@@ -140,7 +141,7 @@ export const ModalBody = ({
             )}
           >
             <CloseIcon />
-            {children}
+            <div>{children}</div>
           </motion.div>
         </motion.div>
       )}
@@ -199,27 +200,14 @@ const Overlay = ({ className }: { className?: string }) => {
 const CloseIcon = () => {
   const { setOpen } = useModal();
   return (
+    <div className='sm:scale-150 absolute top-4 right-4 md:top-6 sm:right-6'>
     <button
       onClick={() => setOpen(false)}
-      className="absolute top-4 right-4 group"
+      className="group bg-secondary/85 hover:bg-secondary/100 p-1 sm:p-2 rounded-full text-primary hover:rotate-90 hover:scale-105 transition delay-100 ease-in-out"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="text-primary h-4 w-4 group-hover:scale-125 group-hover:rotate-3 transition duration-200"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M18 6l-12 12" />
-        <path d="M6 6l12 12" />
-      </svg>
+      <X size={15} className="group-hover:scale-125" />
     </button>
+    </div>
   );
 };
 
