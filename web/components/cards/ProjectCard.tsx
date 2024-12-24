@@ -37,7 +37,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               </h3>
             </ModalTrigger>
           </CardTitle>
-          <CardDescription className="p-0">
+          <CardDescription className="p-0 mx-2">
             <p className="text-sm text-muted-foreground line-clamp-2">
               {project.shortDescription} {project.shortDescription} {project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}{project.shortDescription}
             </p>

@@ -5,18 +5,20 @@ import HorizontalScroll from '../common/HorizontalScroll';
 export default async function TopProjects() {
   const projects = await getTopProjects();
   return (
-    <section className="p-8 bg-background" id="projects">
-      <HorizontalScroll>
-        <>
-          {projects.data && projects.data.topProject.project && (
-            <>
-              {projects.data.topProject.project.map((project, index) => (
-                <ProjectCard project={project.project} key={index} />
-              ))}
-            </>
-          )}
-        </>
-      </HorizontalScroll>
+    <section className="flex justify-center bg-background" id="projects">
+      <div className="container">
+        <HorizontalScroll>
+          <>
+            {projects.data && projects.data.topProject.project && (
+              <>
+                {projects.data.topProject.project.map((project, index) => (
+                  <ProjectCard project={project.project} key={index} />
+                ))}
+              </>
+            )}
+          </>
+        </HorizontalScroll>
+      </div>
     </section>
   );
 }
