@@ -71,10 +71,17 @@ export default function ProjectCard({ project }: { project: Project }) {
             <div className="relative bg-background rounded-t-lg -top-10 px-4 pt-6">
               <div>
                 <div className="flex justify-center items-center">
-                  <h2 className="text-center text-2xl sm:text-3xl font-bold text-primary/80">{project.name} </h2>
+                  <h2 className="text-center text-2xl sm:text-3xl font-bold text-primary/80">
+                    {project.name}
+                  </h2>
+                </div>
+                <div className="flex justify-center items-center pt-1">
+                  <h3 className="text-base text-center text-muted-foreground">
+                    {project.shortDescription}
+                  </h3>
                 </div>
               </div>
-              <div className="flex justify-between items-center mt-4">
+              <div className="flex justify-between items-center mt-2 mb-4">
                 <div className="flex gap-2 md:gap-3">
                   {project.liveURL && <ViewProject url={project.liveURL} />}
                   {project.codeURL && <ViewCode url={project.codeURL} />}
@@ -87,6 +94,10 @@ export default function ProjectCard({ project }: { project: Project }) {
                   )}
                 </div>
               </div>
+              <div
+                className="bg-secondary h-[2px] rounded-full"
+                role="separator"
+              />
               <div>
                 Lorem ipsum odor amet, consectetuer adipiscing elit. Erat magnis
                 consequat himenaeos ipsum velit porta eu orci. Suspendisse

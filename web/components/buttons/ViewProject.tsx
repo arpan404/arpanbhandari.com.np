@@ -13,7 +13,7 @@ export default function ViewProject({ url }: { url: string }) {
       <Tooltip>
         <TooltipTrigger asChild>
           <Link href={url} target="_blank">
-            <OrangeButton className="rounded-full h-10 px-6 md:px-8">
+            <OrangeButton className="rounded-full h-10 px-6 md:px-8 text-sm">
               View Project
             </OrangeButton>
           </Link>

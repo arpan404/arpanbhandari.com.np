@@ -137,7 +137,7 @@ export default function Settings() {
         {currentMusic && (
           <ReactAudioPlayer
             src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${currentMusic}`}
-            autoPlay={true}
+            autoPlay={false}
             preload="metadata"
             controls={false}
             volume={0.05}
