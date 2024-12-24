@@ -17,13 +17,16 @@ const query = gql`
             longDescription: long_description
             liveURL
             codeURL
-            technologiesUsed:technologies_used {
+            article {
+              uid
+            }
+            technologiesUsed: technologies_used {
               ... on ComponentProjectsTags {
                 skill {
                   name: skillName
                   uid: skillUID
-                  logo{
-                  url
+                  logo {
+                    url
                   }
                 }
               }

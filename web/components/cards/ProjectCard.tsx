@@ -24,6 +24,7 @@ import {
 } from '../ui/tooltip';
 import ViewProject from '../buttons/ViewProject';
 import ViewCode from '../buttons/ViewCode';
+import ReadBlueprints from '../buttons/ReadBlueprints';
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
@@ -70,12 +71,18 @@ export default function ProjectCard({ project }: { project: Project }) {
             <div className="h-8 w-full bg-gradient-to-t from-background via-background/80 to-transparent relative -top-8" />
 
             <div className="relative -top-8 px-4">
-              <div>
-                <div className="flex gap-2">
+              <div className="flex justify-between items-center">
+                <div className="flex gap-2 md:gap-3">
                   {project.liveURL && <ViewProject url={project.liveURL} />}
                   {project.codeURL && <ViewCode url={project.codeURL} />}
                 </div>
-                <div></div>
+                <div className="flex">
+                  {project.article && project.article.uid && (
+                    <ReadBlueprints
+                      url={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/writings/${project.article.uid}`}
+                    />
+                  )}
+                </div>
               </div>
               <div>
                 Lorem ipsum odor amet, consectetuer adipiscing elit. Erat magnis
