@@ -13,12 +13,17 @@ import {
   ModalContent,
   ModalTrigger,
 } from '@/components/common/ProjectModal';
-import TechnologiesTooltip from '../common/Technologies';
 import Link from 'next/link';
 import { Button } from '../ui/button';
-import { Code } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipProvider } from '../ui/tooltip';
-import { TooltipTrigger } from '@radix-ui/react-tooltip';
+import { Code, View } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../ui/tooltip';
+import ViewProject from '../buttons/ViewProject';
+import ViewCode from '../buttons/ViewCode';
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
@@ -67,46 +72,8 @@ export default function ProjectCard({ project }: { project: Project }) {
             <div className="relative -top-8 px-4">
               <div>
                 <div className="flex gap-2">
-                  <div>
-                    {project.liveURL && (
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Link href={project.liveURL} target="_blank">
-                              <Button className="rounded-full h-10 px-6">
-                                View Project
-                              </Button>
-                            </Link>
-                          </TooltipTrigger>
-                          <TooltipContent className="p-0 px-3 py-1 z-[100] rounded-full ">
-                            View Live
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    )}
-                  </div>
-                  <div>
-                    {project.codeURL && (
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Link href={project.codeURL} target="_blank">
-                              <Button
-                                variant={'outline'}
-                                size={'icon'}
-                                className="rounded-full h-10 w-10"
-                              >
-                                <Code />
-                              </Button>
-                            </Link>
-                          </TooltipTrigger>
-                          <TooltipContent className="p-0 px-3 py-1 z-[100] rounded-full">
-                            View Code
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    )}
-                  </div>
+                  {project.liveURL && <ViewProject url={project.liveURL} />}
+                  {project.codeURL && <ViewCode url={project.codeURL} />}
                 </div>
                 <div></div>
               </div>
