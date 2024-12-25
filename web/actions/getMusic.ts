@@ -1,36 +1,37 @@
 'use server';
 import { gql } from '@apollo/client';
 import fetchGraphQL from '@/actions/fetchGraphQL';
-import { cookies } from 'next/headers';
-
-type MusicQueryResponse = {
-  data: null | {
-    music: {
-      file: {
-        url: string;
-      };
-    };
-  };
-};
+import { MusicQueryResponse } from '@/types/response';
 
 const query = gql`
-  query getMusic {
+  query {
     music {
-      file: audio {
+      audio {
         url
       }
     }
   }
 `;
-let lastFetchTime = 0;
-const REFRESH_INTERVAL = 60 * 1000 * 60 * 24 * 7; // refresh every 1 week
 
-export default async function getMusic() {
-  const currentTime = Date.now();
-  const shouldRefetch = currentTime - lastFetchTime > REFRESH_INTERVAL;
-  const data = await fetchGraphQL<MusicQueryResponse>(
-    query,
-    shouldRefetch ? 'network-only' : 'cache-first'
-  );
-  return data;
-}
+const getMusic = async (): Promise<MusicQueryResponse> => {
+  try {
+    const data = await fetchGraphQL<MusicQueryResponse>(
+      query,
+      'bg-music',
+      60 * 60 * 2 // 2 hours
+    );
+    if (data.data) {
+      if (!data.data.music.audio) {
+        data.data = null;
+      }
+    }
+    return data;
+  } catch (e: unknown) {
+    console.error(e);
+    return {
+      data: null,
+    };
+  }
+};
+
+export default getMusic;

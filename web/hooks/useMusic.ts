@@ -2,16 +2,6 @@ import getMusic from '@/actions/getMusic';
 import { addCookie, getCookie } from '@/lib/cookie';
 import { useEffect, useState } from 'react';
 
-/**
- * Custom hook to manage music playback state.
- *
- * @returns {Object} An object containing:
- * - `musicPlaying` (boolean): Indicates whether music is currently playing.
- * - `toggleMusic` (function): Function to toggle the music playback state.
- * - `currentMusic` (string | null): The URL of the current music file.
- * - `setCurrentMusic` (function): Function to set the current music URL.
- */
-
 export default function useMusic() {
   const [musicPlaying, setMusicPlaying] = useState<boolean>(false);
   const [currentMusic, setCurrentMusic] = useState<string | null>(null);
@@ -33,7 +23,7 @@ export default function useMusic() {
         setMusicPlaying(false);
       }
       if (data.data) {
-        setCurrentMusic(data.data.music.file.url);
+        setCurrentMusic(data.data.music.audio.url);
       } else {
         setCurrentMusic(null);
       }

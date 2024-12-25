@@ -446,7 +446,7 @@ export interface ApiMusicMusic extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    audio: Schema.Attribute.Media<'audios'>;
+    audio: Schema.Attribute.Media<'audios'> & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
