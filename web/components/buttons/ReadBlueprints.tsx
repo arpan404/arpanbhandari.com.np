@@ -8,7 +8,6 @@ import {
 import { Button } from '../ui/button';
 import { NotepadText } from 'lucide-react';
 export default function ReadBlueprints({ url }: { url: string }) {
-  console.log(url);
   return (
     <TooltipProvider>
       <Tooltip>
