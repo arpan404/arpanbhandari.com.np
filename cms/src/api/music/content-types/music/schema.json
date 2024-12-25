@@ -15,7 +15,7 @@
     "audio": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "audios"
       ]
