@@ -1,4 +1,4 @@
-export function getCookie(name: string) {
+const getCookie = (name: string): string | null => {
   try {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -10,8 +10,9 @@ export function getCookie(name: string) {
     console.error(e);
     return null;
   }
-}
-export function addCookie(name: string, value: string, days: number = 7) {
+};
+
+const addCookie = (name: string, value: string, days: number = 7) => {
   try {
     const expirationDate = new Date();
     expirationDate.setDate(expirationDate.getDate() + days);
@@ -20,4 +21,6 @@ export function addCookie(name: string, value: string, days: number = 7) {
     console.error(e);
     return null;
   }
-}
+};
+
+export { getCookie, addCookie };
