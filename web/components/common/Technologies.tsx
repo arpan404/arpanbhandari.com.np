@@ -85,7 +85,7 @@ export default function TechnologiesTooltip({
               }
               alt={item.skill.name}
               className={`w-full h-full object-cover !m-0 !p-0 object-top ${
-                item.skill.logo ? '' : 'invert !p-1'
+                item.skill.logo ? '' : 'dark:invert !p-1'
               }`}
             />
           </div>

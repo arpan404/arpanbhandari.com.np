@@ -96,7 +96,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               </div>
               <div className="mt-4">
                 <h3 className="text-lg font-medium text-primary/85">
-                  Implementation Stack
+                  Tech Stack
                 </h3>
                 <div className="mt-2">
                   <TechnologiesTooltip data={project.technologiesUsed} />
