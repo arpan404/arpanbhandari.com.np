@@ -9,7 +9,7 @@ export default async function TopProjects() {
       className="flex justify-center bg-background py-10 sm:py-16 md:py-20"
       id="projects"
     >
-      <div className="container">
+      <div className="container px-2 md:px-8">
         <HorizontalScroll>
           <>
             {projects.data && projects.data.topProject.project && (
