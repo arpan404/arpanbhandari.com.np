@@ -23,6 +23,7 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(false);
   const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
+  console.log('🚀 ~ ModalProvider ~ triggerRect:', triggerRect);
 
   return (
     <ModalContext.Provider
@@ -98,46 +99,51 @@ export const ModalBody = ({
   }, [open]);
 
   useOutsideClick(modalRef, () => setOpen(false));
-
+  console.log(
+    'Trigger Rect X:',
+    triggerRect ? triggerRect.left + triggerRect.width / 2 : 0
+  );
+  console.log(
+    'Trigger Rect Y:',
+    triggerRect ? triggerRect.top + triggerRect.height / 2 : 0
+  );
   return (
     <AnimatePresence>
       {open && (
-        <motion.div
-          initial={{
-            opacity: 0,
-            x: triggerRect ? triggerRect.left + triggerRect.width / 2 : 0,
-            y: triggerRect ? triggerRect.top + triggerRect.height / 2 : 0,
-            width: 270,
-            height: 240,
-          }}
-          animate={{
-            opacity: 1,
-            x: 0,
-            y: 0,
-            width: '100%',
-            height: '100%',
-          }}
-          exit={{
-            opacity: 0,
-            x: triggerRect ? triggerRect.left + triggerRect.width / 2 : 0,
-            y: triggerRect ? triggerRect.top + triggerRect.height / 2 : 0,
-            width: triggerRect ? triggerRect.width : 'auto',
-            height: triggerRect ? triggerRect.height : 'auto',
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: 260,
-            damping: 30,
-            duration: 0.3,
-          }}
-          className="fixed inset-0 flex items-baseline justify-center z-[200] py-10 overflow-y-scroll min-h-screen overflow-x-hidden bg-transparent"
-        >
+        <motion.div className="fixed inset-0 flex items-baseline justify-center z-[200] py-10 overflow-y-scroll min-h-screen overflow-x-hidden bg-transparent">
           <Overlay />
 
           <motion.div
             ref={modalRef}
+            initial={{
+              opacity: 0,
+              x: triggerRect ? triggerRect.left + triggerRect.width / 2 : 0,
+              y: triggerRect ? triggerRect.top + triggerRect.height / 2 : 0,
+              width: 0,
+              height: 0,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              y: 0,
+              width: '100%',
+              height: '100%',
+            }}
+            exit={{
+              opacity: 0,
+              x: triggerRect ? triggerRect.left + triggerRect.width / 2 : 0,
+              y: triggerRect ? triggerRect.top + triggerRect.height / 2 : 0,
+              width: triggerRect ? triggerRect.width : 'auto',
+              height: triggerRect ? triggerRect.height : 'auto',
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 260,
+              damping: 30,
+              duration: 0.3,
+            }}
             className={cn(
-              'bg-background dark:border border-muted md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-y-scroll overflow-x-hidden',
+              'bg-background dark:border border-muted rounded-md md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-y-scroll overflow-x-hidden',
               className
             )}
           >
@@ -190,7 +196,7 @@ const Overlay = ({ className }: { className?: string }) => {
       exit={{
         opacity: 0,
       }}
-      className={`fixed inset-0 h-full w-full bg-black bg-opacity-30 z-50 ${className} `}
+      className={`fixed inset-0 h-full w-full bg-black bg-opacity-30 z-50 backdrop-blur-[10px] ${className}`}
     ></motion.div>
   );
 };

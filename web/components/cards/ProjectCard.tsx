@@ -50,7 +50,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           </CardDescription>
         </CardContent>
       </Card>
-      <ModalBody className="md:max-w-[750px] p-0 md:p-0">
+      <ModalBody className="md:max-w-[750px] p-0 md:p-0 scrollbar-hide">
         <ModalContent className="p-0 md:p-0">
           <div>
             <div className="w-full aspect-video overflow-hidden p-0 md:p-0">
