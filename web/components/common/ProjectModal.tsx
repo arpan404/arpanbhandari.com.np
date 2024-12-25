@@ -107,8 +107,8 @@ export const ModalBody = ({
             opacity: 0,
             x: triggerRect ? triggerRect.left + triggerRect.width / 2 : 0,
             y: triggerRect ? triggerRect.top + triggerRect.height / 2 : 0,
-            width: triggerRect ? triggerRect.width : 'auto',
-            height: triggerRect ? triggerRect.height : 'auto',
+            width: 270,
+            height: 240,
           }}
           animate={{
             opacity: 1,
@@ -127,9 +127,10 @@ export const ModalBody = ({
           transition={{
             type: 'spring',
             stiffness: 260,
-            damping: 20,
+            damping: 30,
+            duration: 0.3,
           }}
-          className="fixed inset-0 flex items-baseline justify-center z-[200] py-10 overflow-y-scroll min-h-screen overflow-x-hidden"
+          className="fixed inset-0 flex items-baseline justify-center z-[200] py-10 overflow-y-scroll min-h-screen overflow-x-hidden bg-transparent"
         >
           <Overlay />
 
@@ -182,17 +183,14 @@ const Overlay = ({ className }: { className?: string }) => {
     <motion.div
       initial={{
         opacity: 0,
-        backdropFilter: 'blur(0px)',
       }}
       animate={{
         opacity: 1,
-        backdropFilter: 'blur(10px)',
       }}
       exit={{
         opacity: 0,
-        backdropFilter: 'blur(0px)',
       }}
-      className={`fixed inset-0 h-full w-full bg-black bg-opacity-30 z-50  backdrop-blur-[10px] ${className} `}
+      className={`fixed inset-0 h-full w-full bg-black bg-opacity-30 z-50 ${className} `}
     ></motion.div>
   );
 };
