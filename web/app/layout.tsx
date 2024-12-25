@@ -2,7 +2,6 @@ import './globals.css';
 import getTheme from '@/actions/getTheme';
 import Header from '@/components/navs/Header';
 import Footer from '@/components/navs/Footer';
-import getMusic from '@/actions/getMusic';
 import ProgressBarProvider from '@/components/navs/ProgressBarProvider';
 // import { CSPostHogProvider } from '@/components/common/CSPostHogProvider';
 

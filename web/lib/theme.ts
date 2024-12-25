@@ -1,5 +1,5 @@
 import { addCookie, getCookie } from '@/lib/cookie';
-import { Theme } from '@/lib/types';
+import { Theme } from '@/types/theme';
 
 /**
  * @returns value in 'theme' cookie [ default = 'system']
