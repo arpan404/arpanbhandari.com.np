@@ -19,7 +19,6 @@ const addCookie = (name: string, value: string, days: number = 7) => {
     document.cookie = `${name}=${value}; expires=${expirationDate.toUTCString()}; path=/`;
   } catch (e) {
     console.error(e);
-    return null;
   }
 };
 
