@@ -31,7 +31,7 @@ const query = gql`
                 }
               }
             }
-            project_type {
+            projectType:project_type {
               ... on ComponentProjectsTags {
                 skill {
                   name: skillName

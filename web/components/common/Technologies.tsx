@@ -32,7 +32,7 @@ export default function TechnologiesTooltip({
   };
 
   return (
-    <div className="flex flex-row items-center justify-start mb-10 w-full">
+    <div className="flex flex-row items-center justify-start w-full">
       {data.map((item, idx) => (
         <div
           className="-mr-2  relative group"
@@ -64,13 +64,15 @@ export default function TechnologiesTooltip({
               >
                 <div className="absolute inset-x-10 z-30 w-[20%] -bottom-px bg-gradient-to-r from-transparent via-orange-500 to-transparent h-px " />
                 <div className="absolute left-10 w-[40%] z-30 -bottom-px bg-gradient-to-r from-transparent via-red-500 to-transparent h-px " />
-                <div className="font-semibold text-background relative z-30 text-sm">
+                <div className="font-semibold text-background relative z-30 text-xs sm:text-sm">
                   {item.skill.name}
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
-          <div className="w-[50px] h-[50px] max-w-[40px] max-h-[40px] overflow-hidden cursor-pointer group-hover:scale-105 rounded-full flex justify-center items-center p-1 group-hover:z-30  relative transition duration-500 border-[1px] border-secondary bg-muted drop-shadow-xl">
+          <div
+            className={`w-[50px] h-[50px] max-w-[40px] max-h-[40px] overflow-hidden cursor-pointer group-hover:scale-105 rounded-full flex justify-center items-center p-1 group-hover:z-30  relative transition duration-500 border-[1px] border-secondary bg-muted drop-shadow-xl`}
+          >
             <Image
               onMouseMove={handleMouseMove}
               height={100}
@@ -82,7 +84,9 @@ export default function TechnologiesTooltip({
                   : '/images/image-not-found-icon.png'
               }
               alt={item.skill.name}
-              className="w-full h-full object-cover !m-0 !p-0 object-top"
+              className={`w-full h-full object-cover !m-0 !p-0 object-top ${
+                item.skill.logo ? '' : 'invert !p-1'
+              }`}
             />
           </div>
         </div>

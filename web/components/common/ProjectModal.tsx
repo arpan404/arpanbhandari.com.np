@@ -129,14 +129,14 @@ export const ModalBody = ({
             stiffness: 260,
             damping: 20,
           }}
-          className="fixed inset-0 flex items-baseline justify-center z-[200] py-10 overflow-y-scroll min-h-screen"
+          className="fixed inset-0 flex items-baseline justify-center z-[200] py-10 overflow-y-scroll min-h-screen overflow-x-hidden"
         >
           <Overlay />
 
           <motion.div
             ref={modalRef}
             className={cn(
-              'bg-background dark:border border-muted md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-scroll',
+              'bg-background dark:border border-muted md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-y-scroll overflow-x-hidden',
               className
             )}
           >
@@ -200,13 +200,13 @@ const Overlay = ({ className }: { className?: string }) => {
 const CloseIcon = () => {
   const { setOpen } = useModal();
   return (
-    <div className='sm:scale-150 absolute top-4 right-4 md:top-6 sm:right-6'>
-    <button
-      onClick={() => setOpen(false)}
-      className="group bg-secondary/85 hover:bg-secondary/100 p-1 sm:p-2 rounded-full text-primary hover:rotate-90 hover:scale-105 transition delay-100 ease-in-out"
-    >
-      <X size={15} className="group-hover:scale-125" />
-    </button>
+    <div className="sm:scale-150 absolute top-4 right-4 md:top-6 sm:right-6">
+      <button
+        onClick={() => setOpen(false)}
+        className="group bg-secondary/85 hover:bg-secondary/100 p-1 sm:p-2 rounded-full text-primary hover:rotate-90 hover:scale-105 transition delay-100 ease-in-out"
+      >
+        <X size={15} className="group-hover:scale-125" />
+      </button>
     </div>
   );
 };

@@ -23,6 +23,9 @@ export type Project = {
   technologiesUsed: Array<{
     skill: Skill;
   }>;
+  projectType: Array<{
+    skill: Skill;
+  }>;
   codeURL?: string;
   liveURL?: string;
   article?: {

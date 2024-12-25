@@ -1,24 +1,25 @@
 'use client';
-import { Project } from '@/lib/types';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from '@/components/ui/card';
 import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
+
+import ReadBlueprints from '@/components/buttons/ReadBlueprints';
+import ViewCode from '@/components/buttons/ViewCode';
+import ViewProject from '@/components/buttons/ViewProject';
 import {
   Modal,
   ModalBody,
   ModalContent,
   ModalTrigger,
 } from '@/components/common/ProjectModal';
-import ReactMarkdown from 'react-markdown';
-
-import ViewProject from '../buttons/ViewProject';
-import ViewCode from '../buttons/ViewCode';
-import ReadBlueprints from '../buttons/ReadBlueprints';
-import TechnologiesTooltip from '../common/Technologies';
+import TechnologiesTooltip from '@/components/common/Technologies';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from '@/components/ui/card';
+import { Project } from '@/lib/types';
+import ProjectCategory from '../common/ProjectCategory';
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
@@ -82,9 +83,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 </div>
                 <div className="flex">
                   {project.article && project.article.uid && (
-                    <ReadBlueprints
-                      url={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/writings/${project.article.uid}`}
-                    />
+                    <ReadBlueprints url={`/writings/${project.article.uid}`} />
                   )}
                 </div>
               </div>
@@ -99,18 +98,19 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <h3 className="text-lg font-medium text-primary/85">
                   Implementation Stack
                 </h3>
-                <div>
+                <div className="mt-2">
                   <TechnologiesTooltip data={project.technologiesUsed} />
                 </div>
               </div>
-            </div>
-            {/* </div> */}
-            {/* <div className=''>
-              <div>
-                <h3 className="text-xl font-semibold">{project.name}</h3>
+              <div className="mt-4">
+                <h3 className="text-lg font-medium text-primary/85">
+                  Category
+                </h3>
+                <div className="mt-2">
+                  <ProjectCategory tags={project.projectType} />
+                </div>
               </div>
-              <TechnologiesTooltip data={project.technologiesUsed} />
-            </div> */}
+            </div>
           </div>
         </ModalContent>
       </ModalBody>
