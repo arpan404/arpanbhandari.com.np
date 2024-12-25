@@ -62,9 +62,9 @@ export default function TechnologiesTooltip({
                 }}
                 className="absolute -top-8 -left-1/2 translate-x-1/2 flex text-xs  flex-col items-center justify-center rounded-full bg-primary z-50 shadow-xl px-2 py-1"
               >
-                <div className="absolute inset-x-5 z-30 w-[20%] -bottom-px bg-gradient-to-r from-transparent via-orange-500 to-transparent h-px " />
-                <div className="absolute left-4 w-[40%] z-30 -bottom-px bg-gradient-to-r from-transparent via-red-500 to-transparent h-px " />
-                <div className="font-semibold text-background relative z-30 text-xs">
+                <div className="absolute inset-x-5 z-[202] w-[20%] -bottom-px bg-gradient-to-r from-transparent via-orange-500 to-transparent h-px " />
+                <div className="absolute left-4 w-[40%] z-[202] -bottom-px bg-gradient-to-r from-transparent via-red-500 to-transparent h-px " />
+                <div className="font-semibold text-background relative z-[202] text-xs">
                   {item.skill.name}
                 </div>
               </motion.div>
