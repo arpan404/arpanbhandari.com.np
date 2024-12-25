@@ -1,24 +1,44 @@
-import client from '@/config/graphql';
+import client from '@/lib/graphql';
 import { DocumentNode } from 'graphql';
-export default async function fetchGraphQL<T>(
+import redis from '@/lib/redis';
+
+/**
+ * Fetches data from a GraphQL API and caches it using Redis.
+ *
+ * @template T - The expected shape of the response data.
+ * @param {DocumentNode} query - The GraphQL query to be executed.
+ * @param {string} queryHash - A unique hash for the query to be used as the cache key.
+ * @param {number} [staleTime=3600] - The time in seconds for which the cached data is considered fresh. Defaults to 1 minute.
+ * @returns {Promise<T>} - A promise that resolves to the fetched data.
+ * @throws {Error} - Throws an error if the query fails.
+ */
+
+const fetchGraphQL = async <T>(
   query: DocumentNode,
-  fetchPolicy: 'network-only' | 'cache-first'
-): Promise<T> {
+  queryHash: string,
+  staleTime: number = 3600 // default to 1 minute
+): Promise<T> => {
   try {
-    const data = (await client.query({
-      query: query,
-      context: {
-        fetchOptions: {
-          next: { revalidate: 2 },
-        },
-      },
-      fetchPolicy: fetchPolicy,
-    })) as T;
-    return data;
-  } catch (e) {
+    // First check if the data is in the cache
+    const cachedData = await redis.get(queryHash);
+    if (cachedData) {
+      return JSON.parse(cachedData) as T;
+    }
+
+    // If not, fetch the data from the API
+    const response = await client.query({ query });
+    const data = response.data;
+
+    // Store the data in the cache
+    await redis.set(queryHash, JSON.stringify(data), 'EX', staleTime);
+
+    return data as T;
+  } catch (e: unknown) {
     console.error(e);
     return {
       data: null,
     } as T;
   }
-}
+};
+
+export default fetchGraphQL;
