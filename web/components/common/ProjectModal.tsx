@@ -23,8 +23,6 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(false);
   const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
-  console.log('🚀 ~ ModalProvider ~ triggerRect:', triggerRect);
-
   return (
     <ModalContext.Provider
       value={{
@@ -99,14 +97,6 @@ export const ModalBody = ({
   }, [open]);
 
   useOutsideClick(modalRef, () => setOpen(false));
-  console.log(
-    'Trigger Rect X:',
-    triggerRect ? triggerRect.left + triggerRect.width / 2 : 0
-  );
-  console.log(
-    'Trigger Rect Y:',
-    triggerRect ? triggerRect.top + triggerRect.height / 2 : 0
-  );
   return (
     <AnimatePresence>
       {open && (

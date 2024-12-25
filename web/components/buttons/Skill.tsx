@@ -1,11 +1,11 @@
 import { Button } from '@/components/ui/button';
-import { LinkPreview } from '@/components/ui/link-preview';
+import Link from 'next/link';
 
 export default function Skill({ name, uid }: { name: string; uid: string }) {
   const url = process.env.NEXT_PUBLIC_WEBSITE_URL + `/projects?tag=${uid}`;
   return (
     <div className="flex justify-center">
-      <LinkPreview url={url}>
+      <Link href={url}>
         <Button
           className="w-[240px] xl:w-[250px] h-12 rounded-full overflow-hidden relative group select-none"
           variant="outline"
@@ -18,7 +18,7 @@ export default function Skill({ name, uid }: { name: string; uid: string }) {
             View My Works
           </span>
         </Button>
-      </LinkPreview>
+      </Link>
     </div>
   );
 }

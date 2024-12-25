@@ -3,6 +3,7 @@ import getTheme from '@/actions/getTheme';
 import Header from '@/components/navs/Header';
 import Footer from '@/components/navs/Footer';
 import getMusic from '@/actions/getMusic';
+import ProgressBarProvider from '@/components/navs/ProgressBarProvider';
 // import { CSPostHogProvider } from '@/components/common/CSPostHogProvider';
 
 export default async function RootLayout({
@@ -16,9 +17,11 @@ export default async function RootLayout({
     <html lang="en" className={`${currentThemeMode}`} data-theme={theme}>
       {/* <CSPostHogProvider> */}
       <body className="custom_page_scroll">
-        <Header />
-        {children}
-        <Footer />
+        <ProgressBarProvider>
+          <Header />
+          {children}
+          <Footer />
+        </ProgressBarProvider>
       </body>
       {/* </CSPostHogProvider> */}
     </html>
