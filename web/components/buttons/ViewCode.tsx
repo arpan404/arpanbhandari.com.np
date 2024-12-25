@@ -4,8 +4,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '../ui/tooltip';
-import { Button } from '../ui/button';
+} from '@/components/ui/tooltip';
+import { Button } from '@/components/ui/button';
 import { Code } from 'lucide-react';
 export default function ViewCode({ url }: { url: string }) {
   return (

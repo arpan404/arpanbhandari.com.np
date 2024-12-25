@@ -4,8 +4,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '../ui/tooltip';
-import { Button } from '../ui/button';
+} from '@/components/ui/tooltip';
+import { Button } from '@/components/ui/button';
 import { NotepadText } from 'lucide-react';
 export default function ReadBlueprints({ url }: { url: string }) {
   return (

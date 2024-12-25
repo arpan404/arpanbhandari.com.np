@@ -1,6 +1,6 @@
 import ProjectCard from '@/components/cards/ProjectCard';
 import getTopProjects from '@/actions/getTopProjects';
-import HorizontalScroll from '../common/HorizontalScroll';
+import HorizontalScroll from '@/components/common/HorizontalScroll';
 
 export default async function TopProjects() {
   const projects = await getTopProjects();

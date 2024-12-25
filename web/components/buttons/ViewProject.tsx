@@ -4,10 +4,10 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '../ui/tooltip';
-import { Button } from '../ui/button';
-import OrangeButton from './OrangeButton';
-import { Eye, View } from 'lucide-react';
+} from '@/components/ui/tooltip';
+import OrangeButton from '@/components/buttons/OrangeButton';
+import { Eye } from 'lucide-react';
+
 export default function ViewProject({ url }: { url: string }) {
   return (
     <TooltipProvider>

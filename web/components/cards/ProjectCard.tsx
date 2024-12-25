@@ -19,7 +19,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Project } from '@/lib/types';
-import ProjectCategory from '../common/ProjectCategory';
+import ProjectCategory from '@/components/common/ProjectCategory';
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (

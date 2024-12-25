@@ -5,8 +5,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '../ui/tooltip';
-import { Button } from '../ui/button';
+} from '@/components/ui/tooltip';
+import { Button } from '@/components/ui/button';
 
 export default function ProjectCategory({
   tags,

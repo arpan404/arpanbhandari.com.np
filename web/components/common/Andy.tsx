@@ -6,7 +6,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import AndyAvatar from './AndyAvatar';
+import AndyAvatar from '@/components/common/AndyAvatar';
 
 export default function Andy({
   buttonText,
