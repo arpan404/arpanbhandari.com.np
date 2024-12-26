@@ -5,7 +5,6 @@ import React from 'react';
 
 export default async function FeaturedProjects() {
   const projects = await getFeaturedProjects();
-  console.log(projects);
   if (
     !projects ||
     !projects.featuredProjects ||

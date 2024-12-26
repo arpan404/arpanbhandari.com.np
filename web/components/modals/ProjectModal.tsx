@@ -109,8 +109,8 @@ export const ModalBody = ({
               opacity: 0,
               x: triggerRect ? triggerRect.left + triggerRect.width / 2 : 0,
               y: triggerRect ? triggerRect.top + triggerRect.height / 2 : 0,
-              width: 0,
-              height: 0,
+              width: triggerRect ? triggerRect.width : 'auto',
+              height: triggerRect ? triggerRect.height : 'auto',
             }}
             animate={{
               opacity: 1,
@@ -128,9 +128,8 @@ export const ModalBody = ({
             }}
             transition={{
               type: 'spring',
-              stiffness: 260,
-              damping: 30,
-              duration: 0.3,
+              stiffness: 200,
+              damping: 20,
             }}
             className={cn(
               'bg-background dark:border border-muted rounded-md md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-y-scroll overflow-x-hidden',

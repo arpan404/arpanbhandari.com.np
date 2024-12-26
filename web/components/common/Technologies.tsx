@@ -32,7 +32,7 @@ export default function TechnologiesTooltip({
   };
 
   return (
-    <div className="flex flex-row items-center justify-start w-full">
+    <div className="flex flex-row items-center justify-start w-full flex-wrap gap-1">
       {data.map((item, idx) => (
         <div
           className="-mr-2  relative group"
@@ -71,7 +71,7 @@ export default function TechnologiesTooltip({
             )}
           </AnimatePresence>
           <div
-            className={`w-[50px] h-[50px] max-w-[40px] max-h-[40px] overflow-hidden cursor-pointer group-hover:scale-105 rounded-full flex justify-center items-center p-1 group-hover:z-30  relative transition duration-500 border-[1px] border-secondary bg-muted drop-shadow-xl`}
+            className={`w-[40px] h-[40px] max-w-[40px] max-h-[40px] overflow-hidden cursor-pointer group-hover:scale-105 rounded-full flex justify-center items-center p-[7px] group-hover:z-30  relative transition duration-500 border-[1px] border-secondary bg-muted drop-shadow-xl`}
           >
             <Image
               onMouseMove={handleMouseMove}
@@ -84,7 +84,7 @@ export default function TechnologiesTooltip({
                   : '/images/image-not-found-icon.png'
               }
               alt={item.skill.name}
-              className={`w-full h-full object-cover !m-0 !p-0 object-top ${
+              className={`w-full h-auto object-cover !m-0 !p-0 object-top rounded-md ${
                 item.skill.logo ? '' : 'dark:invert !p-1'
               }`}
             />

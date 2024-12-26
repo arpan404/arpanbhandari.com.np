@@ -92,24 +92,36 @@ export default function ProjectCard({ project }: { project: Project }) {
                 role="separator"
               />
               <div className="mt-4">
-                <ReactMarkdown>{project.longDescription}</ReactMarkdown>
+                <ReactMarkdown
+                  className={
+                    'w-full overflow-x-hidden break-words whitespace-normal space-y-2 text-sm'
+                  }
+                >
+                  {project.longDescription}
+                </ReactMarkdown>
               </div>
-              <div className="mt-4">
-                <h3 className="text-lg font-medium text-primary/85">
-                  Tech Stack
-                </h3>
-                <div className="mt-2">
-                  <TechnologiesTooltip data={project.technologiesUsed} />
+              {project.technologiesUsed &&
+                project.technologiesUsed.length > 0 && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-medium text-primary/85">
+                      Tech Stack
+                    </h3>
+                    <div className="mt-2">
+                      <TechnologiesTooltip data={project.technologiesUsed} />
+                    </div>
+                  </div>
+                )}
+
+              {project.projectType && project.projectType.length > 0 && (
+                <div className="mt-4">
+                  <h3 className="text-lg font-medium text-primary/85">
+                    Category
+                  </h3>
+                  <div className="mt-2">
+                    <ProjectCategory tags={project.projectType} />
+                  </div>
                 </div>
-              </div>
-              <div className="mt-4">
-                <h3 className="text-lg font-medium text-primary/85">
-                  Category
-                </h3>
-                <div className="mt-2">
-                  <ProjectCategory tags={project.projectType} />
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </ModalContent>

@@ -71,8 +71,10 @@ export default function HorizontalScroll({
     >
       <button
         onClick={scrollLeft}
-        className={`absolute left-0 z-10 top-0 h-full text-gray-300 bg-transparent transition-all duration-75 ${
-          isHovered ? 'opacity-100 hover:text-gray-100' : 'opacity-0'
+        className={`absolute left-0 z-10 top-0 h-full text-gray-500 bg-gradient-to-r rounded-md from-black/10 transition-all duration-75 ${
+          isHovered
+            ? 'opacity-100 dark:hover:text-gray-400 hover:text-gray-600'
+            : 'opacity-0'
         } ${canScrollLeft ? 'block' : 'hidden'}`}
       >
         <ChevronLeft size={50} fontWeight={900} className="drop-shadow-2xl" />
@@ -86,8 +88,10 @@ export default function HorizontalScroll({
       </div>
       <button
         onClick={scrollRight}
-        className={`absolute right-0 z-10 top-0 h-full text-gray-300 bg-transparent transition-all duration-75 ${
-          isHovered ? 'opacity-100 hover:text-gray-100' : 'opacity-0'
+        className={`absolute right-0 z-10 top-0 h-full text-gray-500  rounded-md bg-gradient-to-l from-black/10 to-transparent transition-all duration-75 ${
+          isHovered
+            ? 'opacity-100 dark:hover:text-gray-400 hover:text-gray-600'
+            : 'opacity-0'
         } ${canScrollRight ? 'block' : 'hidden'}`}
       >
         <ChevronRight size={50} fontWeight={900} />
