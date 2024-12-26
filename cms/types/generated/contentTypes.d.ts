@@ -434,6 +434,36 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFeaturedProjectFeaturedProject
+  extends Struct.SingleTypeSchema {
+  collectionName: 'featured_projects';
+  info: {
+    description: '';
+    displayName: 'Featured Projects';
+    pluralName: 'featured-projects';
+    singularName: 'featured-project';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::featured-project.featured-project'
+    > &
+      Schema.Attribute.Private;
+    projects: Schema.Attribute.Component<'projects.project', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMusicMusic extends Struct.SingleTypeSchema {
   collectionName: 'musics';
   info: {
@@ -642,35 +672,6 @@ export interface ApiSkillSkill extends Struct.CollectionTypeSchema {
       'api::skill-type.skill-type'
     >;
     skillUID: Schema.Attribute.UID<'skillName'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiTopProjectTopProject extends Struct.SingleTypeSchema {
-  collectionName: 'top_projects';
-  info: {
-    displayName: 'Top Project';
-    pluralName: 'top-projects';
-    singularName: 'top-project';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::top-project.top-project'
-    > &
-      Schema.Attribute.Private;
-    project: Schema.Attribute.DynamicZone<['projects.project']> &
-      Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1217,12 +1218,12 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::article-type.article-type': ApiArticleTypeArticleType;
       'api::article.article': ApiArticleArticle;
+      'api::featured-project.featured-project': ApiFeaturedProjectFeaturedProject;
       'api::music.music': ApiMusicMusic;
       'api::project.project': ApiProjectProject;
       'api::resume.resume': ApiResumeResume;
       'api::skill-type.skill-type': ApiSkillTypeSkillType;
       'api::skill.skill': ApiSkillSkill;
-      'api::top-project.top-project': ApiTopProjectTopProject;
       'api::top-skill.top-skill': ApiTopSkillTopSkill;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

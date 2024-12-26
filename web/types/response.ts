@@ -1,3 +1,5 @@
+import Project from '@/types/project';
+
 type MusicQueryResponse = {
   data: null | {
     music: {
@@ -18,4 +20,18 @@ type ResumeQueryResponse = {
   };
 };
 
-export type { MusicQueryResponse, ResumeQueryResponse };
+type FeaturedProjectsQueryResponse = {
+  data: null | {
+    featuredProjects: null | {
+      projects: Array<{
+        project: Project;
+      }>;
+    };
+  };
+};
+
+export type {
+  MusicQueryResponse,
+  ResumeQueryResponse,
+  FeaturedProjectsQueryResponse,
+};
