@@ -3,7 +3,7 @@ import ProjectCard from '@/components/cards/ProjectCard';
 import HorizontalScroll from '@/components/common/HorizontalScroll';
 import React from 'react';
 
-export default async function TopProjects() {
+export default async function FeaturedProjects() {
   const projects = await getFeaturedProjects();
   console.log(projects);
   if (
