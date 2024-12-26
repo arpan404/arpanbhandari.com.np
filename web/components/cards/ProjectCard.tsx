@@ -11,7 +11,7 @@ import {
   ModalContent,
   ModalTrigger,
 } from '@/components/modals/ProjectModal';
-import TechnologiesTooltip from '@/components/common/Technologies';
+import TechnologiesTooltip from '@/components/common/TechnologiesTooltip';
 import {
   Card,
   CardContent,
