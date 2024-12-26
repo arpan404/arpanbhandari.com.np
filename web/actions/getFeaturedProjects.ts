@@ -4,40 +4,34 @@ import { FeaturedProjectsQueryResponse } from '@/types/response';
 
 const query = gql`
   query getFeaturedProjects {
-    faturedProjects: featuredProject {
+    featuredProjects: featuredProject {
       projects {
-        ... on ComponentProjectsProject {
-          project {
-            name
+        project {
+          name
+          uid
+          thumbnail {
+            url
+          }
+          shortDescription: short_description
+          longDescription: long_description
+          liveURL
+          codeURL
+          article {
             uid
-            thumbnail {
-              url
-            }
-            shortDescription: short_description
-            longDescription: long_description
-            liveURL
-            codeURL
-            article {
-              uid
-            }
-            technologiesUsed: technologies_used {
-              ... on ComponentProjectsTags {
-                skill {
-                  name: skillName
-                  uid: skillUID
-                  logo {
-                    url
-                  }
-                }
+          }
+          technologiesUsed: technologies_used {
+            skill {
+              name: skillName
+              uid: skillUID
+              logo {
+                url
               }
             }
-            projectType: project_type {
-              ... on ComponentProjectsTags {
-                skill {
-                  name: skillName
-                  uid: skillUID
-                }
-              }
+          }
+          projectType: project_type {
+            skill {
+              name: skillName
+              uid: skillUID
             }
           }
         }

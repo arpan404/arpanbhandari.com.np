@@ -8,7 +8,7 @@ interface Project {
   thumbnail: {
     url: string;
   };
-  technologieUsed: Array<{
+  technologiesUsed: Array<{
     skill: Skill;
   }>;
   projectType: Array<{

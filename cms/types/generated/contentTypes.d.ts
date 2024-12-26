@@ -467,7 +467,7 @@ export interface ApiFeaturedProjectFeaturedProject
   collectionName: 'featured_projects';
   info: {
     description: '';
-    displayName: 'Featured Projects';
+    displayName: 'Featured Project';
     pluralName: 'featured-projects';
     singularName: 'featured-project';
   };
@@ -571,8 +571,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    project_type: Schema.Attribute.DynamicZone<['projects.tags']> &
-      Schema.Attribute.Required &
+    project_type: Schema.Attribute.Component<'projects.tags', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -586,8 +585,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    technologies_used: Schema.Attribute.DynamicZone<['projects.tags']> &
-      Schema.Attribute.Required &
+    technologies_used: Schema.Attribute.Component<'projects.tags', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

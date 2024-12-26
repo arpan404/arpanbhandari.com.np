@@ -18,8 +18,8 @@ import {
   CardDescription,
   CardTitle,
 } from '@/components/ui/card';
-import { Project } from '@/lib/types';
 import ProjectCategory from '@/components/buttons/ProjectCategory';
+import Project from '@/types/project';
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (

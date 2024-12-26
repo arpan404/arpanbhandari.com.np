@@ -1,11 +1,10 @@
+import getFeaturedProjects from '@/actions/getFeaturedProjects';
 import ProjectCard from '@/components/cards/ProjectCard';
-import getTopProjects from '@/actions/getTopProjects';
 import HorizontalScroll from '@/components/common/HorizontalScroll';
 import React from 'react';
 
 export default async function TopProjects() {
-  const projects = await getTopProjects();
-  if (!projects) return <></>;
+  const projects = await getFeaturedProjects();
 
   return (
     <section
@@ -15,9 +14,9 @@ export default async function TopProjects() {
       <div className="container px-2 md:px-8">
         <HorizontalScroll>
           <>
-            {projects.data && projects.data.topProject.project && (
+            {projects && projects.featuredProjects && (
               <>
-                {projects.data.topProject.project.map((project, index) => (
+                {projects.featuredProjects.projects.map((project, index) => (
                   <React.Fragment key={index}>
                     {project.project && (
                       <ProjectCard project={project.project} key={index} />

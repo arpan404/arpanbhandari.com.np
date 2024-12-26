@@ -58,30 +58,6 @@
         }
       }
     },
-    "technologies_used": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "dynamiczone",
-      "components": [
-        "projects.tags"
-      ],
-      "required": true
-    },
-    "project_type": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "dynamiczone",
-      "components": [
-        "projects.tags"
-      ],
-      "required": true
-    },
     "article": {
       "type": "relation",
       "relation": "oneToOne",
@@ -113,6 +89,26 @@
       },
       "type": "richtext",
       "required": true
+    },
+    "technologies_used": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "projects.tags"
+    },
+    "project_type": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "projects.tags"
     }
   }
 }
