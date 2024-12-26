@@ -23,7 +23,7 @@ export default function useMusic() {
         setMusicPlaying(false);
       }
       if (data.data) {
-        setCurrentMusic(data.data.music.audio.url);
+        setCurrentMusic(data.data.music.audio!.url);
       } else {
         setCurrentMusic(null);
       }

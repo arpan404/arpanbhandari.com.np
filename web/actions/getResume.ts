@@ -1,37 +1,37 @@
+'use server';
 import { gql } from '@apollo/client';
 import fetchGraphQL from '@/actions/fetchGraphQL';
-import exp from 'constants';
-
-interface Resume {
-  resume: {
-    url: string;
-  };
-}
-
-type ResumeQueryResponse = {
-  data: null | {
-    resume: Resume;
-  };
-};
+import { ResumeQueryResponse } from '@/types/response';
 
 const query = gql`
-  query getResume {
+  query {
     resume {
-      resume {
+      file {
         url
       }
     }
   }
 `;
-let lastFetchTime = 0;
-const REFRESH_INTERVAL = 2 * 60 * 1000 * 60; // to refresh every 2 hours
 
-export default async function getResume() {
-  const currentTime = Date.now();
-  const shouldRefetch = currentTime - lastFetchTime > REFRESH_INTERVAL;
-  const data = await fetchGraphQL<ResumeQueryResponse>(
-    query,
-    shouldRefetch ? 'network-only' : 'network-only'
-  );
-  return data;
-}
+const getResume = async (): Promise<ResumeQueryResponse> => {
+  try {
+    const data = await fetchGraphQL<ResumeQueryResponse>(
+      query,
+      'bg-music',
+      60 * 60 * 2 // 2 hours
+    );
+    if (data.data) {
+      if (!data.data.resume.file) {
+        data.data = null;
+      }
+    }
+    return data;
+  } catch (e: unknown) {
+    console.error(e);
+    return {
+      data: null,
+    };
+  }
+};
+
+export default getResume;

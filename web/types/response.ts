@@ -1,11 +1,21 @@
 type MusicQueryResponse = {
   data: null | {
     music: {
-      audio: {
+      audio: null | {
         url: string;
       };
     };
   };
 };
 
-export type { MusicQueryResponse };
+type ResumeQueryResponse = {
+  data: null | {
+    resume: {
+      file: null | {
+        url: string;
+      };
+    };
+  };
+};
+
+export type { MusicQueryResponse, ResumeQueryResponse };

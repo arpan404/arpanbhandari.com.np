@@ -1,27 +1,27 @@
 'use server';
 import { gql } from '@apollo/client';
 import fetchGraphQL from '@/actions/fetchGraphQL';
-import { MusicQueryResponse } from '@/types/response';
+import { ResumeQueryResponse } from '@/types/response';
 
 const query = gql`
   query {
-    music {
-      audio {
+    resume {
+      file {
         url
       }
     }
   }
 `;
 
-const getMusic = async (): Promise<MusicQueryResponse> => {
+const getResume = async (): Promise<ResumeQueryResponse> => {
   try {
-    const data = await fetchGraphQL<MusicQueryResponse>(
+    const data = await fetchGraphQL<ResumeQueryResponse>(
       query,
       'bg-music',
       60 * 60 * 2 // 2 hours
     );
     if (data.data) {
-      if (!data.data.music.audio) {
+      if (!data.data.resume.file) {
         data.data = null;
       }
     }
@@ -34,4 +34,4 @@ const getMusic = async (): Promise<MusicQueryResponse> => {
   }
 };
 
-export default getMusic;
+export default getResume;
