@@ -24,10 +24,10 @@ export default async function Expertise() {
           </span>
         </h2>
       </div>
-      <div className="mt-5 md:mt-8 px-4 md:flex-1 space-y-4 md:space-y-6">
+      <div className="mt-4 md:mt-8 px-4 md:flex-1 space-y-4 md:space-y-6">
         <div className="flex justify-center mt-8 md:mt-10">
           <p>
-            <span className="text-lg font-semibold text-primary opacity-80">
+            <span className="text-base md:text-lg font-semibold text-primary opacity-80">
               Worked on a variety of technologies and tools, but right now,
               I&apos;m actively working with:
             </span>
