@@ -2,10 +2,9 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default function Skill({ name, uid }: { name: string; uid: string }) {
-  const url = process.env.NEXT_PUBLIC_WEBSITE_URL + `/projects?tag=${uid}`;
   return (
     <div className="flex justify-center">
-      <Link href={url}>
+      <Link href={`/projects?tag=${uid}`}>
         <Button
           className="w-[240px] xl:w-[250px] h-12 rounded-full overflow-hidden relative group select-none"
           variant="outline"

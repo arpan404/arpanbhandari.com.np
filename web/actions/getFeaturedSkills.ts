@@ -4,16 +4,12 @@ import fetchGraphQL from '@/actions/fetchGraphQL';
 
 const query = gql`
   query getFeaturedSkills {
-    faturedSkills: featuredSkill {
+    featuredSkills: featuredSkill {
       skills {
         ... on ComponentProjectsTags {
           skill {
             name: skillName
             uid: skillUID
-            type: skillType {
-              name: skillType
-              uid: skillTypeUID
-            }
           }
         }
       }
@@ -26,20 +22,24 @@ const getFeaturedSkills = async (): Promise<FeaturedSkillsQueryResponse> => {
     const data = await fetchGraphQL<FeaturedSkillsQueryResponse>(
       query,
       'featured-skills',
-      60 * 60 * 24 // 1 day
+      60 * 60 * 24
     );
 
-    if (data.data) {
-      if (!data.data.featuredSkills) {
-        data.data = null;
+    if (data) {
+      if (!data.featuredSkills) {
+        return null;
+      }
+      if (
+        !data.featuredSkills.skills ||
+        data.featuredSkills.skills.length === 0
+      ) {
+        return null;
       }
     }
     return data;
   } catch (e: unknown) {
     console.error(e);
-    return {
-      data: null,
-    };
+    return null;
   }
 };
 

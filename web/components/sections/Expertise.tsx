@@ -3,10 +3,14 @@ import getResume from '@/actions/getResume';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import PdfViewer from '@/components/common/PdfViewer';
-import getTopSkills from '@/actions/getTopSkills';
+import getFeaturedSkills from '@/actions/getFeaturedSkills';
 
 export default async function Expertise() {
-  const [topSkills, resume] = await Promise.all([getTopSkills(), getResume()]);
+  const [skillsData, resumeData] = await Promise.all([
+    getFeaturedSkills(),
+    getResume(),
+  ]);
+
   return (
     <section
       className="py-10 sm:py-16 md:py-20 bg-background"
@@ -31,14 +35,14 @@ export default async function Expertise() {
         </div>
         <div className="flex justify-center py-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 container gap-2 md:gap-4">
-            {topSkills.data &&
-              topSkills.data.topSkill?.skills.map(skill => (
-                <Skill
-                  key={skill.skill.uid}
-                  name={skill.skill.name}
-                  uid={skill.skill.uid}
-                />
-              ))}
+            {/* {skillsData &&
+              skillsData.featuredSkills?.skills.map(skill => (
+                // <Skill
+                //   key={skill.skill.uid}
+                //   name={skill.skill.name}
+                //   uid={skill.skill.uid}
+                // />
+              ))} */}
           </div>
         </div>
         <div className="flex justify-center py-4">
@@ -69,16 +73,18 @@ export default async function Expertise() {
                     </Link>
                   </div>
                   <div className="flex justify-center w-full lg:w-fit">
-                    {resume.data?.resume.resume.url && (
-                      <PdfViewer
-                        pdfUrl={
-                          process.env.NEXT_PUBLIC_STRAPI_URL +
-                          resume.data?.resume.resume.url
-                        }
-                        modalTriggerClassName="text-xs md:text-sm font-medium rounded-full px-6 py-2 hover:scale-110 transition-all ease-in delay-75 rounded-full font-semibold text-pretty cursor-pointer dark:bg-[#ff7d37] bg-[#ff6730] hover:dark:bg-[#ff7d37] hover:bg-[#ff6730] hover:cursor-pointer saturate-[110%] hover:saturate-[130%] active:opacity-50 transition-all delay-0 ease-linear m-0 text-white"
-                      >
-                        View My Resume
-                      </PdfViewer>
+                    {resumeData && (
+                      <>
+                        <PdfViewer
+                          pdfUrl={
+                            process.env.NEXT_PUBLIC_STRAPI_URL +
+                            resumeData?.resume.file!.url!
+                          }
+                          modalTriggerClassName="text-xs md:text-sm font-medium rounded-full px-6 py-2 hover:scale-110 transition-all ease-in delay-75 rounded-full font-semibold text-pretty cursor-pointer dark:bg-[#ff7d37] bg-[#ff6730] hover:dark:bg-[#ff7d37] hover:bg-[#ff6730] hover:cursor-pointer saturate-[110%] hover:saturate-[130%] active:opacity-50 transition-all delay-0 ease-linear m-0 text-white"
+                        >
+                          View My Resume
+                        </PdfViewer>
+                      </>
                     )}
                   </div>
                 </div>

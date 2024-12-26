@@ -27,7 +27,7 @@ export default function Home() {
       <About />
       <div className="bg-secondary h-[2px]" role="separator" />
       <Expertise />
-      <TopProjects />
+      {/* <TopProjects /> */}
     </>
   );
 }

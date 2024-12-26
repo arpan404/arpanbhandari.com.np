@@ -52,19 +52,17 @@ const getFeaturedProjects =
       const data = await fetchGraphQL<FeaturedProjectsQueryResponse>(
         query,
         'featured-projects',
-        60 * 60 // 1 hour
+        60 * 60 * 3 // 3 hours
       );
-      if (data.data) {
-        if (!data.data.featuredProjects) {
-          data.data = null;
+      if (data) {
+        if (!data.featuredProjects) {
+          return null;
         }
       }
       return data;
     } catch (e: unknown) {
       console.error(e);
-      return {
-        data: null,
-      };
+      return null;
     }
   };
 

@@ -17,20 +17,19 @@ const getResume = async (): Promise<ResumeQueryResponse> => {
   try {
     const data = await fetchGraphQL<ResumeQueryResponse>(
       query,
-      'bg-music',
+      'resume',
       60 * 60 * 2 // 2 hours
     );
-    if (data.data) {
-      if (!data.data.resume.file) {
-        data.data = null;
+
+    if (data) {
+      if (!data.resume.file) {
+        return null;
       }
     }
     return data;
   } catch (e: unknown) {
     console.error(e);
-    return {
-      data: null,
-    };
+    return null;
   }
 };
 

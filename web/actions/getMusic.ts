@@ -20,17 +20,15 @@ const getMusic = async (): Promise<MusicQueryResponse> => {
       'bg-music',
       60 * 60 * 2 // 2 hours
     );
-    if (data.data) {
-      if (!data.data.music.audio) {
-        data.data = null;
+    if (data) {
+      if (!data.music.audio) {
+        return null;
       }
     }
     return data;
   } catch (e: unknown) {
     console.error(e);
-    return {
-      data: null,
-    };
+    return null;
   }
 };
 

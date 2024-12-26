@@ -1,5 +1,5 @@
 import Settings from '@/components/buttons/Settings';
-import Andy from '@/components/common/Andy';
+import Andy from '@/components/modals/Andy';
 
 export default function Header() {
   return (

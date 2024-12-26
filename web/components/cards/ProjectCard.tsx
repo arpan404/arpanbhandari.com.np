@@ -10,7 +10,7 @@ import {
   ModalBody,
   ModalContent,
   ModalTrigger,
-} from '@/components/common/ProjectModal';
+} from '@/components/modals/ProjectModal';
 import TechnologiesTooltip from '@/components/common/Technologies';
 import {
   Card,
@@ -19,7 +19,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Project } from '@/lib/types';
-import ProjectCategory from '@/components/common/ProjectCategory';
+import ProjectCategory from '@/components/buttons/ProjectCategory';
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (

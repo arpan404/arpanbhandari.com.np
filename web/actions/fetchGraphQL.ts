@@ -21,13 +21,17 @@ const fetchGraphQL = async <T>(
   try {
     // First check if the data is in the cache
     const cachedData = await redis.get(queryHash);
-    if (cachedData) {
-      return JSON.parse(cachedData) as T;
-    }
+    // if (cachedData) {
+    //   return JSON.parse(cachedData) as T;
+    // }
 
     // If not, fetch the data from the API
-    const response = await client.query({ query });
+    const response = await client.query({
+      query: query,
+      fetchPolicy: 'network-only',
+    });
     const data = response.data;
+    console.log('🚀 ~ data:', data);
 
     // Store the data in the cache
     await redis.set(queryHash, JSON.stringify(data), 'EX', staleTime);
@@ -35,9 +39,7 @@ const fetchGraphQL = async <T>(
     return data as T;
   } catch (e: unknown) {
     console.error(e);
-    return {
-      data: null,
-    } as T;
+    return null as T;
   }
 };
 
