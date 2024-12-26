@@ -434,6 +434,34 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFeatureSkillFeatureSkill extends Struct.SingleTypeSchema {
+  collectionName: 'feature_skills';
+  info: {
+    displayName: 'Feature Skill';
+    pluralName: 'feature-skills';
+    singularName: 'feature-skill';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::feature-skill.feature-skill'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    skills: Schema.Attribute.Component<'projects.tags', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFeaturedProjectFeaturedProject
   extends Struct.SingleTypeSchema {
   collectionName: 'featured_projects';
@@ -458,34 +486,6 @@ export interface ApiFeaturedProjectFeaturedProject
       Schema.Attribute.Private;
     projects: Schema.Attribute.Component<'projects.project', true>;
     publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiFeaturedSkillFeaturedSkill extends Struct.SingleTypeSchema {
-  collectionName: 'featured_skills';
-  info: {
-    displayName: 'Featured Skills';
-    pluralName: 'featured-skills';
-    singularName: 'featured-skill';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::featured-skill.featured-skill'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    skills: Schema.Attribute.Component<'projects.tags', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1246,8 +1246,8 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::article-type.article-type': ApiArticleTypeArticleType;
       'api::article.article': ApiArticleArticle;
+      'api::feature-skill.feature-skill': ApiFeatureSkillFeatureSkill;
       'api::featured-project.featured-project': ApiFeaturedProjectFeaturedProject;
-      'api::featured-skill.featured-skill': ApiFeaturedSkillFeaturedSkill;
       'api::music.music': ApiMusicMusic;
       'api::project.project': ApiProjectProject;
       'api::resume.resume': ApiResumeResume;

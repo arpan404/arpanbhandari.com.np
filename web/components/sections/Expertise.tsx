@@ -35,14 +35,14 @@ export default async function Expertise() {
         </div>
         <div className="flex justify-center py-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 container gap-2 md:gap-4">
-            {/* {skillsData &&
+            {skillsData &&
               skillsData.featuredSkills?.skills.map(skill => (
-                // <Skill
-                //   key={skill.skill.uid}
-                //   name={skill.skill.name}
-                //   uid={skill.skill.uid}
-                // />
-              ))} */}
+                <Skill
+                  key={skill.skill.uid}
+                  name={skill.skill.name}
+                  uid={skill.skill.uid}
+                />
+              ))}
           </div>
         </div>
         <div className="flex justify-center py-4">

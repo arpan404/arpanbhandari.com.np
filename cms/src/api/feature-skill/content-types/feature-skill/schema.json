@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "featured_skills",
+  "collectionName": "feature_skills",
   "info": {
-    "singularName": "featured-skill",
-    "pluralName": "featured-skills",
-    "displayName": "Featured Skills"
+    "singularName": "feature-skill",
+    "pluralName": "feature-skills",
+    "displayName": "Feature Skill"
   },
   "options": {
     "draftAndPublish": true

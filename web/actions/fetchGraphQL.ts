@@ -31,7 +31,7 @@ const fetchGraphQL = async <T>(
       fetchPolicy: 'network-only',
     });
     const data = response.data;
-    console.log('🚀 ~ data:', data);
+    console.log('🚀 ~ data-res:', data);
 
     // Store the data in the cache
     await redis.set(queryHash, JSON.stringify(data), 'EX', staleTime);

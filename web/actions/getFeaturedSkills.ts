@@ -4,13 +4,11 @@ import fetchGraphQL from '@/actions/fetchGraphQL';
 
 const query = gql`
   query getFeaturedSkills {
-    featuredSkills: featuredSkill {
+    featuredSkills: featureSkill {
       skills {
-        ... on ComponentProjectsTags {
-          skill {
-            name: skillName
-            uid: skillUID
-          }
+        skill {
+          name: skillName
+          uid: skillUID
         }
       }
     }
@@ -22,7 +20,7 @@ const getFeaturedSkills = async (): Promise<FeaturedSkillsQueryResponse> => {
     const data = await fetchGraphQL<FeaturedSkillsQueryResponse>(
       query,
       'featured-skills',
-      60 * 60 * 24
+      60 * 60 * 24 // 24 hours
     );
 
     if (data) {
