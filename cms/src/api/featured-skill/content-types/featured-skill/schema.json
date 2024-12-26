@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "featured_skills",
+  "info": {
+    "singularName": "featured-skill",
+    "pluralName": "featured-skills",
+    "displayName": "Featured Skills"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "skills": {
+      "type": "component",
+      "repeatable": true,
+      "component": "projects.tags"
+    }
+  }
+}

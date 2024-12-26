@@ -1,4 +1,3 @@
-import Project from '@/types/project';
 import { gql } from '@apollo/client';
 import fetchGraphQL from '@/actions/fetchGraphQL';
 import { FeaturedProjectsQueryResponse } from '@/types/response';
