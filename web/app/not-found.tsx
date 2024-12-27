@@ -5,12 +5,12 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: '☹️ Definetly Not Found | Arpan Bhandari',
+  title: 'Not Found ☹️ | Arpan Bhandari',
   description: '404 Page Not Found',
   openGraph: {
     type: 'website',
     url: 'https://arpanbhandari.com.np/404',
-    title: '☹️ Definetly Not Found | Arpan Bhandari',
+    title: 'Not Found ☹️ | Arpan Bhandari',
     description: '404 Page Not Found',
     siteName: "Arpan Bhandari's Portfolio",
     images: ['/images/not-found-opengraph.png'],
