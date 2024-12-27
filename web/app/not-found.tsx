@@ -1,7 +1,21 @@
 import AnimatedBackground from '@/components/common/AnimatedBackground';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: '☹️ Definetly Not Found | Arpan Bhandari',
+  description: '404 Page Not Found',
+  openGraph: {
+    type: 'website',
+    url: 'https://arpanbhandari.com.np/404',
+    title: '☹️ Definetly Not Found | Arpan Bhandari',
+    description: '404 Page Not Found',
+    siteName: "Arpan Bhandari's Portfolio",
+    images: ['/images/not-found-opengraph.png'],
+  },
+};
 
 export default function NotFound() {
   return (
@@ -19,8 +33,8 @@ export default function NotFound() {
             Oops! It seems the page you're looking for has taken a detour or
             decided to retire.
           </p>
-          <Link href="/" className='mt-2 md:mt-4'>
-            <Button className='px-4 md:px-6 rounded-full' variant={'outline'}>
+          <Link href="/" className="mt-2 md:mt-4">
+            <Button className="px-4 md:px-6 rounded-full" variant={'outline'}>
               <ArrowLeft /> Go Back Home
             </Button>
           </Link>
