@@ -1,6 +1,7 @@
 import getFeaturedProjects from '@/actions/getFeaturedProjects';
 import ProjectCard from '@/components/cards/ProjectCard';
 import HorizontalScroll from '@/components/common/HorizontalScroll';
+import Link from 'next/link';
 import React from 'react';
 
 export default async function FeaturedProjects() {
@@ -36,6 +37,7 @@ export default async function FeaturedProjects() {
             </span>
           </p>
         </div>
+
         <div className="mt-6 md:mt-8">
           <HorizontalScroll>
             <>
@@ -52,6 +54,17 @@ export default async function FeaturedProjects() {
               )}
             </>
           </HorizontalScroll>
+        </div>
+        <div className="mt-4 md:mt-6 flex justify-center md:justify-endh">
+          <h3>
+            Wanna see more?{' '}
+            <Link
+              href={'/projects'}
+              className="dark:text-[#ff7d37] text-[#ff6730] saturate-[110%] hover:saturate-[130%] font-semibold hover:underline cursor-pointer hover:underline-offset-2"
+            >
+              Click Here.
+            </Link>
+          </h3>
         </div>
       </div>
     </section>
