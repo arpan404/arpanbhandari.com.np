@@ -57,7 +57,7 @@ export default async function FeaturedProjects() {
         </div>
         <div className="mt-4 md:mt-6 flex justify-center md:justify-endh">
           <h3>
-            Wanna see more?{' '}
+            Want to see more?{' '}
             <Link
               href={'/projects'}
               className="dark:text-[#ff7d37] text-[#ff6730] saturate-[110%] hover:saturate-[130%] font-semibold hover:underline cursor-pointer hover:underline-offset-2"
