@@ -33,6 +33,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               width={300}
               height={200}
               draggable={false}
+              priority={true}
               className="w-full h-full object-cover"
             />
           </ModalTrigger>
@@ -60,6 +61,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 width={1000}
                 height={700}
                 draggable={false}
+                priority={true}
                 className="w-full h-full object-cover"
               />
             </div>
