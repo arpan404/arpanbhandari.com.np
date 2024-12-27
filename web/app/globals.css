@@ -167,3 +167,7 @@ html {
 .custom_page_scroll::-webkit-scrollbar-thumb:active {
   background-color: #ff5c2b;
 }
+
+.project_description ul li {
+  padding: 2px 0px;
+}

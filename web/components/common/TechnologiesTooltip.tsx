@@ -78,6 +78,7 @@ export default function TechnologiesTooltip({
               height={100}
               width={100}
               priority={true}
+              draggable={false}
               src={
                 item.skill.logo
                   ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${item.skill.logo.url}`

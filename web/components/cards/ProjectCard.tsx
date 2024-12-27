@@ -96,7 +96,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               <div className="mt-4">
                 <ReactMarkdown
                   className={
-                    'w-full overflow-x-hidden break-words whitespace-normal space-y-2 text-sm'
+                    'w-full overflow-x-hidden break-words whitespace-normal space-y-2 text-sm project_description text-primary/95'
                   }
                 >
                   {project.longDescription}
