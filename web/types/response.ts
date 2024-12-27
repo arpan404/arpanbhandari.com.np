@@ -25,6 +25,10 @@ type FeaturedProjectsQueryResponse = null | {
   };
 };
 
+type ProjectsQueryResponse = null | {
+  prohects: Array<Project>;
+};
+
 type FeaturedSkillsQueryResponse = null | {
   featuredSkills: null | {
     skills: Array<{
@@ -38,4 +42,5 @@ export type {
   ResumeQueryResponse,
   FeaturedProjectsQueryResponse,
   FeaturedSkillsQueryResponse,
+  ProjectsQueryResponse,
 };
