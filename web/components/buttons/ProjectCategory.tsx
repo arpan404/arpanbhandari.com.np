@@ -1,4 +1,4 @@
-import { Project } from '@/lib/types';
+import Project from '@/types/project';
 import Link from 'next/link';
 import {
   Tooltip,

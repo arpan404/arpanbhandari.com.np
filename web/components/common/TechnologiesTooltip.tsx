@@ -1,4 +1,4 @@
-import { Project, Skill } from '@/lib/types';
+import Project from '@/types/project';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import {
