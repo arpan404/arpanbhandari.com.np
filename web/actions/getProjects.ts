@@ -77,3 +77,36 @@ const query = gql`
     }
   }
 `;
+
+const getProjects = async (tag?: string): Promise<ProjectsQueryResponse> => {
+  try {
+    if (tag) {
+      const data = await fetchGraphQL<ProjectsQueryResponse>(
+        tagQuery,
+        `projects-${tag}`,
+        60 * 60 * 2, // 2 hours
+        { skillUID: tag }
+      );
+      if (data) {
+        if (!data.projects || data.projects.length === 0) {
+          return null;
+        }
+      }
+      return data;
+    }
+    const data = await fetchGraphQL<ProjectsQueryResponse>(
+      query,
+      'projects',
+      60 * 60 * 3 // 2 hours
+    );
+    if (data) {
+      if (!data.projects || data.projects.length === 0) {
+        return null;
+      }
+    }
+    return data;
+  } catch (e: unknown) {
+    console.error(e);
+    return null;
+  }
+};

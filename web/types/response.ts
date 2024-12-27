@@ -26,7 +26,7 @@ type FeaturedProjectsQueryResponse = null | {
 };
 
 type ProjectsQueryResponse = null | {
-  prohects: Array<Project>;
+  projects: Array<Project>;
 };
 
 type FeaturedSkillsQueryResponse = null | {

@@ -16,7 +16,8 @@ import redis from '@/lib/redis';
 const fetchGraphQL = async <T>(
   query: DocumentNode,
   queryHash: string,
-  staleTime: number = 3600 // default to 1 minute
+  staleTime: number = 3600, // default to 1 minute
+  variableValues: Record<string, unknown> = {}
 ): Promise<T> => {
   try {
     // First check if the data is in the cache
@@ -29,6 +30,7 @@ const fetchGraphQL = async <T>(
     const response = await client.query({
       query: query,
       fetchPolicy: 'network-only',
+      variables: variableValues,
     });
     const data = response.data;
 
