@@ -71,7 +71,7 @@ export default function HorizontalScroll({
     >
       <button
         onClick={scrollLeft}
-        className={`absolute left-0 z-10 top-0 h-full dark:text-[#ff7d37] text-[#ff6730] saturate-[110%] hover:saturate-[130%]  bg-gradient-to-r rounded-md from-black/[0.05] transition-all duration-75 ${
+        className={`absolute left-0 z-20 top-0 h-full dark:text-[#ff7d37] text-[#ff6730] saturate-[110%] hover:saturate-[130%]  bg-gradient-to-r rounded-md from-black/[0.05] transition-all duration-75 ${
           isHovered ? 'opacity-100' : 'opacity-0'
         } ${canScrollLeft ? 'block' : 'hidden'}`}
       >
@@ -86,7 +86,7 @@ export default function HorizontalScroll({
       </div>
       <button
         onClick={scrollRight}
-        className={`absolute right-0 z-10 top-0 h-full dark:text-[#ff7d37] text-[#ff6730] saturate-[110%] hover:saturate-[130%] rounded-md bg-gradient-to-l from-black/[0.05] to-transparent transition-all duration-75 ${
+        className={`absolute right-0 z-20 top-0 h-full dark:text-[#ff7d37] text-[#ff6730] saturate-[110%] hover:saturate-[130%] rounded-md bg-gradient-to-l from-black/[0.05] to-transparent transition-all duration-75 ${
           isHovered ? 'opacity-100 ' : 'opacity-0'
         } ${canScrollRight ? 'block' : 'hidden'}`}
       >
