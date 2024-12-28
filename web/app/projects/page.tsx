@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Tag, X } from 'lucide-react';
 import Link from 'next/link';
 import getProjects from '@/actions/getProjects';
 import { Metadata } from 'next';
+import ProjectCard from '@/components/cards/ProjectCard';
 
 export const metadata: Metadata = {
   title: 'Projects - Arpan Bhandari (The Developer)',
@@ -25,12 +26,11 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const { tag } = await searchParams;
-  // const data = await getProjects(tag ? (tag as string) : undefined);
-  let data = null;
-  console.log(data);
+  const data = await getProjects(tag ? (tag as string) : undefined);
+
   return (
-    <main className="bg-background pt-[52px]">
-      <div className="px-2">
+    <main className="bg-background min-h-[calc(100dvh-68px)] pt-[52px]">
+      <div className="px-2 py-2">
         <Link href="/">
           <Button variant={'link'} className="px-2 rounded-full font-semibold">
             <ChevronLeft size={20} /> Home
@@ -38,13 +38,73 @@ export default async function Page({
           </Button>
         </Link>
       </div>
-      <main className="container mx-auto">
-        {!data && (
-          <div className="">
-            <div></div>
+      <section className="container mx-auto px-2">
+        <div>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-primary">
+            My{' '}
+            <span className="dark:text-[#ff7d37] text-[#ff6730] saturate-[110%]">
+              Creations
+            </span>
+          </h1>
+          <h2 className="text-lg font-semibold text-primary text-center opacity-80 mt-2">
+            A collection of all projects I have worked on.
+          </h2>
+        </div>
+        {tag && (
+          <div className="flex justify-between flex-wrap items-center mt-4 mb-2">
+            <div className="">
+              <span className="font-medium text-muted-foreground flex items-center flex-wrap">
+                <span className="text-base text-primary/80">
+                  Projects with tag:{' '}
+                </span>{' '}
+                <span className="mx-2 text-sm"> &apos;{tag}&apos;</span>
+              </span>
+            </div>
+            <div>
+              <Link href="/projects">
+                <Button
+                  variant={'outline'}
+                  className="rounded-full px-4 md:px-6"
+                >
+                  View All Projects
+                </Button>
+              </Link>
+            </div>
           </div>
         )}
-      </main>
+
+        {!data && (
+          <div
+            className={`${
+              tag ? 'min-h-[calc(100dvh-317px)]' : 'min-h-[calc(100dvh-260px)]'
+            } flex items-center justify-center bg-red-500`}
+          >
+            <div className="relative -top-10">
+              <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-center dark:text-[#ff7d37] text-[#ff6730] saturate-[130%]">
+                OOPS!
+              </h2>
+              <h2 className="text-lg font-medium text-primary text-center opacity-80 mt-2">
+                It seems there are no projects to show right now. Check back
+                soon!
+              </h2>
+            </div>
+          </div>
+        )}
+        {data && (
+          <div className="flex justify-center py-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              {data.projects.map(project => (
+                <div
+                  className="w-full sm:w-fit justify-center flex"
+                  key={project.uid}
+                >
+                  <ProjectCard project={project} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
     </main>
   );
 }
