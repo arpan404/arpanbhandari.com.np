@@ -150,13 +150,9 @@ export const ModalBody = ({
             initial="initial"
             animate="animate"
             exit="exit"
-            transition={{
-              type: 'spring',
-              duration: 0.5,
-              bounce: 0.3,
-            }}
+            transition={modalVariants.transition}
             className={cn(
-              'bg-background dark:border border-muted rounded-md md:rounded-2xl relative z-50 w-[90vw] max-w-3xl max-h-[85vh] overflow-y-auto',
+              'bg-background dark:border border-muted rounded-md md:rounded-2xl relative z-50 w-[95%] max-w-3xl max-h-[90dvh] md:max-h-[85dvh] overflow-y-auto',
               className
             )}
           >
