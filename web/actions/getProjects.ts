@@ -98,7 +98,7 @@ const getProjects = async (tag?: string): Promise<ProjectsQueryResponse> => {
     const data = await fetchGraphQL<ProjectsQueryResponse>(
       query,
       'projects',
-      60 * 60 * 3 // 2 hours
+      60 * 60 * 2 // 2 hours
     );
     if (data) {
       if (!data.projects || data.projects.length === 0) {
