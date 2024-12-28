@@ -414,6 +414,11 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    article_type: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::article-type.article-type'
+    >;
+    body: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -424,10 +429,10 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    short_description: Schema.Attribute.Text & Schema.Attribute.Required;
+    seo_description: Schema.Attribute.Text & Schema.Attribute.Required;
     thumbnail: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
-    uid: Schema.Attribute.UID<'title'>;
+    uid: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

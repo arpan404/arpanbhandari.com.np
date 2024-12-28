@@ -18,18 +18,28 @@
     },
     "uid": {
       "type": "uid",
-      "targetField": "title"
+      "targetField": "title",
+      "required": true
     },
-    "short_description": {
+    "seo_description": {
       "type": "text",
       "required": true
     },
     "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "article_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article-type.article-type"
     }
   }
 }

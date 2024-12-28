@@ -56,16 +56,20 @@ export const ModalTrigger = ({
   children: ReactNode;
   className?: string;
 }) => {
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const { setOpen, setTriggerRect } = useModal();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    setTriggerRect(rect);
-    setOpen(true);
+  const handleClick = () => {
+    const rect = triggerRef.current?.getBoundingClientRect();
+    if (rect) {
+      setTriggerRect(rect);
+      setOpen(true);
+    }
   };
 
   return (
     <button
+      ref={triggerRef}
       className={cn(
         'px-4 py-2 rounded-md text-primary text-center relative overflow-hidden',
         className
@@ -84,9 +88,8 @@ export const ModalBody = ({
   children: ReactNode;
   className?: string;
 }) => {
-  const { open, triggerRect } = useModal();
+  const { open, triggerRect, setOpen } = useModal();
   const modalRef = useRef<HTMLDivElement>(null);
-  const { setOpen } = useModal();
 
   useEffect(() => {
     if (open) {
@@ -94,52 +97,73 @@ export const ModalBody = ({
     } else {
       document.body.style.overflow = 'auto';
     }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [open]);
 
   useOutsideClick(modalRef, () => setOpen(false));
+
+  const modalVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0,
+      x: triggerRect
+        ? triggerRect.left - window.innerWidth / 2 + triggerRect.width / 2
+        : 0,
+      y: triggerRect
+        ? triggerRect.top - window.innerHeight / 2 + triggerRect.height / 2
+        : 0,
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      y: 0,
+    },
+    exit: {
+      opacity: 0,
+      scale: 0,
+      x: triggerRect
+        ? triggerRect.left - window.innerWidth / 2 + triggerRect.width / 2
+        : 0,
+      y: triggerRect
+        ? triggerRect.top - window.innerHeight / 2 + triggerRect.height / 2
+        : 0,
+    },
+    transition: {
+      type: 'spring',
+      stiffness: 200,
+      damping: 20,
+    },
+  };
+
   return (
     <AnimatePresence>
       {open && (
-        <motion.div className="fixed inset-0 flex items-baseline justify-center z-[200] py-10 overflow-y-scroll min-h-screen overflow-x-hidden bg-transparent">
+        <div className="fixed inset-0 flex items-center justify-center z-[200] overflow-y-auto">
           <Overlay />
-
           <motion.div
             ref={modalRef}
-            initial={{
-              opacity: 0,
-              x: triggerRect ? triggerRect.left + triggerRect.width / 2 : 0,
-              y: triggerRect ? triggerRect.top + triggerRect.height / 2 : 0,
-              width: triggerRect ? triggerRect.width : 'auto',
-              height: triggerRect ? triggerRect.height : 'auto',
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              y: 0,
-              width: '100%',
-              height: '100%',
-            }}
-            exit={{
-              opacity: 0,
-              x: triggerRect ? triggerRect.left + triggerRect.width / 2 : 0,
-              y: triggerRect ? triggerRect.top + triggerRect.height / 2 : 0,
-              width: triggerRect ? triggerRect.width : 'auto',
-              height: triggerRect ? triggerRect.height : 'auto',
-            }}
+            variants={modalVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
             transition={{
               type: 'spring',
-              stiffness: 200,
-              damping: 20,
+              duration: 0.5,
+              bounce: 0.3,
             }}
             className={cn(
-              'bg-background dark:border border-muted rounded-md md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-y-scroll overflow-x-hidden',
+              'bg-background dark:border border-muted rounded-md md:rounded-2xl relative z-50 w-[90vw] max-w-3xl max-h-[85vh] overflow-y-auto',
               className
             )}
           >
             <CloseIcon />
-            <div>{children}</div>
+            {children}
           </motion.div>
-        </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );
