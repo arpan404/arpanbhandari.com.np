@@ -25,7 +25,7 @@ export default function ProjectCollection({
             <AnimatePresence>
               {hoveredIndex === index && (
                 <motion.span
-                  className="absolute inset-0 h-full w-full bg-secondary/90 block rounded-3xl z-0"
+                  className="absolute inset-0 h-full w-full bg-secondary block rounded-3xl z-0"
                   layoutId="hoverBackground"
                   initial={{ opacity: 0 }}
                   animate={{
@@ -39,9 +39,8 @@ export default function ProjectCollection({
                 />
               )}
             </AnimatePresence>
-            <div className="relative z-[100]">
-              <ProjectCard project={project} />
-            </div>
+
+            <ProjectCard project={project} />
           </div>
         ))}
       </div>

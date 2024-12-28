@@ -24,7 +24,7 @@ import Project from '@/types/project';
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Modal>
-      <Card className="w-[270px] p-0 h-[240px] flex-grow-0 flex-shrink-0 overflow-hidden bg-background">
+      <Card className="w-[270px] p-0 h-[240px] flex-grow-0 flex-shrink-0 overflow-hidden bg-background z-10 relative">
         <div>
           <ModalTrigger className="p-0 rounded-none w-full aspect-video overflow-hidden flex justify-center items-center">
             <Image
@@ -52,7 +52,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         </CardContent>
       </Card>
       <ModalBody className="md:max-w-[750px] p-0 md:p-0 scrollbar-hide">
-        <ModalContent className="p-0 md:p-0">
+        <ModalContent className="p-0 md:p-0 ">
           <div>
             <div className="w-full aspect-video overflow-hidden p-0 md:p-0">
               <Image
