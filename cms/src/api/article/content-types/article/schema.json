@@ -21,7 +21,7 @@
       "targetField": "title",
       "required": true
     },
-    "seo_description": {
+    "description": {
       "type": "text",
       "required": true
     },
@@ -33,13 +33,17 @@
         "images"
       ]
     },
-    "body": {
-      "type": "richtext"
-    },
     "article_type": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::article-type.article-type"
+    },
+    "body": {
+      "type": "customField",
+      "options": {
+        "preset": "defaultHtml"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

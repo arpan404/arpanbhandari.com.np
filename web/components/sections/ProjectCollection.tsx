@@ -4,7 +4,6 @@ import Project from '@/types/project';
 import ProjectCard from '@/components/cards/ProjectCard';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import Link from 'next/link';
 
 export default function ProjectCollection({
   projects,
@@ -25,7 +24,7 @@ export default function ProjectCollection({
             <AnimatePresence>
               {hoveredIndex === index && (
                 <motion.span
-                  className="absolute inset-0 h-full w-full bg-secondary block rounded-3xl z-0"
+                  className="absolute inset-0 h-full w-full bg-secondary block rounded-[30px] z-0"
                   layoutId="hoverBackground"
                   initial={{ opacity: 0 }}
                   animate={{
