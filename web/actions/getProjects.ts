@@ -12,7 +12,7 @@ const tagQuery = gql`
           { project_type: { skill: { skillUID: { eq: $skillUID } } } }
         ]
       }
-      sort: "createdAt:desc"
+      sort: "completed_date:desc"
     ) {
       name
       uid
@@ -47,7 +47,7 @@ const tagQuery = gql`
 
 const query = gql`
   query getProjects{
-    projects(sort: "createdAt:desc") {
+    projects(sort: "completed_date:desc") {
       name
       uid
       thumbnail {
