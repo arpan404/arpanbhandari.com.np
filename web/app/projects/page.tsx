@@ -4,6 +4,7 @@ import Link from 'next/link';
 import getProjects from '@/actions/getProjects';
 import { Metadata } from 'next';
 import ProjectCard from '@/components/cards/ProjectCard';
+import ProjectCollection from '@/components/sections/ProjectCollection';
 
 export const metadata: Metadata = {
   title: 'Projects - Arpan Bhandari (The Developer)',
@@ -90,20 +91,7 @@ export default async function Page({
             </div>
           </div>
         )}
-        {data && (
-          <div className="flex justify-center py-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              {data.projects.map(project => (
-                <div
-                  className="w-full sm:w-fit justify-center flex"
-                  key={project.uid}
-                >
-                  <ProjectCard project={project} />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        {data && <ProjectCollection projects={data.projects} />}
       </section>
     </main>
   );

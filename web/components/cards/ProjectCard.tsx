@@ -24,9 +24,9 @@ import Project from '@/types/project';
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Modal>
-      <Card className="w-[270px] p-0 h-[240px] flex-grow-0 flex-shrink-0 overflow-hidden">
+      <Card className="w-[270px] p-0 h-[240px] flex-grow-0 flex-shrink-0 overflow-hidden z-[200] bg-background">
         <div>
-          <ModalTrigger className="p-0 rounded-none w-full aspect-video overflow-hidden flex justify-center items-center rounded-b-none">
+          <ModalTrigger className="p-0 rounded-none w-full aspect-video overflow-hidden flex justify-center items-center">
             <Image
               src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.thumbnail.url}`}
               alt={project.name}
