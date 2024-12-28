@@ -3,6 +3,8 @@
 // import Link from 'next/link';
 // import { type NextRequest } from 'next/server';
 
+import getProjects from '@/actions/getProjects';
+
 // export default async function page() {
 
 //   return (
@@ -31,7 +33,8 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const { tag, filter, sort } = await searchParams;
-
+  const data = await getProjects();
+  console.log(data);
   return (
     <div>
       <p>Query: {tag}</p>

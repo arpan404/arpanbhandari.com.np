@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 import fetchGraphQL from '@/actions/fetchGraphQL';
 import { ProjectsQueryResponse } from '@/types/response';
+import exp from 'constants';
 
 const tagQuery = gql`
   query getTaggedProjects($skillUID: String) {
@@ -45,7 +46,7 @@ const tagQuery = gql`
 `;
 
 const query = gql`
-  query getTaggedProjects($skillUID: String) {
+  query getProjects{
     projects(sort: "createdAt:desc") {
       name
       uid
@@ -85,7 +86,7 @@ const getProjects = async (tag?: string): Promise<ProjectsQueryResponse> => {
         tagQuery,
         `projects-${tag}`,
         60 * 60 * 2, // 2 hours
-        { skillUID: tag }
+        { skillUID: tag as string }
       );
       if (data) {
         if (!data.projects || data.projects.length === 0) {
@@ -110,3 +111,5 @@ const getProjects = async (tag?: string): Promise<ProjectsQueryResponse> => {
     return null;
   }
 };
+
+export default getProjects;
