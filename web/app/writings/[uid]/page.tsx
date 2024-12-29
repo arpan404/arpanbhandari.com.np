@@ -3,11 +3,11 @@ import { redirect } from 'next/navigation';
 import React from 'react';
 import { metadata as notFoundMetadata } from '@/app/not-found';
 import { Metadata } from 'next';
-export const generateMetadata = async (
-  props: {
-    params: Promise<{ uid: string }>;
-  }
-) => {
+import Image from 'next/image';
+
+export const generateMetadata = async (props: {
+  params: Promise<{ uid: string }>;
+}) => {
   const params = await props.params;
   const uid = await params.uid;
   if (!uid) return notFoundMetadata;
@@ -40,13 +40,45 @@ export const generateMetadata = async (
   } as Metadata;
 };
 
-export default async function Page(props: { params: Promise<{ uid: string }> }) {
+export default async function Page(props: {
+  params: Promise<{ uid: string }>;
+}) {
   const params = await props.params;
   const uid = await params.uid;
   if (!uid) redirect('/notfound');
 
   const data = await getWriting(uid);
   if (!data) redirect('/notfound');
-
-  return <div>{uid}</div>;
+  const article = data.articles[0];
+  return (
+    <>
+      <div className="pt-[52px]">
+        <div>Home &gt; Writings &gt; ..</div>
+      </div>
+      <main className="container mx-auto">
+        <div className="w-full lg:w-[1000px] mx-auto relative">
+          <div className="w-full max-h-[70dvh] overflow-hidden rounded-t-xl sm:rounded-t-2xl lg:rounded-t-3xl bg-transparent">
+            <Image
+              src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${article.thumbnail.url}`}
+              alt="thumbnail"
+              height={1080 / 2}
+              width={1920 / 2}
+              className="object-cover w-full h-full"
+            />
+          </div>
+          <div className="relative -top-[80px] sm:-top-[160px] bg-background py-4 md:py-8 w-[95%] sm:w-[90%] mx-auto rounded-t-lg sm:rounded-t-xl md:rounded-t-2xl px-4 sm:px-6 md:px-8">
+            <div>
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-medium text-primary/80">
+                {article.title}
+              </h1>
+            </div>
+            <article
+              dangerouslySetInnerHTML={{ __html: article.body }}
+              className="writing_body"
+            ></article>
+          </div>
+        </div>
+      </main>
+    </>
+  );
 }
