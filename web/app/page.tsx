@@ -3,6 +3,8 @@ import Hero from '@/components/sections/Hero';
 import { Metadata } from 'next';
 import Expertise from '@/components/sections/Expertise';
 import FeaturedProjects from '@/components/sections/FeaturedProjects';
+import { Suspense } from 'react';
+import FeaturedWritings from '@/components/sections/FeaturedWriting';
 
 export const metadata: Metadata = {
   title: 'Arpan Bhandari | The Developer',
@@ -26,8 +28,16 @@ export default function Home() {
       </main>
       <About />
       <div className="bg-secondary h-[2px]" role="separator" />
-      <Expertise />
-      <FeaturedProjects />
+      <Suspense>
+        <Expertise />
+      </Suspense>
+      <Suspense>
+        <FeaturedProjects />
+      </Suspense>
+      <div className="bg-secondary h-[2px]" role="separator" />
+      <Suspense>
+        <FeaturedWritings />
+      </Suspense>
     </>
   );
 }

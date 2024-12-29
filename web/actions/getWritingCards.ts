@@ -7,6 +7,7 @@ const query = gql`
   query getAllWritings {
     articles(sort: "createdAt:desc") {
       description
+      uid
       title
       thumbnail {
         url
@@ -29,6 +30,7 @@ const specificQuery = gql`
     ) {
       description
       title
+      uid
       thumbnail {
         url
       }

@@ -1,0 +1,55 @@
+import Link from 'next/link';
+import React from 'react';
+import WritingCard from '../cards/WritingCard';
+import getFeaturedWritings from '@/actions/getFeaturedWritings';
+import HorizontalScroll from '../common/HorizontalScroll';
+
+export default async function FeaturedWritings() {
+  const writings = await getFeaturedWritings();
+  if (!writings || writings.articles.length === 0) return <></>;
+
+  return (
+    <section
+      className="flex justify-center bg-background py-10 sm:py-16 md:py-20"
+      id="writings"
+    >
+      <div className="container px-2 md:px-8">
+        <div className="">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center">
+            What did{' '}
+            <span className="dark:text-[#ff7d37] text-[#ff6730] saturate-[110%]">
+              I Write?
+            </span>
+          </h2>
+        </div>
+        <div className="flex justify-center mt-4 md:mt-6">
+          <p>
+            <span className="text-base md:text-lg font-semibold text-primary opacity-80">
+              Engaged in diverse writing—here&apos;s a glimpse of some of my
+              latest work:
+            </span>
+          </p>
+        </div>
+
+        <div className="mt-6 md:mt-8 flex justify-center">
+          <HorizontalScroll>
+            {writings.articles.map(article => (
+              <WritingCard {...article} key={article.uid} />
+            ))}
+          </HorizontalScroll>
+        </div>
+        <div className="mt-4 md:mt-6 flex justify-center md:justify-endh">
+          <h3>
+            Want to see more?{' '}
+            <Link
+              href={'/writings'}
+              className="dark:text-[#ff7d37] text-[#ff6730] saturate-[110%] hover:saturate-[130%] font-semibold hover:underline cursor-pointer hover:underline-offset-2"
+            >
+              Click Here.
+            </Link>
+          </h3>
+        </div>
+      </div>
+    </section>
+  );
+}
