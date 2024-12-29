@@ -1,3 +1,4 @@
+'use client';
 interface ReadingTimeOptions {
   wordsPerMinute?: number;
   wordsPerMinuteForCode?: number;
