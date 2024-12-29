@@ -18,7 +18,7 @@ export default function WritingCard(props: WritingCardType) {
           <Link href={`/writings/${props.uid}`} className="w-full h-full">
             <Image
               className="w-full h-full object-cover"
-              src={props.thumbnail.url}
+              src={process.env.NEXT_PUBLIC_STRAPI_URL + props.thumbnail.url}
               height={320}
               width={320}
               alt={`Thumbnail of writing titled ${props.title}`}
