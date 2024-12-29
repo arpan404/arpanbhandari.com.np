@@ -3,7 +3,6 @@ import { ChevronLeft, Tag, X } from 'lucide-react';
 import Link from 'next/link';
 import getProjects from '@/actions/getProjects';
 import { Metadata } from 'next';
-import ProjectCard from '@/components/cards/ProjectCard';
 import ProjectCollection from '@/components/sections/ProjectCollection';
 
 export const metadata: Metadata = {

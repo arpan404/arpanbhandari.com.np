@@ -25,7 +25,7 @@ export default function WritingCard(props: WritingCardType) {
               width={320}
               alt={`Thumbnail of writing titled ${props.title}`}
               draggable={false}
-              loading="eager"
+              loading="lazy"
             />
           </Link>
         </div>

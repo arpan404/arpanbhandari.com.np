@@ -3,8 +3,22 @@ import WritingCard from '@/components/cards/WritingCard';
 import WritingCollection from '@/components/sections/WritingCollection';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, FilterX, X } from 'lucide-react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: 'Writings - Arpan Bhandari (The Developer)',
+  description: `Explore Diaries, Blueprints, and Personal Perspectives—insightful and intriguing writings you'll love to read.`,
+  openGraph: {
+    type: 'website',
+    url: 'https://arpanbhandari.com.np/writings',
+    title: 'Projects - Arpan Bhandari (The Developer)',
+    description: `Explore Diaries, Blueprints, and Personal Perspectives—insightful and intriguing writings you'll love to read.`,
+    siteName: "Arpan Bhandari's Writing Space",
+    images: ['/images/writings-opengraph.png'],
+  },
+};
 
 export default async function page({
   searchParams,
@@ -34,13 +48,16 @@ export default async function page({
           </h2>
         </div>
         {type && (
-          <div className="flex justify-between flex-wrap items-center mt-4 mb-2">
-            <div className="">
+          <div className="flex justify-between flex-wrap items-center mt-4 mb-2 gap-2">
+            <div>
               <span className="font-medium text-muted-foreground flex items-center flex-wrap">
                 <span className="text-base text-primary/80">
-                  Showing result for writings type:{' '}
+                  Result for Writing Type{' '}
                 </span>{' '}
-                <span className="mx-2 text-sm"> &apos;{type}&apos;</span>
+                <span className="mx-2 text-sm capitalize">
+                  {' '}
+                  &apos;{type}&apos;
+                </span>
               </span>
             </div>
             <div>
