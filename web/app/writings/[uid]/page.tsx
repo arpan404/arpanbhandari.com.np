@@ -6,9 +6,17 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import ReadTime from '@/components/common/ReadTime';
 import { formatTimestamp } from '@/lib/date';
-import { Calendar, Dot } from 'lucide-react';
+import { Calendar, Dot, Tag } from 'lucide-react';
 import WritingBreadcrumb from '@/components/navs/WritingBreadcrumb';
 import WritingShare from '@/components/cards/WritingShare';
+import { Button } from '@/components/ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import Link from 'next/link';
 
 export const generateMetadata = async (props: {
   params: Promise<{ uid: string }>;
@@ -69,6 +77,8 @@ export default async function Page(props: {
               height={1080 / 2}
               width={1920 / 2}
               className="object-cover w-full h-full"
+              draggable={false}
+              loading="lazy"
             />
           </div>
           <div className="relative -top-[80px] sm:-top-[160px] bg-background py-4 md:py-8 w-[95%] sm:w-[90%] mx-auto rounded-t-lg sm:rounded-t-xl md:rounded-t-2xl px-4 sm:px-6 md:px-8">
@@ -78,19 +88,41 @@ export default async function Page(props: {
               </h1>
             </div>
             <div className="pt-6 md:pt-8">
-              <div className="flex gap-0 items-center">
-                <div className="text-primary/70 font-medium text-sm flex items-center gap-1">
-                  <Calendar size={16} />
+              <div className="flex justify-start gap-2 flex-wrap items-center">
+                <div className="flex gap-0 items-center">
+                  <div className="text-primary/70 font-medium text-sm flex items-center gap-1">
+                    <Calendar size={16} />
+                    <span className="block">
+                      {formatTimestamp(article.createdAt)}
+                    </span>
+                  </div>
                   <span className="block">
-                    {formatTimestamp(article.createdAt)}
+                    <Dot />
                   </span>
+                  <ReadTime html={article.body} />
                 </div>
-                <span className="block">
-                  <Dot />
-                </span>
-                <ReadTime html={article.body} />
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link href={`/writings?type=${article.type.uid}`}>
+                        <Button
+                          variant={'outline'}
+                          size={'icon'}
+                          className="rounded-full text-[0.6rem] w-fit font-medium px-2 py-1 h-fit mx-1 text-primary/80"
+                        >
+                          <Tag size={8} className="text-[0.5rem]" />
+                          <span className="">{article.type.name}</span>
+                        </Button>
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent className="p-0 px-3 py-1 rounded-full z-[180] text-[0.6rem]">
+                      View Similar Writings
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
-              <div className="flex justify-end pt-2">
+
+              <div className="flex justify-end pt-4">
                 <WritingShare title={article.title} />
               </div>
             </div>
