@@ -1,5 +1,4 @@
 import getWritings from '@/actions/getWritingCards';
-import WritingCard from '@/components/cards/WritingCard';
 import WritingCollection from '@/components/sections/WritingCollection';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, FilterX, X } from 'lucide-react';
@@ -9,13 +8,23 @@ import React from 'react';
 
 export const metadata: Metadata = {
   title: 'Writings - Arpan Bhandari (The Developer)',
-  description: `Explore Diaries, Blueprints, and Personal Perspectives—insightful and intriguing writings you'll love to read.`,
+  description: `Explore Diaries, Blueprints, and Personal Perspectives—insightful and intriguing writings on software engineering, personal experiences, and general topics you'll love to read.`,
+  keywords:
+    'Arpan Bhandari, writing, blog, software engineering, personal experiences, general topics, diaries, blueprints, developer thoughts, blogging, tech writing, software development, coding insights, programming, technology blog',
   openGraph: {
     type: 'website',
     url: 'https://arpanbhandari.com.np/writings',
-    title: 'Projects - Arpan Bhandari (The Developer)',
-    description: `Explore Diaries, Blueprints, and Personal Perspectives—insightful and intriguing writings you'll love to read.`,
+    title: 'Writings - Arpan Bhandari (The Developer)',
+    description: `Explore Diaries, Blueprints, and Personal Perspectives—insightful and intriguing writings on software engineering, personal experiences, and general topics you'll love to read.`,
     siteName: "Arpan Bhandari's Writing Space",
+    images: ['/images/writings-opengraph.png'],
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@arpanbhandari01',
+    title: 'Writings - Arpan Bhandari (The Developer)',
+    description: `Explore Diaries, Blueprints, and Personal Perspectives—insightful and intriguing writings on software engineering, personal experiences, and general topics you'll love to read.`,
     images: ['/images/writings-opengraph.png'],
   },
 };

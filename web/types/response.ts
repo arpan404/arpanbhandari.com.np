@@ -35,7 +35,7 @@ type WritingCardsQueryResponse = null | {
 };
 
 type WritingQueryResponse = null | {
-  article: Array<Writing>;
+  articles: Array<Writing>;
 };
 
 type FeaturedSkillsQueryResponse = null | {

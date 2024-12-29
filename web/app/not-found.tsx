@@ -6,13 +6,27 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Not Found ☹️ | Arpan Bhandari',
-  description: '404 Page Not Found',
+  description:
+    'Oops! The page you are looking for cannot be found. It might have been moved or deleted.',
+  keywords:
+    '404, not found, error page, Arpan Bhandari, page missing, portfolio',
+
   openGraph: {
     type: 'website',
     url: 'https://arpanbhandari.com.np/404',
     title: 'Not Found ☹️ | Arpan Bhandari',
-    description: '404 Page Not Found',
+    description:
+      'Oops! The page you are looking for cannot be found. It might have been moved or deleted.',
     siteName: "Arpan Bhandari's Portfolio",
+    images: ['/images/not-found-opengraph.png'],
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@arpanbhandari',
+    title: 'Not Found ☹️ | Arpan Bhandari',
+    description:
+      'Oops! The page you are looking for cannot be found. It might have been moved or deleted.',
     images: ['/images/not-found-opengraph.png'],
   },
 };

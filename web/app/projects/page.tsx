@@ -8,14 +8,25 @@ import ProjectCollection from '@/components/sections/ProjectCollection';
 export const metadata: Metadata = {
   title: 'Projects - Arpan Bhandari (The Developer)',
   description:
-    'Discover the innovative projects created by Arpan Bhandari, a skilled developer proficient in a wide range of technologies and tools. These projects demonstrate expertise in web development, software engineering, and creative problem-solving. Dive into unique solutions and technical achievements crafted with a passion for coding and innovation.',
+    'Explore the groundbreaking projects developed by Arpan Bhandari, a passionate and versatile developer with expertise in web development, software engineering, and creative solutions. From cutting-edge web applications to software innovations, discover the technical achievements and forward-thinking approaches driving his work.',
+  keywords:
+    'Arpan Bhandari, developer, software engineer, web development, projects, innovative solutions, coding, programming, tech achievements, creative problem solving, React, Next.js, TypeScript, full-stack development, programming projects, software development, Golang, C++, Docker, AWS, cloud computing, backend development, DevOps, JavaScript, Python, database management, APIs',
   openGraph: {
     type: 'website',
     url: 'https://arpanbhandari.com.np/projects',
     title: 'Projects - Arpan Bhandari (The Developer)',
     description:
-      'Discover the innovative projects created by Arpan Bhandari, a skilled developer proficient in a wide range of technologies and tools. These projects demonstrate expertise in web development, software engineering, and creative problem-solving. Dive into unique solutions and technical achievements crafted with a passion for coding and innovation.',
-    siteName: "Arpan Bhandari's Projects Collection",
+      'Explore the groundbreaking projects developed by Arpan Bhandari, a passionate and versatile developer with expertise in web development, software engineering, and creative solutions. From cutting-edge web applications to software innovations, discover the technical achievements and forward-thinking approaches driving his work.',
+    siteName: "Arpan Bhandari's Project Portfolio",
+    images: ['/images/projects-opengraph.png'],
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@arpanbhandari01',
+    title: 'Projects - Arpan Bhandari (The Developer)',
+    description:
+      'Explore the groundbreaking projects developed by Arpan Bhandari, a passionate and versatile developer with expertise in web development, software engineering, and creative solutions.',
     images: ['/images/projects-opengraph.png'],
   },
 };

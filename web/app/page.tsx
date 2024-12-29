@@ -9,14 +9,26 @@ import FeaturedWritings from '@/components/sections/FeaturedWriting';
 export const metadata: Metadata = {
   title: 'Arpan Bhandari | The Developer',
   description:
-    'Arpan Bhandari is an aspiring scholar, experienced developer, and sometimes a writer.',
+    'Arpan Bhandari is an aspiring scholar, experienced developer, and sometimes a writer. Explore a portfolio showcasing his diverse skills in technology and creativity.',
+  keywords:
+    'Arpan Bhandari, developer, scholar, software engineering, programming, writer, portfolio, tech portfolio, coding, web development, full-stack development, technology, creative solutions',
   openGraph: {
     type: 'website',
     url: 'https://arpanbhandari.com.np',
     title: 'Arpan Bhandari | The Developer',
     description:
-      'Arpan Bhandari is an aspiring scholar, experienced developer, and sometimes a writer.',
+      'Arpan Bhandari is an aspiring scholar, experienced developer, and sometimes a writer. Explore a portfolio showcasing his diverse skills in technology and creativity.',
     siteName: "Arpan Bhandari's Portfolio",
+    images: ['/images/portfolio-opengraph.png'],
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@arpanbhandari',
+    title: 'Arpan Bhandari | The Developer',
+    description:
+      'Arpan Bhandari is an aspiring scholar, experienced developer, and sometimes a writer. Explore a portfolio showcasing his diverse skills in technology and creativity.',
+    images: ['/images/portfolio-opengraph.png'],
   },
 };
 
