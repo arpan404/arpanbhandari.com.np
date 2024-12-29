@@ -1,12 +1,5 @@
 'use client';
-import {
-  FaCheck,
-  FaCopy,
-  FaFacebook,
-  FaLink,
-  FaLinkedin,
-  FaTwitter,
-} from 'react-icons/fa';
+import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';

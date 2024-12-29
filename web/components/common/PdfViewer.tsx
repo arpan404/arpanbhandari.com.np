@@ -5,7 +5,6 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalTrigger,
 } from '@/components/ui/animated-modal';
 
@@ -95,7 +94,7 @@ export default function PdfViewer({
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger
-                        className={`bg-secondary p-3 rounded-full opacity-90 hover:opacity-100 transition-all ease-in-out delay-75 relative 
+                        className={`bg-secondary p-3 rounded-full opacity-90 hover:opacity-100 transition-all ease-in-out delay-75 relative
                         text-primary ${
                           pageNumber === 1 ? 'cursor-default' : 'cursor-pointer'
                         }`}
@@ -117,7 +116,7 @@ export default function PdfViewer({
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger
-                        className={`bg-secondary p-3 rounded-full opacity-90 hover:opacity-100 transition-all ease-in-out delay-75 relative 
+                        className={`bg-secondary p-3 rounded-full opacity-90 hover:opacity-100 transition-all ease-in-out delay-75 relative
                         text-primary ${
                           pageNumber === numPages
                             ? 'cursor-default'
