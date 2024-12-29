@@ -1,14 +1,16 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatTimestamp } from '@/lib/date';
 import { WritingCard as WritingCardType } from '@/types/writing';
+import { Tag } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../ui/tooltip';
 
 export default function WritingCard(props: WritingCardType) {
   return (
@@ -40,10 +42,29 @@ export default function WritingCard(props: WritingCardType) {
         <p className="line-clamp-3 text-[0.7rem] text-muted-foreground font-light">
           {props.description}
         </p>
-        <div>
-          <span className="text-xs text-primary/70 font-medium mt-3 block">
+        <div className="flex justify-between items-center mt-3">
+          <span className="text-xs text-primary/70 font-medium block">
             {formatTimestamp(props.createdAt)}
           </span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href={`/writings?type=${props.type.uid}`}>
+                  <Button
+                    variant={'outline'}
+                    size={'icon'}
+                    className="rounded-full text-[0.6rem] w-fit font-medium px-2 py-1 h-fit mx-1 text-primary/80"
+                  >
+                    <Tag size={8} className="text-[0.5rem]" />
+                    <span className="">{props.type.name}</span>
+                  </Button>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent className="p-0 px-3 py-1 rounded-full z-[180] text-[0.6rem]">
+                View Similar Writings
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </CardContent>
     </Card>
