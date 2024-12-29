@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client';
 import fetchGraphQL from '@/actions/fetchGraphQL';
 import { ProjectsQueryResponse } from '@/types/response';
-import exp from 'constants';
 
 const tagQuery = gql`
   query getTaggedProjects($skillUID: String) {

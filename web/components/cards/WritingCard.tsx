@@ -8,28 +8,20 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatTimestamp } from '@/lib/date';
+import { WritingCard as WritingCardType } from '@/types/writing';
 
-type PROPS_TYPE = {
-  title: string;
-  image: string;
-  description: string;
-  slug: string;
-  publishedDate: string;
-  
-};
-
-export default function WritingCard(props: PROPS_TYPE) {
+export default function WritingCard(props: WritingCardType) {
   return (
     <Card className="w-full max-w-[300px] rounded-2xl relative pb-2">
       <CardHeader className="px-0 py-0">
         <div className="flex justify-center h-[170px] rounded-t-2xl overflow-hidden">
-          <Link href={`/writings/${props.slug}`} className="w-full h-full">
+          <Link href={`/writings/${props.uid}`} className="w-full h-full">
             <Image
               className="w-full h-full object-cover"
-              src={props.image}
+              src={props.thumbnail.url}
               height={320}
               width={320}
-              alt={`Thumbnail of blog titled ${props.title}`}
+              alt={`Thumbnail of writing titled ${props.title}`}
               draggable={false}
               loading="eager"
             />
@@ -37,7 +29,7 @@ export default function WritingCard(props: PROPS_TYPE) {
         </div>
         <CardTitle className="font-medium pb-0 px-4 py-2">
           <Link
-            href={`/blogs/${props.slug}`}
+            href={`/writings/${props.uid}`}
             className="hover:underline underline-offset-2 line-clamp-2 text-lg text-primary/90 transition-all ease-in-out delay-100"
           >
             {props.title}
@@ -50,7 +42,7 @@ export default function WritingCard(props: PROPS_TYPE) {
         </p>
         <div>
           <span className="text-xs text-primary/70 font-medium mt-3 block">
-            {formatTimestamp(props.publishedDate)}
+            {formatTimestamp(props.createdAt)}
           </span>
         </div>
       </CardContent>

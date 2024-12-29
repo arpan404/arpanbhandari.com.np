@@ -7,7 +7,7 @@ interface Writing {
   };
   createdAt: string;
   updatedAt: string;
-  articleType: {
+  type: {
     name: string;
     uid: string;
   };

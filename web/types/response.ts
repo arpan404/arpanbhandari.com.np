@@ -1,5 +1,6 @@
 import Project from '@/types/project';
-import Skill from './skill';
+import Skill from '@/types/skill';
+import { WritingCard } from '@/types/writing';
 
 type MusicQueryResponse = null | {
   music: {
@@ -29,6 +30,10 @@ type ProjectsQueryResponse = null | {
   projects: Array<Project>;
 };
 
+type WritingCardsQueryResponse = null | {
+  articles: Array<WritingCard>;
+};
+
 type FeaturedSkillsQueryResponse = null | {
   featuredSkills: null | {
     skills: Array<{
@@ -42,5 +47,6 @@ export type {
   ResumeQueryResponse,
   FeaturedProjectsQueryResponse,
   FeaturedSkillsQueryResponse,
+  WritingCardsQueryResponse,
   ProjectsQueryResponse,
 };
