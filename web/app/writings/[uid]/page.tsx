@@ -129,7 +129,10 @@ export default async function Page(props: {
             <article
               dangerouslySetInnerHTML={{ __html: article.body }}
               className="writing_body mt-4 md:mt-8"
-            ></article>
+            />
+            <div className="flex justify-end relative top-[80px] py-4 sm:py-0 text-sm font-medium text-primary/70">
+              Last Updated: {formatTimestamp(article.updatedAt)}
+            </div>
           </div>
         </div>
       </main>
