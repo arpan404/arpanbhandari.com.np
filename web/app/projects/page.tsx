@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Page({
+export default async function page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -78,7 +78,7 @@ export default async function Page({
           <div
             className={`${
               tag ? 'min-h-[calc(100dvh-317px)]' : 'min-h-[calc(100dvh-260px)]'
-            } flex items-center justify-center bg-red-500`}
+            } flex items-center justify-center`}
           >
             <div className="relative -top-10">
               <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-center dark:text-[#ff7d37] text-[#ff6730] saturate-[130%]">
