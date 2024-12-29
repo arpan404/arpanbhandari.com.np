@@ -1,7 +1,7 @@
 import getWritings from '@/actions/getWritingCards';
 import WritingCollection from '@/components/sections/WritingCollection';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, FilterX, X } from 'lucide-react';
+import { ChevronLeft, FilterX } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import React from 'react';
