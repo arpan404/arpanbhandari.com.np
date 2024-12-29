@@ -171,3 +171,118 @@ html {
 .project_description ul li {
   padding: 2px 0px;
 }
+
+.writing_body h1 {
+  display: block !important;
+  font-size: 2em !important;
+  margin-block-start: 0.67em !important;
+  margin-block-end: 0.67em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+  font-weight: bold !important;
+}
+
+.writing_body h2 {
+  display: block !important;
+  font-size: 1.5em !important;
+  margin-block-start: 0.83em !important;
+  margin-block-end: 0.83em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+  font-weight: bold !important;
+}
+
+.writing_body h3 {
+  display: block !important;
+  font-size: 1.17em !important;
+  margin-block-start: 1em !important;
+  margin-block-end: 1em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+  font-weight: bold !important;
+}
+
+.writing_body h4 {
+  display: block !important;
+  margin-block-start: 1.33em !important;
+  margin-block-end: 1.33em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+  font-weight: bold !important;
+}
+
+.writing_body h5 {
+  display: block !important;
+  font-size: 0.83em !important;
+  margin-block-start: 1.67em !important;
+  margin-block-end: 1.67em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+  font-weight: bold !important;
+}
+
+.writing_body h6 {
+  display: block !important;
+  font-size: 0.67em !important;
+  margin-block-start: 2.33em !important;
+  margin-block-end: 2.33em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+  font-weight: bold !important;
+}
+
+.writing_body b,
+.writing_body strong {
+  font-weight: bold !important;
+}
+
+.writing_body i,
+.writing_body em {
+  font-style: italic !important;
+}
+
+.writing_body p {
+  display: block !important;
+  margin-block-start: 1em !important;
+  margin-block-end: 1em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+}
+
+.writing_body ul,
+.writing_body ol {
+  display: block !important;
+  margin-block-start: 1em !important;
+  margin-block-end: 1em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+  padding-inline-start: 40px !important;
+}
+
+.writing_body ul {
+  list-style-type: disc !important;
+}
+
+.writing_body ol {
+  list-style-type: decimal !important;
+}
+
+.writing_body li {
+  display: list-item !important;
+  text-align: -webkit-match-parent !important;
+}
+
+.writing_body ul ul,
+.writing_body ol ul {
+  list-style-type: circle !important;
+}
+
+.writing_body ul ul ul,
+.writing_body ol ul ul {
+  list-style-type: square !important;
+}
+
+.writing_body ul ol,
+.writing_body ol ol {
+  list-style-type: decimal !important;
+}
