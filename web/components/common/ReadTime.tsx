@@ -1,5 +1,4 @@
 'use client';
-
 import getReadingTime from '@/lib/writing';
 import { useMemo } from 'react';
 

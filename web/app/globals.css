@@ -286,3 +286,16 @@ html {
 .writing_body ol ol {
   list-style-type: decimal !important;
 }
+
+.writing_body figure {
+  display: block;
+  margin: 15px auto;
+  font-size: 0.75rem;
+  text-align: center;
+}
+.writing_body img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2px;
+}
