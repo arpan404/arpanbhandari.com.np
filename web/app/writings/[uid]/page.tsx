@@ -8,6 +8,7 @@ import ReadTime from '@/components/common/ReadTime';
 import { formatTimestamp } from '@/lib/date';
 import { Calendar, Dot } from 'lucide-react';
 import WritingBreadcrumb from '@/components/navs/WritingBreadcrumb';
+import WritingShare from '@/components/cards/WritingShare';
 
 export const generateMetadata = async (props: {
   params: Promise<{ uid: string }>;
@@ -76,7 +77,7 @@ export default async function Page(props: {
                 {article.title}
               </h1>
             </div>
-            <div className="py-4">
+            <div className="pt-6 md:pt-8">
               <div className="flex gap-0 items-center">
                 <div className="text-primary/70 font-medium text-sm flex items-center gap-1">
                   <Calendar size={16} />
@@ -89,10 +90,13 @@ export default async function Page(props: {
                 </span>
                 <ReadTime html={article.body} />
               </div>
+              <div className="flex justify-end pt-2">
+                <WritingShare title={article.title} />
+              </div>
             </div>
             <article
               dangerouslySetInnerHTML={{ __html: article.body }}
-              className="writing_body"
+              className="writing_body mt-4 md:mt-8"
             ></article>
           </div>
         </div>
