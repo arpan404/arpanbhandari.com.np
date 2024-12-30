@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -14,9 +15,18 @@ import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { z } from 'zod';
-import { useState, ChangeEvent, FocusEvent, FormEvent } from 'react';
+import {
+  useState,
+  ChangeEvent,
+  FocusEvent,
+  FormEvent,
+  useRef,
+  MouseEventHandler,
+} from 'react';
 import sendContactMessage from '@/actions/sendContactMessage';
 import axios from 'axios';
+import { toast } from '@/hooks/use-toast';
+import { ToastAction } from '../ui/toast';
 
 const contactSchema = z.object({
   name: z
@@ -59,6 +69,7 @@ export default function ContactModal() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<TouchedFields>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const closeRef = useRef(null);
 
   const validateField = (name: keyof ContactFormData, value: string) => {
     try {
@@ -110,12 +121,27 @@ export default function ContactModal() {
       } catch (error: unknown) {
         console.error(error);
       }
-      const isSuccess = await sendContactMessage(validatedData);
-      if (isSuccess) {
-        alert('Message sent successfully');
-      } else {
-        alert('Message not sent');
+      if (closeRef && closeRef.current) {
+        const closeBtn = closeRef.current as HTMLButtonElement;
+        closeBtn.click();
       }
+      const isSuccess = await sendContactMessage(validatedData);
+      setTimeout(() => {
+        if (isSuccess) {
+          toast({
+            title: 'Message Sent Successfully!',
+            description:
+              "I've received your message. I'll get back to you as soon as possible.",
+            duration: 2000,
+          });
+        } else {
+          toast({
+            title: 'Failed To Send Message!',
+            description: 'Oops! Something went wrong. Please try again later.',
+            duration: 2000,
+          });
+        }
+      }, 500);
     } catch (error: unknown) {
       if (error instanceof z.ZodError) {
         const newErrors: FormErrors = {};
@@ -273,6 +299,10 @@ export default function ContactModal() {
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </Button>
           </DialogFooter>
+          <DialogClose
+            className="hidden sm:hidden md:hidden lg:hidden"
+            ref={closeRef}
+          />
         </form>
       </DialogContent>
     </Dialog>

@@ -6,6 +6,7 @@ import FeaturedProjects from '@/components/sections/FeaturedProjects';
 import { Suspense } from 'react';
 import FeaturedWritings from '@/components/sections/FeaturedWriting';
 import Contact from '@/components/sections/Contact';
+import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: 'Arpan Bhandari | The Developer',
@@ -53,6 +54,7 @@ export default function Home() {
       </Suspense>
       <div className="bg-secondary h-[2px]" role="separator" />
       <Contact />
+      <Toaster />
     </>
   );
 }
