@@ -25,8 +25,8 @@ export default async function FeaturedWritings() {
         <div className="flex justify-center mt-4 md:mt-6">
           <p>
             <span className="text-base md:text-lg font-semibold text-primary opacity-80">
-              Engaged in diverse writing—here&apos;s a glimpse of some of my
-              latest work:
+              I try my hand at writing sometimes—here are a few of my latest
+              pieces!
             </span>
           </p>
         </div>
