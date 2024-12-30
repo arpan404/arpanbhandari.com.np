@@ -15,6 +15,8 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { z } from 'zod';
 import { useState, ChangeEvent, FocusEvent, FormEvent } from 'react';
+import sendContactMessage from '@/actions/sendContactMessage';
+import axios from 'axios';
 
 const contactSchema = z.object({
   name: z
@@ -91,9 +93,29 @@ export default function ContactModal() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
-      const validatedData = contactSchema.parse(values);
+      const validatedData = {
+        ...contactSchema.parse(values),
+        user_details: 'Could not get ip Address',
+      };
       setErrors({});
+
+      try {
+        const ipResponse = await axios.get('https://api.ipify.org?format=json');
+        const ipAddress = ipResponse.data.ip;
+        if (ipAddress) {
+          validatedData.user_details = `IP Address: ${ipAddress}`;
+        }
+      } catch (error: unknown) {
+        console.error(error);
+      }
+      const isSuccess = await sendContactMessage(validatedData);
+      if (isSuccess) {
+        alert('Message sent successfully');
+      } else {
+        alert('Message not sent');
+      }
     } catch (error: unknown) {
       if (error instanceof z.ZodError) {
         const newErrors: FormErrors = {};
@@ -102,6 +124,8 @@ export default function ContactModal() {
         });
         setErrors(newErrors);
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -135,7 +159,7 @@ export default function ContactModal() {
             </DialogDescription>
           </DialogHeader>
           <div className="grid sm:grid-cols-2 gap-4 py-4">
-            <div className="space-y-1">
+            <div>
               <Label htmlFor="name" className="text-right px-2 text-primary/70">
                 Name<sup>*</sup>
               </Label>
@@ -178,7 +202,7 @@ export default function ContactModal() {
                 </p>
               )}
             </div>
-            <div className="space-y-1">
+            <div>
               <Label
                 htmlFor="contact"
                 className="text-right px-2 text-primary/70"
@@ -195,7 +219,7 @@ export default function ContactModal() {
                 className="w-full sm:max-w-[250px] md:max-w-[300px] rounded-xl px-4 h-10"
               />
             </div>
-            <div className="space-y-1">
+            <div>
               <Label
                 htmlFor="subject"
                 className="text-right px-2 text-primary/70"
@@ -218,7 +242,7 @@ export default function ContactModal() {
               )}
             </div>
           </div>
-          <div className="space-y-1">
+          <div>
             <Label
               htmlFor="message"
               className="text-right px-2 text-primary/70"
@@ -241,7 +265,11 @@ export default function ContactModal() {
             )}
           </div>
           <DialogFooter className="mt-4">
-            <Button type="submit" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="rounded-xl sm:px-6 h-10"
+            >
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </Button>
           </DialogFooter>

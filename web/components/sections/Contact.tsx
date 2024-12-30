@@ -7,7 +7,7 @@ import ContactModal from '../modals/ContactModal';
 
 export default async function Contact() {
   return (
-    <section className="flex justify-center py-10  sm:py-16 md:py-20 bg-background">
+    <section className="flex justify-center pt-10 sm:pt-16 md:pt-20 pb-5 sm:pb-8 md:pb-10 bg-background">
       <div className="container px-2 md:px-8">
         <div className="">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center">
