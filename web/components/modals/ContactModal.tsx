@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '../ui/dialog';
+
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
@@ -107,7 +108,20 @@ export default function ContactModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="text-xs md:text-sm font-medium rounded-full px-6 py-3 hover:scale-110 transition-all ease-in delay-75">
+        <Button
+          className="text-xs md:text-sm font-medium rounded-full px-6 py-3 hover:scale-110 transition-all ease-in delay-75"
+          onClick={() => {
+            setValues({
+              name: '',
+              email: '',
+              contact: '',
+              subject: '',
+              message: '',
+            });
+            setErrors({});
+            setTouched({});
+          }}
+        >
           Send Me Message
         </Button>
       </DialogTrigger>
@@ -132,10 +146,12 @@ export default function ContactModal() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="What should I call you?"
-                className="w-full sm:max-w-[250px] md:max-w-[300px] rounded-lg px-4 h-10"
+                className="w-full sm:max-w-[250px] md:max-w-[300px] rounded-xl px-4 h-10"
               />
               {errors.name && (
-                <p className="text-xs text-red-500">{errors.name}</p>
+                <p className="text-[0.65rem] text-red-500 font-medium px-2">
+                  {errors.name}
+                </p>
               )}
             </div>
             <div className="">
@@ -144,9 +160,7 @@ export default function ContactModal() {
                 className="text-right px-2 text-primary/70"
               >
                 Email
-                <sup className="text-red-500 text-base relative top-[1px]">
-                  *
-                </sup>
+                <sup>*</sup>
               </Label>
               <Input
                 id="email"
@@ -156,10 +170,12 @@ export default function ContactModal() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="Where should I reply?"
-                className="w-full sm:max-w-[250px] md:max-w-[300px] rounded-lg px-4 h-10"
+                className="w-full sm:max-w-[250px] md:max-w-[300px] rounded-xl px-4 h-10"
               />
               {errors.email && (
-                <p className="text-xs text-red-500">{errors.email}</p>
+                <p className="text-[0.65rem] text-red-500 font-medium px-2">
+                  {errors.email}
+                </p>
               )}
             </div>
             <div className="space-y-1">
@@ -176,7 +192,7 @@ export default function ContactModal() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="Any other contact info?"
-                className="w-full sm:max-w-[250px] md:max-w-[300px] rounded-lg px-4 h-10"
+                className="w-full sm:max-w-[250px] md:max-w-[300px] rounded-xl px-4 h-10"
               />
             </div>
             <div className="space-y-1">
@@ -193,10 +209,12 @@ export default function ContactModal() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="What do you want to talk about?"
-                className="w-full sm:max-w-[250px] md:max-w-[300px] rounded-lg px-4 h-10"
+                className="w-full sm:max-w-[250px] md:max-w-[300px] rounded-xl px-4 h-10"
               />
               {errors.subject && (
-                <p className="text-xs text-red-500">{errors.subject}</p>
+                <p className="text-[0.65rem] text-red-500 font-medium px-2">
+                  {errors.subject}
+                </p>
               )}
             </div>
           </div>
@@ -217,7 +235,9 @@ export default function ContactModal() {
               className="w-full h-32 max-h-52"
             />
             {errors.message && (
-              <p className="text-xs text-red-500">{errors.message}</p>
+              <p className="text-[0.65rem] text-red-500 font-medium px-2">
+                {errors.message}
+              </p>
             )}
           </div>
           <DialogFooter className="mt-4">
