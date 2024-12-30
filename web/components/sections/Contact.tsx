@@ -3,7 +3,7 @@
 import { FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { MdMail } from 'react-icons/md';
 import Andy from '../modals/Andy';
-import { Button } from '../ui/button';
+import ContactModal from '../modals/ContactModal';
 
 export default async function Contact() {
   return (
@@ -56,9 +56,7 @@ export default async function Contact() {
                 Want to discuss or schedule a meeting?
               </h2>
               <div className="flex gap-2 sm:gap-4 mt-2 flex-wrap justify-center">
-                <Button className="text-xs md:text-sm font-medium rounded-full px-6 py-3 hover:scale-110 transition-all ease-in delay-75">
-                  Send Me Message
-                </Button>
+                <ContactModal />
                 <Andy
                   buttonText="Chat with Andy"
                   className="text-xs md:text-sm font-medium rounded-full px-6 py-2 hover:scale-110 transition-all ease-in delay-75"
