@@ -20,11 +20,9 @@ export default factories.createCoreController(
         from: process.env.CONTACT_ALERT_EMAIL!,
         replyTo: entity.email,
         to: process.env.MY_MAIL,
-        subject: `#${entryId}: ${entity.subject}`,
+        subject: `#${Math.ceil(entryId / 3)}: ${entity.subject}`,
         text: `${entity.message}\n\n\nContact Details:\n${entity.name}\n${entity.email}\n${entity.contact}`,
       };
-      console.log("Mail options: ", mailOptions);
-
       // Schedule email sending in the next tick
       process.nextTick(() => {
         // Set up nodemailer transporter
@@ -38,12 +36,6 @@ export default factories.createCoreController(
             pass: process.env.CONTACT_ALERT_EMAIL_PASSWORD!,
           },
         });
-        console.log(
-          "Sending user: " +
-            process.env.CONTACT_ALERT_EMAIL! +
-            "password->" +
-            process.env.CONTACT_ALERT_EMAIL_PASSWORD!,
-        );
         // Send email
         transporter
           .sendMail(mailOptions)
