@@ -6,6 +6,8 @@ from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
 from dotenv import load_dotenv
 
+from app.data import Data
+
 # Initialize FastAPI app
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 load_dotenv()
@@ -34,6 +36,14 @@ async def read_root(request: Request):  # Add 'request' parameter
         content={"message": "Hey there! Andy is busy serving the users."},
     )
 
+@app.get("/projects")
+@limiter.limit("5/minute")
+async def get_projects(request: Request):
+    return JSONResponse(
+        status_code=200,
+        content= await Data().fetch_projects()
+    )
+
 
 # Custom handler for rate limit exceeded
 @app.exception_handler(429)
@@ -50,3 +60,4 @@ async def custom_404_handler(request: Request, exc: HTTPException):
         status_code=404,
         content={"message": "Not Found. Broken URL."},
     )
+
