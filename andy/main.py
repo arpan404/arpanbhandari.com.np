@@ -41,7 +41,7 @@ async def read_root(request: Request):  # Add 'request' parameter
 async def get_projects(request: Request):
     return JSONResponse(
         status_code=200,
-        content= await Data().fetch_projects()
+        content= await Data().get_projects()
     )
 
 

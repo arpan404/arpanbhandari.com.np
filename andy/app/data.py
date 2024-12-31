@@ -1,4 +1,3 @@
-from dotenv import load_dotenv
 import aiohttp
 from cachetools import TTLCache
 import os
@@ -23,13 +22,11 @@ class Data:
                 ) as response:
                     if response.status != 200:
                         return None
-                    a = await response.json()
-                    print(a)
-                    return None
+                    return await response.json()
         except Exception as e:
             return None
 
-    async def fetch_projects(self):
+    async def get_projects(self):
         if 'projects' in cache:
             return cache['projects']
         query = """
@@ -37,37 +34,47 @@ class Data:
           projects(sort: "completed_date:desc") {
             name
             uid
-            thumbnail {
-              url
-            }
             shortDescription: short_description
             longDescription: long_description
             liveURL
             codeURL
-            article {
-              uid
-            }
             technologiesUsed: technologies_used {
               skill {
                 name: skillName
-                uid: skillUID
-                logo {
-                  url
-                }
               }
             }
             projectType: project_type {
               skill {
                 name: skillName
-                uid: skillUID
               }
             }
           }
         }
         """
         response = await self.__fetch_graphql(query)
-        if response:
-            cache['projects'] = response
-        
-        # projects = response
-        return response
+        if not response:
+            return []
+        if not response['data']:
+            return []
+        if not response['data']['projects']:
+            return []
+        if len(response['data']['projects']) == 0:
+            return []
+        projects = response['data']['projects']
+
+        for project in projects:
+            if not project['technologiesUsed'] or len(project['technologiesUsed']) == 0:
+                project['technologiesUsed'] = []
+            if not project['projectType'] or len(project['projectType']) == 0:
+                project['projectType'] = []
+            project['technologiesUsed'] = [tech['skill']['name']
+                                           for tech in project['technologiesUsed']]
+            print(project['projectType'])
+            project['projectType'] = [projectType['skill']['name']
+                                      for projectType in project['projectType'] if projectType and projectType['skill']]
+        cache['projects'] = projects
+        return projects
+
+
+    # async def get_skills(self):
+      
