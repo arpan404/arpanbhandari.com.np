@@ -4,10 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from slowapi import Limiter
 from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
+from dotenv import load_dotenv
 
 # Initialize FastAPI app
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
-
+load_dotenv()
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
