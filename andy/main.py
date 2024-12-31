@@ -33,6 +33,7 @@ async def read_root(request: Request):  # Add 'request' parameter
         content={"message": "Hey there! Andy is busy serving the users."},
     )
 
+
 # Custom handler for rate limit exceeded
 @app.exception_handler(429)
 async def rate_limit_exceeded_handler(request: Request, exc):
