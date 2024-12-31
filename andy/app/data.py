@@ -75,6 +75,41 @@ class Data:
         cache['projects'] = projects
         return projects
 
+    async def get_skills(self):
+        if 'skills' in cache:
+            return cache['skills']
 
-    # async def get_skills(self):
-      
+        query = """
+        query getSkills{
+          skills {
+            name: skillName
+            type: skillType {
+              name: skillType
+            }
+          }
+        }
+      """
+        response = await self.__fetch_graphql(query)
+        if not response:
+            return []
+
+        if not response['data']:
+            return []
+
+        if not response['data']['skills']:
+            return []
+
+        if len(response['data']['skills']) == 0:
+            return []
+
+        skills = response['data']['skills']
+
+        for skill in skills:
+            if not skill['type']:
+                skill['type'] = ''
+            else:
+                skill['type'] = skill['type']['name']
+        if not skills or len(skills) == 0:
+            return []
+        cache['skills'] = skills
+        return skills

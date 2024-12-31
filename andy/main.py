@@ -28,6 +28,8 @@ app.state.limiter = limiter
 app.add_middleware(SlowAPIMiddleware)
 
 # Custom route with rate limiting
+
+
 @app.get("/")
 @limiter.limit("5/minute")
 async def read_root(request: Request):  # Add 'request' parameter
@@ -36,12 +38,13 @@ async def read_root(request: Request):  # Add 'request' parameter
         content={"message": "Hey there! Andy is busy serving the users."},
     )
 
+
 @app.get("/projects")
 @limiter.limit("5/minute")
 async def get_projects(request: Request):
     return JSONResponse(
         status_code=200,
-        content= await Data().get_projects()
+        content=await Data().get_projects()
     )
 
 
@@ -54,6 +57,8 @@ async def rate_limit_exceeded_handler(request: Request, exc):
     )
 
 # Custom 404 handler
+
+
 @app.exception_handler(404)
 async def custom_404_handler(request: Request, exc: HTTPException):
     return JSONResponse(
@@ -61,3 +66,10 @@ async def custom_404_handler(request: Request, exc: HTTPException):
         content={"message": "Not Found. Broken URL."},
     )
 
+
+@app.get("/skills")
+async def get_skills(request: Request):
+    return JSONResponse(
+        status_code=200,
+        content=await Data().get_skills()
+    )
