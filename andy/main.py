@@ -73,3 +73,11 @@ async def get_skills(request: Request):
         status_code=200,
         content=await Data().get_skills()
     )
+
+@app.get("/writings")
+async def get_writings(request: Request):
+    return JSONResponse(
+        status_code=200,
+        content=await Data().get_all_writings()
+    )
+

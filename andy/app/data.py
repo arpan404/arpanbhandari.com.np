@@ -20,6 +20,7 @@ class Data:
                         'Authorization': f'Bearer {self.__token}'
                     }
                 ) as response:
+                    print(response)
                     if response.status != 200:
                         return None
                     return await response.json()
@@ -76,6 +77,7 @@ class Data:
         return projects
 
     async def get_skills(self):
+        print(cache)
         if 'skills' in cache:
             return cache['skills']
 
@@ -113,3 +115,38 @@ class Data:
             return []
         cache['skills'] = skills
         return skills
+
+    async def get_all_writings(self):
+        if 'all_writings' in cache:
+            return cache['all_writings']
+
+        query = """
+        query getWritings{
+          articles(sort: "createdAt:desc") {
+            description
+            uid
+            title
+            createdAt
+            type: article_type {
+              name: type
+              uid
+            }
+          }
+        }
+        """
+        response = await self.__fetch_graphql(query)
+        print(response)
+        if not response:
+            return []
+
+        if not response['data']:
+            return []
+
+        if not response['data']['articles'] or len(response['data']['articles']) == 0:
+            return []
+
+        writings = response['data']['articles']
+        cache['all_writings'] = writings
+        return writings
+
+    
