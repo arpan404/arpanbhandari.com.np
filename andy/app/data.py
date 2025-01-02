@@ -6,7 +6,6 @@ from app.logger import log
 
 cache = TTLCache(maxsize=20, ttl=3600)
 
-
 class Data:
     def __init__(self):
         self.host = os.getenv("STRAPI_HOST")
@@ -216,7 +215,6 @@ class Data:
 
         self.logger.info(
             "Writing fetched from graphql endpoint, caching it")
-
         cache[cache_name] = response['data']['articles'][0]
 
         return cache[cache_name]
