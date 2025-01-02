@@ -14,7 +14,7 @@ import {
 
 export default function WritingCard(props: WritingCardType) {
   return (
-    <Card className="w-full max-w-[300px] rounded-2xl relative pb-2 max-h-fit flex-shrink-0">
+    <Card className="w-full max-w-[300px] rounded-2xl relative pb-2 drop-shadow-xl">
       <CardHeader className="px-0 py-0">
         <div className="flex justify-center h-[170px] rounded-t-2xl overflow-hidden">
           <Link href={`/writings/${props.uid}`} className="w-full h-full">
@@ -29,17 +29,17 @@ export default function WritingCard(props: WritingCardType) {
             />
           </Link>
         </div>
-        <CardTitle className="font-medium pb-0 px-4 py-2">
+        <CardTitle className="font-medium pb-0 px-4 py-2 min-h-[88px]">
           <Link
             href={`/writings/${props.uid}`}
-            className="hover:underline underline-offset-2 line-clamp-2 text-lg text-primary/90 transition-all ease-in-out delay-100"
+            className="hover:underline underline-offset-2 line-clamp-3 text-base text-primary/90 transition-all ease-in-out delay-100"
           >
             {props.title}
           </Link>
         </CardTitle>
       </CardHeader>
       <CardContent className="pb-2 px-4">
-        <p className="line-clamp-3 text-[0.7rem] text-muted-foreground font-light">
+        <p className="line-clamp-4 text-[0.7rem] text-muted-foreground font-light">
           {props.description}
         </p>
         <div className="flex justify-between items-center mt-3">

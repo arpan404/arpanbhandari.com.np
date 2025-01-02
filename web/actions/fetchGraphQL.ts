@@ -22,9 +22,9 @@ const fetchGraphQL = async <T>(
   try {
     // First check if the data is in the cache
     const cachedData = await redis.get(queryHash);
-    if (cachedData) {
-      return JSON.parse(cachedData) as T;
-    }
+    // if (cachedData) {
+    //   return JSON.parse(cachedData) as T;
+    // }
 
     // If not, fetch the data from the API
     const response = await client.query({
