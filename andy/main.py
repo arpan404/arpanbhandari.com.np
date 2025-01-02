@@ -74,6 +74,7 @@ async def get_skills(request: Request):
         content=await Data().get_skills()
     )
 
+
 @app.get("/writings")
 async def get_writings(request: Request):
     return JSONResponse(
@@ -81,3 +82,10 @@ async def get_writings(request: Request):
         content=await Data().get_all_writings()
     )
 
+
+@app.get("/writings/{slug}")
+async def get_writing(request: Request, slug: str):
+    return JSONResponse(
+        status_code=200,
+        content=await Data().get_a_writings(slug)
+    )

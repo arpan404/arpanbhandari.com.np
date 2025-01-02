@@ -137,7 +137,6 @@ class Data:
         }
         """
         response = await self.__fetch_graphql(query)
-        print(response)
         if not response:
             return []
 
@@ -166,7 +165,7 @@ class Data:
                 }
             }
         """
-        response = self.__fetch_graphql(query, {'uid': uid})
+        response = await self.__fetch_graphql(query, {'uid': uid})
         if not response:
             return None
         if not response['data']:
