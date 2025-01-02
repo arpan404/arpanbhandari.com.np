@@ -1,6 +1,8 @@
 import aiohttp
 from cachetools import TTLCache
 import os
+from bs4 import BeautifulSoup
+
 cache = TTLCache(maxsize=20, ttl=3600)
 
 
@@ -149,4 +151,39 @@ class Data:
         cache['all_writings'] = writings
         return writings
 
-    
+    async def get_a_writings(self, uid: str):
+        cache_name = f'writings-${uid}'
+        if cache_name in cache:
+            return cache[cache_name]
+        query = """
+            query getWriting($uid: String!) {
+                articles(filters: { uid: { eq: $uid } }) {
+                    description
+                    uid
+                    title
+                    body
+                    createdAt
+                }
+            }
+        """
+        response = self.__fetch_graphql(query, {'uid': uid})
+        if not response:
+            return None
+        if not response['data']:
+            return None
+        if not response['data']['articles']:
+            return None
+        if len(response['data']['articles']) == 0:
+            return None
+
+        if not response['data']['articles'][0]['body']:
+            response['data']['articles'][0]['body'] = ''
+
+        if response['data']['articles'][0]['body']:
+            html_content = response['data']['articles'][0]['body']
+            soup = BeautifulSoup(html_content, 'html.parser')
+            response['data']['articles'][0]['body'] = soup.get_text()
+
+        cache[cache_name] = response['data']['articles'][0]
+
+        return cache[cache_name]
