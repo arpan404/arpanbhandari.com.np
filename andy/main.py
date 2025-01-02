@@ -9,17 +9,13 @@ from slowapi.util import get_remote_address
 from dotenv import load_dotenv
 
 from app.chat import chat
+from app.logger import log
 
-log_dir = Path("logs")
-log_dir.mkdir(exist_ok=True)
-
-logger = logging.getLogger("api_logger")
-logger.setLevel(logging.INFO)
-
-file_handler = logging.FileHandler(log_dir / "api.log")
-file_handler.setFormatter(logging.Formatter(
-    '%(asctime)s - %(levelname)s - %(message)s'))
-logger.addHandler(file_handler)
+logger = log(
+    logger_name="api_logger",
+    log_file="api.log",
+    log_dir="logs"
+)
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 load_dotenv()
