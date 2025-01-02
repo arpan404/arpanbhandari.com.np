@@ -8,7 +8,7 @@ export default function ReadTime({ html }: { html: string }) {
   }, [html]);
   return (
     <span className="text-primary/70 font-medium text-sm block">
-      {time} minutes read
+      {time} {time > 1 ? 'minutes' : 'minute'} read
     </span>
   );
 }
