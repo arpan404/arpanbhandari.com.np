@@ -35,19 +35,13 @@ export default function HorizontalScroll({
   };
 
   useEffect(() => {
-    const scrollElement = scrollRef.current;
-
-    const handleScroll = () => {
-      updateScrollButtons();
-    };
-
-    if (scrollElement) {
-      scrollElement.addEventListener('scroll', handleScroll);
+    updateScrollButtons();
+    if (scrollRef.current) {
+      scrollRef.current.addEventListener('scroll', updateScrollButtons);
     }
-
     return () => {
-      if (scrollElement) {
-        scrollElement.removeEventListener('scroll', handleScroll);
+      if (scrollRef.current) {
+        scrollRef.current.removeEventListener('scroll', updateScrollButtons);
       }
     };
   }, []);
