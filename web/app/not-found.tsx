@@ -36,7 +36,7 @@ export default function NotFound() {
             Page Not Found
           </h2>
           <p className="text-center text-primary mt-2 md:mt-4 text-sm sm:text-base md:text-lg">
-            Oops! It seems the page you're looking for has taken a detour or
+            Oops! It seems the page you&apos;re looking for has taken a detour or
             decided to retire.
           </p>
           <Link href="/" className="mt-2 md:mt-4">

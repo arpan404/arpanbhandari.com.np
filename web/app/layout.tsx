@@ -14,7 +14,7 @@ export default async function RootLayout({
   const currentThemeMode = theme === 'system' ? 'dark' : theme;
   return (
     <html lang="en" className={`${currentThemeMode}`} data-theme={theme}>
-      {/* <CSPostHogProvider> */}
+      <CSPostHogProvider>
         <body className="custom_page_scroll">
           <ProgressBarProvider>
             <Header />
@@ -22,7 +22,7 @@ export default async function RootLayout({
             <Footer />
           </ProgressBarProvider>
         </body>
-      {/* </CSPostHogProvider> */}
+      </CSPostHogProvider>
     </html>
   );
 }
