@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getCurrentTheme, updateTheme } from '@/lib/theme';
-import { Theme as ThemeType } from '@/lib/types';
+import { Theme as ThemeType } from '@/types/theme';
 
 /**
  * - currentTheme - returns the current theme ['dark' , 'system', 'light']
