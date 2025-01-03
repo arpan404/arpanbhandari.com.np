@@ -40,16 +40,6 @@ export const generateMetadata = async (props: {
       ],
       locale: 'en_US',
     },
-    twitter: {
-      card: 'summary_large_image',
-      site: '@arpanbhandari01',
-      title: 'data.articles[0].title ' + ' | Arpan Bhandari (The Developer)',
-      description: data.articles[0].description,
-      images: [
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.articles[0].thumbnail.url}`,
-      ],
-    },
-    image: data.articles[0].thumbnail.url,
   } as Metadata;
 };
 

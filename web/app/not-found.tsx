@@ -21,14 +21,6 @@ export const metadata: Metadata = {
     images: ['/images/not-found-opengraph.png'],
     locale: 'en_US',
   },
-  twitter: {
-    card: 'summary_large_image',
-    site: '@arpanbhandari',
-    title: 'Not Found ☹️ | Arpan Bhandari',
-    description:
-      'Oops! The page you are looking for cannot be found. It might have been moved or deleted.',
-    images: ['/images/not-found-opengraph.png'],
-  },
 };
 
 export default function NotFound() {

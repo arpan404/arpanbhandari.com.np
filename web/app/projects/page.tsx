@@ -21,14 +21,6 @@ export const metadata: Metadata = {
     images: ['/images/projects-opengraph.png'],
     locale: 'en_US',
   },
-  twitter: {
-    card: 'summary_large_image',
-    site: '@arpanbhandari01',
-    title: 'Projects - Arpan Bhandari (The Developer)',
-    description:
-      'Explore the groundbreaking projects developed by Arpan Bhandari, a passionate and versatile developer with expertise in web development, software engineering, and creative solutions.',
-    images: ['/images/projects-opengraph.png'],
-  },
 };
 
 export default async function page({

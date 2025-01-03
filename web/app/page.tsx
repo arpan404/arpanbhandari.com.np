@@ -24,14 +24,6 @@ export const metadata: Metadata = {
     images: ['/images/portfolio-opengraph.png'],
     locale: 'en_US',
   },
-  twitter: {
-    card: 'summary_large_image',
-    site: '@arpanbhandari',
-    title: 'Arpan Bhandari | The Developer',
-    description:
-      'Arpan Bhandari is an aspiring scholar, experienced developer, and sometimes a writer. Explore a portfolio showcasing his diverse skills in technology and creativity.',
-    images: ['/images/portfolio-opengraph.png'],
-  },
 };
 
 export default function Home() {

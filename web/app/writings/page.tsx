@@ -20,13 +20,6 @@ export const metadata: Metadata = {
     images: ['/images/writings-opengraph.png'],
     locale: 'en_US',
   },
-  twitter: {
-    card: 'summary_large_image',
-    site: '@arpanbhandari01',
-    title: 'Writings - Arpan Bhandari (The Developer)',
-    description: `Explore Diaries, Blueprints, and Personal Perspectives—insightful and intriguing writings on software engineering, personal experiences, and general topics you'll love to read.`,
-    images: ['/images/writings-opengraph.png'],
-  },
 };
 
 export default async function page({
