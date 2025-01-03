@@ -47,7 +47,7 @@ export default async function Page(props: {
   params: Promise<{ uid: string }>;
 }) {
   const params = await props.params;
-  const uid = await params.uid;
+  const uid = params.uid;
   if (!uid) redirect('/notfound');
 
   const data = await getWriting(uid);

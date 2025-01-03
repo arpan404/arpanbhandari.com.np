@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default async function page({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { type } = await searchParams;
   const data = await getWritings(type ? (type as string) : undefined);
