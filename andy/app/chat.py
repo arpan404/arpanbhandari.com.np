@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 
 
 async def chat(request: Request):
+    
     return JSONResponse(
         status_code=200,
         content={"message": "Hey there! Andy is busy serving the users."},

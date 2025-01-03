@@ -110,3 +110,22 @@ async def custom_404_handler(request: Request, exc: HTTPException):
         status_code=404,
         content={"message": "Not Found. Broken URL."},
     )
+
+
+@app.exception_handler(500)
+async def internal_server_error_handler(request: Request, exc):
+    logger.error(f"500 Internal Server Error for {request.client.host}")
+    return JSONResponse(
+        status_code=500,
+        content={"message": "Internal Server Error. Please try again later."},
+    )
+
+
+@app.exception_handler(405)
+async def method_not_allowed_handler(request: Request, exc: HTTPException):
+    logger.warning(f"405 Method Not Allowed: {request.method} at {
+                   request.url} accessed by {request.client.host}")
+    return JSONResponse(
+        status_code=405,
+        content={"message": "Method Not Allowed. Please check the request method."},
+    )
