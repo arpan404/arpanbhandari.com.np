@@ -8,7 +8,7 @@ interface StoreState {
     from: string;
     message: string;
   }>;
-  setUserData: (data: StoreState['userDetails']) => void;
+  setUserDetails: (data: StoreState['userDetails']) => void;
   addMessage: (message: StoreState['messages'][0]) => void;
   setMessage: (message: StoreState['messages'][0]) => void;
 }
