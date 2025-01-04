@@ -1,7 +1,9 @@
 from openai import AsyncOpenAI
 import os
 from app.logger import log
+
 api_key = os.get("OPENAI_API")
+
 logger = log(
     logger_name="chatgpt_logger",
     log_file="chatgpt.log",

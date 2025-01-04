@@ -2,7 +2,7 @@ from fastapi import Request
 from fastapi.responses import JSONResponse
 
 
-async def chat(request: Request):
+async def chat(request: Request, json_data: dict):
     current_iteration = 0
     while current_iteration < 10:
         current_iteration += 1

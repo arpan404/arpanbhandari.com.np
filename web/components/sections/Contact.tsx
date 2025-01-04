@@ -1,9 +1,8 @@
 'use server';
-
 import { FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { MdMail } from 'react-icons/md';
-import Andy from '../modals/Andy';
-import ContactModal from '../modals/ContactModal';
+import Andy from '@/components/modals/Andy';
+import ContactModal from '@/components/modals/ContactModal';
 
 export default async function Contact() {
   return (

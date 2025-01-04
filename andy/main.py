@@ -1,4 +1,3 @@
-import logging
 from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
@@ -7,7 +6,7 @@ from slowapi import Limiter
 from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
 from dotenv import load_dotenv
-
+import re
 from app.chat import chat
 from app.logger import log
 
@@ -51,7 +50,6 @@ async def andy_chat(request: Request):
     client_ip = request.client.host
     logger.info(f"Chat endpoint accessed by {client_ip}")
 
-    # Check referrer
     referrer = request.headers.get("referer")
     if referrer != "https://arpanbhandari.com.np":
         logger.warning(f"Forbidden access attempt from {
@@ -59,21 +57,119 @@ async def andy_chat(request: Request):
         raise HTTPException(status_code=403, detail="Forbidden")
 
     try:
-        json_data = await request.json()
+        try:
+            json_data = await request.json()
+        except ValueError as e:
+            logger.error(f"Invalid JSON data received from {
+                         client_ip}: {str(e)}")
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid JSON data in request"
+            )
+
         logger.info(f"Received chat request from {client_ip}")
 
-        response = await chat(json_data)
+        if not json_data:
+            logger.error(f"Empty JSON data received from {client_ip}")
+            raise HTTPException(
+                status_code=400,
+                detail="Empty JSON data in request"
+            )
+
+        user_details = json_data.get("user_details")
+        if not user_details:
+            logger.error(f"Empty user details received from {client_ip}")
+            raise HTTPException(
+                status_code=400,
+                detail="User details missing in request"
+            )
+
+        if not user_details.get("name"):
+            logger.error(f"Empty name received from {client_ip}")
+            raise HTTPException(
+                status_code=400,
+                detail="Name missing in user details"
+            )
+        name = user_details.get("name")
+        if len(name.split()) > 4:
+            logger.error(f"Name received from {
+                         client_ip} has more than 4 words")
+            raise HTTPException(
+                status_code=400,
+                detail="Name must have at most 4 words"
+            )
+        if len(name) > 50:
+            logger.error(f"Name received from {
+                         client_ip} has more than 50 characters")
+            raise HTTPException(
+                status_code=400,
+                detail="Name must have at most 50 characters"
+            )
+        for word in name.split():
+            if len(word) < 2:
+                logger.error(f"Name received from {
+                             client_ip} has a word with less than 2 characters")
+                raise HTTPException(
+                    status_code=400,
+                    detail="Each word in name must have at least 2 characters"
+                )
+
+        if not user_details.get("email"):
+            logger.error(f"Empty email received from {client_ip}")
+            raise HTTPException(
+                status_code=400,
+                detail="Email missing in user details"
+            )
+        email = user_details.get("email")
+        # validate email use regex or email-validator
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        if not re.match(pattern, email):
+            logger.error(f"Invalid email received from {client_ip}")
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid email format"
+            )
+        message = json_data.get("message")
+        if not message or len(message) == 0:
+            logger.error(f"Empty message received from {client_ip}")
+            raise HTTPException(
+                status_code=400,
+                detail="Message missing in request"
+            )
+        if len(message) > 500:
+            logger.error(f"Message received from {
+                         client_ip} has more than 500 characters")
+            raise HTTPException(
+                status_code=400,
+                detail="Message must have at most 500 characters"
+            )
+        message_uid = json_data.get("message_uid")
+        if not message_uid or len(message_uid) == 0:
+            logger.error(f"Empty messageUID received from {client_ip}")
+            raise HTTPException(
+                status_code=400,
+                detail="MessageUID missing in request"
+            )
+
+        current_url = json_data.get("current_url")
+        if not current_url:
+            logger.error(f"Empty current_url received from {client_ip}")
+            raise HTTPException(
+                status_code=400,
+                detail="CurrentURL missing in request"
+            )
+
+        response = await chat(request, json_data)
         logger.info(f"Successfully processed chat request from {client_ip}")
 
         return response
 
-    except ValueError as e:
-        logger.error(f"Invalid JSON data received from {client_ip}: {str(e)}")
-        raise HTTPException(
-            status_code=400,
-            detail="Invalid JSON data in request"
-        )
+    except HTTPException as e:
+        # Directly raise HTTPException if caught
+        raise e
+
     except Exception as e:
+        # Handle unexpected server errors
         logger.error(f"Internal server error for {
                      client_ip}: {str(e)}", exc_info=True)
         raise HTTPException(

@@ -1,6 +1,7 @@
 import logging
 from pathlib import Path
 
+
 def log(
     logger_name: str = "app_logger",
     log_file: str = "app.log",
