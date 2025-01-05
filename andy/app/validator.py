@@ -1,5 +1,5 @@
 from fastapi import HTTPException, Request
-from logger import log
+from app.logger import log
 import re
 
 logger = log(

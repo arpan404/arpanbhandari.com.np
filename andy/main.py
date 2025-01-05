@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
@@ -6,10 +7,12 @@ from slowapi import Limiter
 from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
 from dotenv import load_dotenv
-import re
+from app.database.config import close_db, init_db
 from app.chat import chat, gen_uid
 from app.logger import log
 import app.validator as validator
+from app.database.models import User, Chat
+
 logger = log(
     logger_name="api_logger",
     log_file="api.log",
@@ -18,6 +21,15 @@ logger = log(
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 load_dotenv()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await init_db()
+    yield
+    await close_db()
+
+
+app = FastAPI(lifespan=lifespan)
 
 # CORS configuration
 app.add_middleware(
@@ -38,6 +50,7 @@ app.add_middleware(SlowAPIMiddleware)
 async def read_root(request: Request):
     client_ip = request.client.host
     logger.info(f"Root endpoint accessed by {client_ip}")
+    await User.create(name="Andy", email="arpan1@gmail.com")
     return JSONResponse(
         status_code=200,
         content={"message": "Hey there! Andy is busy serving the users."},

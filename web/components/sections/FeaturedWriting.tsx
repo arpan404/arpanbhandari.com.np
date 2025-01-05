@@ -36,12 +36,6 @@ export default async function FeaturedWritings() {
             {writings.articles.map(article => (
               <WritingCard {...article} key={article.uid} />
             ))}
-            {writings.articles.map(article => (
-              <WritingCard {...article} key={article.uid} />
-            ))}
-            {writings.articles.map(article => (
-              <WritingCard {...article} key={article.uid} />
-            ))}
           </HorizontalScroll>
         </div>
         <div className="mt-4 md:mt-6 flex justify-center md:justify-endh">
