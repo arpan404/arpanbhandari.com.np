@@ -12,7 +12,6 @@ export default function AndyChatBubble({ message }: { message: string }) {
           className="flex-shrink-0 flex-grow-0 rounded-full w-8 h-8"
         />
       </div>
-
       <div className="text-[0.75rem] px-3 py-1">
         <ReactMarkdown className={'andy_message'}>{message}</ReactMarkdown>
       </div>

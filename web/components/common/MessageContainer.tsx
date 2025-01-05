@@ -7,6 +7,7 @@ import { TooltipTrigger } from '@radix-ui/react-tooltip';
 import useStore from '@/lib/store';
 import UserChatBubble from './UserChatBubble';
 import AndyChatBubble from './AndyChatBubble';
+import AndyTyping from './AndyTyping';
 export default function MessageContainer() {
   const setUserDetails = useStore(state => state.setUserDetails);
   const addMessage = useStore(state => state.addMessage);
@@ -64,10 +65,10 @@ export default function MessageContainer() {
       textareaRef.current.style.height = 'auto';
     }
     setAndyTyping(true);
-    setTimeout(() => {
-      addMessage({ uid: `${uid}-andy`, from: 'andy', message: aboutMe });
-      setAndyTyping(false);
-    }, 1000);
+    // setTimeout(() => {
+    //   addMessage({ uid: `${uid}-andy`, from: 'andy', message: aboutMe });
+    //   setAndyTyping(false);
+    // }, 1000);
   };
 
   useEffect(() => {
@@ -103,7 +104,7 @@ export default function MessageContainer() {
         </TooltipProvider>
       </div>
       <div
-        className="h-[calc(100%-4rem-10px)] overflow-scroll scrollbar-hide project_description"
+        className="h-[calc(100%-4rem-10px)] overflow-scroll scrollbar-hide "
         ref={messageContainerRef}
         style={{ scrollBehavior: 'smooth' }}
       >
@@ -114,6 +115,7 @@ export default function MessageContainer() {
             return <AndyChatBubble key={index} message={message.message} />;
           }
         })}
+        {andyTyping && <AndyTyping />}
       </div>
 
       <div className="absolute bottom-2 w-full pr-4">
