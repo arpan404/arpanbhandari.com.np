@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
-
 import ReadBlueprints from '@/components/buttons/ReadBlueprints';
 import ViewCode from '@/components/buttons/ViewCode';
 import ViewProject from '@/components/buttons/ViewProject';

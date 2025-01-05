@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, FilterX } from 'lucide-react';
 import Link from 'next/link';
 import getProjects from '@/actions/getProjects';
 import { Metadata } from 'next';
@@ -65,11 +65,8 @@ export default async function page({
             </div>
             <div>
               <Link href="/projects">
-                <Button
-                  variant={'outline'}
-                  className="rounded-full px-4 md:px-6"
-                >
-                  View All Projects
+                <Button variant={'outline'} className="rounded-full h-8">
+                  <FilterX size={20} /> Clear Filter
                 </Button>
               </Link>
             </div>
