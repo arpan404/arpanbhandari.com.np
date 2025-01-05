@@ -2,12 +2,16 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Delete, Send, Trash2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Tooltip, TooltipContent, TooltipProvider } from '../ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+} from '@/components/ui/tooltip';
 import { TooltipTrigger } from '@radix-ui/react-tooltip';
 import useStore from '@/lib/store';
-import UserChatBubble from './UserChatBubble';
-import AndyChatBubble from './AndyChatBubble';
-import AndyTyping from './AndyTyping';
+import UserChatBubble from '@/components/common/UserChatBubble';
+import AndyChatBubble from '@/components/common/AndyChatBubble';
+import AndyTyping from '@/components/common/AndyTyping';
 export default function MessageContainer() {
   const setUserDetails = useStore(state => state.setUserDetails);
   const addMessage = useStore(state => state.addMessage);
@@ -56,7 +60,7 @@ export default function MessageContainer() {
   Feel free to connect with me on [LinkedIn](https://linkedin.com/in/arpan) or check out my [GitHub](https://github.com/arpan).
   `;
 
-  const handleSendButtonClick = () => {
+  const handleSendButtonClick = async () => {
     const uid = Date.now().toString() + Math.random().toString();
     if (!value) return;
     addMessage({ uid: uid, from: 'user', message: value });
@@ -65,10 +69,10 @@ export default function MessageContainer() {
       textareaRef.current.style.height = 'auto';
     }
     setAndyTyping(true);
-    // setTimeout(() => {
-    //   addMessage({ uid: `${uid}-andy`, from: 'andy', message: aboutMe });
-    //   setAndyTyping(false);
-    // }, 1000);
+    setTimeout(() => {
+      addMessage({ uid: `${uid}-andy`, from: 'andy', message: aboutMe });
+      setAndyTyping(false);
+    }, 3000);
   };
 
   useEffect(() => {
