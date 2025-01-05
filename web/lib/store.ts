@@ -7,7 +7,7 @@ const useStore = create<StoreState>(set => ({
   setUserDetails: data => set({ userDetails: data }),
   addMessage: message =>
     set(state => ({ messages: [...state.messages, message] })),
-  setMessage: message => set({ messages: [message] }),
+  setMessages: message => set({ messages: message }),
 }));
 
 export default useStore;

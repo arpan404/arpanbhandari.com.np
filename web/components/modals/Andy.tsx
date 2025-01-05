@@ -6,8 +6,8 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import AndyAvatar from '@/components/common/AndyAvatar';
 import { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import useStore from '@/lib/store';
 import MessageContainer from '@/components/common/MessageContainer';
 import AndyWelcome from '@/components/common/AndyWelcome';
@@ -17,10 +17,7 @@ export default function Andy({
   className,
 }: Readonly<{ buttonText: string; className?: string }>) {
   const userDetails = useStore(state => state.userDetails);
-  const message = useStore(state => state.messages);
-  const setMessage = useStore(state => state.setMessage);
   const setUserDetails = useStore(state => state.setUserDetails);
-  const addMessage = useStore(state => state.addMessage);
 
   useEffect(() => {
     if (!userDetails) {
@@ -35,6 +32,29 @@ export default function Andy({
     }
   }, []);
 
+  const slideVariants = {
+    initial: (direction: number) => ({
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 0,
+    }),
+    animate: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30, bounce: 0 },
+        opacity: { duration: 0.4, ease: 'easeInOut' },
+      },
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? '100%' : '-100%',
+      opacity: 0,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30, bounce: 0 },
+        opacity: { duration: 0.4, ease: 'easeInOut' },
+      },
+    }),
+  };
+
   return (
     <Sheet>
       <SheetTrigger
@@ -48,8 +68,39 @@ export default function Andy({
 
       <SheetContent className="w-full sm:w-[400px] md:w-[500px] lg:w-[600px] cursor-default z-[101] px-0 md:px-0 py-0 md:py-0">
         <SheetTitle className="sr-only">Andy Chat Dialog</SheetTitle>
-        {userDetails && <MessageContainer />}
-        {!userDetails && <AndyWelcome />}
+        <div className="relative overflow-hidden h-full">
+          <AnimatePresence
+            initial={false}
+            mode="wait"
+            custom={userDetails ? 1 : -1}
+          >
+            {userDetails ? (
+              <motion.div
+                key="message-container"
+                custom={1}
+                variants={slideVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="absolute inset-0 w-full h-full"
+              >
+                <MessageContainer />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="andy-welcome"
+                custom={-1}
+                variants={slideVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="absolute inset-0 w-full h-full"
+              >
+                <AndyWelcome />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </SheetContent>
     </Sheet>
   );
