@@ -16,3 +16,7 @@ async def chat(request: Request, json_data: dict):
 
 async def chat_processor(system: str, user: str, ):
     pass
+
+async def gen_uid(json_data: dict):
+    pass
+    
