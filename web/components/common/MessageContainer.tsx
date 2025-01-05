@@ -1,6 +1,6 @@
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Delete, Send, Trash2 } from 'lucide-react';
+import { Send, Trash2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import {
   Tooltip,
@@ -12,6 +12,7 @@ import useStore from '@/lib/store';
 import UserChatBubble from '@/components/common/UserChatBubble';
 import AndyChatBubble from '@/components/common/AndyChatBubble';
 import AndyTyping from '@/components/common/AndyTyping';
+
 export default function MessageContainer() {
   const setUserDetails = useStore(state => state.setUserDetails);
   const addMessage = useStore(state => state.addMessage);
