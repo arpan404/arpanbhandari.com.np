@@ -65,7 +65,7 @@ export default function HorizontalScroll({
 
   return (
     <div
-      className="relative"
+      className="relative max-w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -80,7 +80,7 @@ export default function HorizontalScroll({
       </button>
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-scroll scrollbar-hide h-fit"
+        className="flex gap-4 overflow-x-scroll scrollbar-hide h-fit max-w-full"
       >
         {children}
       </div>

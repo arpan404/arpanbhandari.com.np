@@ -14,7 +14,7 @@ import {
 
 export default function WritingCard(props: WritingCardType) {
   return (
-    <Card className="w-full max-w-[300px] rounded-2xl relative pb-2 drop-shadow-xl">
+    <Card className="w-full max-w-[300px] rounded-2xl relative pb-2 drop-shadow-md flex-shrink-0 overflow-hidden z-10 bg-background">
       <CardHeader className="px-0 py-0">
         <div className="flex justify-center h-[170px] rounded-t-2xl overflow-hidden">
           <Link href={`/writings/${props.uid}`} className="w-full h-full">
