@@ -148,6 +148,7 @@ export default function MessageContainer() {
             variant={'default'}
             size={'icon'}
             onClick={handleSendButtonClick}
+            disabled={!value || andyTyping}
             ref={sendButtonRef}
           >
             <Send size={20} />

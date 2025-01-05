@@ -66,7 +66,7 @@ export default function Andy({
         <h3>{buttonText}</h3>
       </SheetTrigger>
 
-      <SheetContent className="w-full sm:w-[400px] md:w-[500px] lg:w-[600px] cursor-default z-[101] px-0 md:px-0 py-0 md:py-0">
+      <SheetContent className="w-full sm:w-[400px] md:w-[500px] lg:w-[600px] cursor-default z-[204] px-0 md:px-0 py-0 md:py-0">
         <SheetTitle className="sr-only">Andy Chat Dialog</SheetTitle>
         <div className="relative overflow-hidden h-full">
           <AnimatePresence
