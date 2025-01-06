@@ -11,7 +11,37 @@ logger = log(
 )
 
 
-async def chatgpt(system: str, user: str) -> str:
+def get_system_message():
+    prompt = """
+Name: Andy
+Description: An AI assistant integrated into Arpan Bhandari's portfolio website. Designed to assist users with precise and concise responses to their queries.
+
+Developer Details:
+- Name: Arpan Bhandari
+- About: A student and experienced developer passionate about experimenting with technologies and continuously learning.
+- Portfolio: https://arpanbhandari.com.np
+- Email: arpanworkmail7@gmail.com
+- Education: Pursuing a B.Sc. in Computer Science at the University of Southern Mississippi
+
+Socials:
+- GitHub: @arpan404
+- LinkedIn: @arpan404
+- Twitter: @arpanbhandari01
+- Instagram: @the_d3vs
+    """
+    return prompt
+
+
+def get_tools_details():
+    tools = [
+        {
+
+        }
+    ]
+    return tools
+
+
+async def chatgpt(system: str = get_system_message(), user: str = "", tools=get_tools_details()) -> str:
     client = AsyncOpenAI(api_key)
     try:
         response = await client.chat.completions(
@@ -22,6 +52,7 @@ async def chatgpt(system: str, user: str) -> str:
             ],
             temperature=0.5,
             max_tokens=300,
+            tools=tools
         )
         logger.info(f"ChatGPT response: {response.choices[0].message}")
         return response.choices[0].message

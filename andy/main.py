@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from app.database.config import close_db, init_db
 from app.chat import chat, gen_uid
 from app.logger import log
+from app.data import Data
 import app.validator as validator
 from app.database.models import User, Chat
 
@@ -21,6 +22,7 @@ logger = log(
 
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 load_dotenv()
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -153,4 +155,34 @@ async def method_not_allowed_handler(request: Request, exc: HTTPException):
     return JSONResponse(
         status_code=405,
         content={"message": "Method Not Allowed. Please check the request method."},
+    )
+
+
+@app.get("/writings")
+async def get_writings(request: Request):
+    client_ip = request.client.host
+    logger.info(f"Writings endpoint accessed by {client_ip}")
+    return JSONResponse(
+        status_code=200,
+        content=await Data().get_all_writings()
+    )
+
+
+@app.get("/writings/{uid}")
+async def get_writing(request: Request, uid: str):
+    client_ip = request.client.host
+    logger.info(f"Writing endpoint accessed by {client_ip}")
+    return JSONResponse(
+        status_code=200,
+        content=await Data().get_a_writings(uid)
+    )
+
+
+@app.get("/projects/{uid}")
+async def get_project(request: Request, uid: str):
+    client_ip = request.client.host
+    logger.info(f"Project endpoint accessed by {client_ip}")
+    return JSONResponse(
+        status_code=200,
+        content=await Data().get_a_project(uid)
     )

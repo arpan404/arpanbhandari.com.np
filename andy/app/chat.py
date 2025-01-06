@@ -13,10 +13,6 @@ async def chat(request: Request, json_data: dict):
         content={"message": "Hey there! Andy is busy serving the users."},
     )
 
-
-async def chat_processor(system: str, user: str, ):
-    pass
-
 async def gen_uid(json_data: dict):
     pass
     

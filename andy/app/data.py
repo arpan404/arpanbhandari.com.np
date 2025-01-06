@@ -90,6 +90,60 @@ class Data:
                                       for projectType in project['projectType'] if projectType and projectType['skill']]
         cache['projects'] = projects
         return projects
+    
+    async def get_a_project(self, uid: str):
+        cache_name = f'project-${uid}'
+        if cache_name in cache:
+            self.logger.info("Project fetched from cache")
+            return cache[cache_name]
+        query = """
+            query getProject($uid: String!) {
+                projects(filters: { uid: { eq: $uid } }) {
+                    name
+                    uid
+                    shortDescription: short_description
+                    longDescription: long_description
+                    liveURL
+                    codeURL
+                    technologiesUsed: technologies_used {
+                        skill {
+                            name: skillName
+                        }
+                    }
+                    projectType: project_type {
+                        skill {
+                            name: skillName
+                        }
+                    }
+                }
+            }
+        """
+        response = await self.__fetch_graphql(query, {'uid': uid})
+        if not response:
+            self.logger.error("Error fetching project, response is None")
+            return None
+        if not response['data']:
+            self.logger.error("Error fetching project, data is None")
+            return None
+        if not response['data']['projects']:
+            self.logger.error("Error fetching project, projects is None")
+            return None
+        if len(response['data']['projects']) == 0:
+            self.logger.error("Error fetching project, projects length is 0")
+            return None
+        project = response['data']['projects'][0]
+        self.logger.info(
+            "Project fetched from graphql endpoint, caching it")
+        if not project['technologiesUsed'] or len(project['technologiesUsed']) == 0:
+            project['technologiesUsed'] = []
+        if not project['projectType'] or len(project['projectType']) == 0:
+            project['projectType'] = []
+        project['technologiesUsed'] = [tech['skill']['name']
+                                       for tech in project['technologiesUsed']]
+        project['projectType'] = [projectType['skill']['name']
+                                  for projectType in project['projectType'] if projectType and projectType['skill']]
+        cache[cache_name] = project
+        return project     
 
     async def get_skills(self):
         if 'skills' in cache:
