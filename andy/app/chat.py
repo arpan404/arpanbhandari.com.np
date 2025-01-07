@@ -7,6 +7,8 @@ from app.chatgpt import chatgpt
 from app.data import Data
 from app.uid import validate_chat_uid
 import json
+import os
+import requests
 logger = log(
     logger_name="api_logger",
     log_file="api.log",
@@ -21,6 +23,42 @@ async def save_chats_in_background(chat_uid, email, messages):
             email=email,
             chats=message
         )
+
+
+async def send_message_to_developer(subject, message, name, email, ip):
+    try:
+        api_url = os.getenv("STRAPI_HOST") + "/api/contacts"
+        token = os.getenv("STRAPI_TOKEN")
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        }
+        data = {
+            "data": {
+                "name": name,
+                "email": email,
+                "subject": subject,
+                "message": message,
+                "user_details": ip
+            }
+        }
+        response = requests.post(
+            api_url,
+            headers=headers,
+            json=data,
+        )
+        if response.status_code >= 200 and response.status_code < 300:
+            logger.info("Message sent to developer with details: %s", data)
+            return True
+        else:
+            logger.error(
+                f"Error sending message to developer: {
+                    response.status_code} {response.text}"
+            )
+            return False
+    except Exception as e:
+        logger.error(f"Error sending message to developer: {str(e)}")
+        return False
 
 
 async def chat(request: Request, json_data: dict, background_tasks: BackgroundTasks):
@@ -191,6 +229,41 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 }
                                 messages.append(function_message)
                                 message_to_save.append(function_message)
+
+                            case "schedule_meeting":
+                                logger.info("Scheduling a meeting")
+                                arguments = json.loads(
+                                    first_tool_call.function.arguments)
+                                meeting_message = arguments.get("topic")
+                                meeting_status = await send_message_to_developer(
+                                    name=json_data.get("user_details")["name"],
+                                    email=json_data.get("user_details")[
+                                        "email"],
+                                    message="Appointment requested for a meeting",
+                                    subject="#Meeting: " + meeting_message,
+                                    ip=request.client.host
+                                )
+                                if meeting_status:
+                                    function_message = {
+                                        "role": "tool",
+                                        "content": [{
+                                            "type": "text",
+                                            "text": "Meeting scheduled successfully. You will be contacted soon."
+                                        }],
+                                        "tool_call_id": first_tool_call.id
+                                    }
+                                else:
+                                    function_message = {
+                                        "role": "tool",
+                                        "content": [{
+                                            "type": "text",
+                                            "text": "Error scheduling meeting. Please try again."
+                                        }],
+                                        "tool_call_id": first_tool_call.id
+                                    }
+                                messages.append(function_message)
+                                message_to_save.append(function_message)
+
                             case _:
                                 return JSONResponse(
                                     status_code=200,

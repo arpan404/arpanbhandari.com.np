@@ -36,7 +36,7 @@ class Data:
         except Exception as e:
             self.logger.error(f"Error fetching graphql endpoint: {str(e)}")
             return None
-
+    
     async def get_projects(self):
         if 'projects' in cache:
             self.logger.info("Projects fetched from cache")
