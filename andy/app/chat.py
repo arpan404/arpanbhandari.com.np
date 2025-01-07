@@ -264,7 +264,58 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 messages.append(function_message)
                                 message_to_save.append(function_message)
 
+                            case "send_message":
+                                logger.info("Scheduling a meeting")
+                                arguments = json.loads(
+                                    first_tool_call.function.arguments)
+                                s_message = arguments.get("message")
+                                s_subject = arguments.get("subject")
+                                s_status = await send_message_to_developer(
+                                    name=json_data.get("user_details")["name"],
+                                    email=json_data.get("user_details")[
+                                        "email"],
+                                    message=s_message,
+                                    subject=s_subject,
+                                    ip=request.client.host
+                                )
+                                if s_status:
+                                    function_message = {
+                                        "role": "tool",
+                                        "content": [{
+                                            "type": "text",
+                                            "text": "Message sent successfully. You will be contacted soon."
+                                        }],
+                                        "tool_call_id": first_tool_call.id
+                                    }
+                                else:
+                                    function_message = {
+                                        "role": "tool",
+                                        "content": [{
+                                            "type": "text",
+                                            "text": "Error sending message. Please try again."
+                                        }],
+                                        "tool_call_id": first_tool_call.id
+                                    }
+                                messages.append(function_message)
+                                message_to_save.append(function_message)
+
                             case _:
+                                message_to_save.append({
+                                    "role":
+                                        "assistant",
+                                    "content": [
+                                        {
+                                            "type": "text",
+                                            "text": "I am unsure of what you are asking. Ask me something else."
+                                        }
+                                    ]
+                                })
+                                background_tasks.add_task(
+                                    save_chats_in_background,
+                                    json_data.get("chat_uid"),
+                                    json_data.get("user_details")["email"],
+                                    message_to_save
+                                )
                                 return JSONResponse(
                                     status_code=200,
                                     content={
