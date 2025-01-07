@@ -40,7 +40,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
         )
 
     try:
-        previous_chat = await Chat.filter(uid=json_data.get("chat_uid"), email=json_data.get("user_details")["email"]).order_by('-id').limit(12) or []
+        previous_chat = await Chat.filter(uid=json_data.get("chat_uid"), email=json_data.get("user_details")["email"]).order_by('-id').limit(21) or []
         previous_chat.reverse()
     except Exception as e:
         logger.error(f"Error fetching chat from database: {str(e)}")
@@ -53,6 +53,9 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
             previous_chat = [
                 chat.chats for chat in previous_chat
             ]
+            if previous_chat[0]["role"] == "tool":
+                previous_chat.pop(0)
+
         messages = previous_chat or []
         messages.append({
             "role": "user",
@@ -77,7 +80,6 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
         max_iteration = 3
         while max_iteration > 0:
             response = await chatgpt(messages)
-            print(response)
             if response:
                 if response.choices[0].message.content:
                     logger.info(
@@ -152,18 +154,72 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 messages.append(function_message)
                                 message_to_save.append(function_message)
 
+                            case "get_a_writings":
+                                logger.info("Getting a writing")
+                                arguments = json.loads(
+                                    first_tool_call.function.arguments)
+                                uid = arguments.get("uid")
+
+                                data = await Data().get_a_writings(
+                                    uid=uid)
+                                function_message = {
+                                    "role": "tool",
+                                    "content": [{
+                                        "type": "text",
+                                        "text": json.dumps(data)
+                                    }],
+                                    "tool_call_id": first_tool_call.id
+                                }
+                                messages.append(function_message)
+                                message_to_save.append(function_message)
+
+                            case "get_a_project":
+                                logger.info("Getting a project")
+                                arguments = json.loads(
+                                    first_tool_call.function.arguments)
+                                uid = arguments.get("uid")
+
+                                data = await Data().get_a_project(
+                                    uid=uid)
+                                function_message = {
+                                    "role": "tool",
+                                    "content": [{
+                                        "type": "text",
+                                        "text": json.dumps(data)
+                                    }],
+                                    "tool_call_id": first_tool_call.id
+                                }
+                                messages.append(function_message)
+                                message_to_save.append(function_message)
                             case _:
                                 return JSONResponse(
-                                    status_code=400,
+                                    status_code=200,
                                     content={
-                                        "message": "Could not process the message"},
+                                        "message": "I am unsure of what you are asking. Ask me something else."},
                                 )
 
             max_iteration -= 1
 
+        message_to_save.append({
+            "role":
+                "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "I am unsure of what you are asking. Ask me something else."
+                }
+            ]
+        })
+        background_tasks.add_task(
+            save_chats_in_background,
+            json_data.get("chat_uid"),
+            json_data.get("user_details")["email"],
+            message_to_save
+        )
         return JSONResponse(
-            status_code=400,
-            content={"message": "Could not process the message"},
+            status_code=200,
+            content={
+                "message": "I am unsure of what you are asking. Ask me something else."},
         )
 
     except Exception as e:

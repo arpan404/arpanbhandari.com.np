@@ -49,6 +49,7 @@ class Data:
             shortDescription: short_description
             liveURL
             codeURL
+            completed_date
             technologiesUsed: technologies_used {
               skill {
                 name: skillName

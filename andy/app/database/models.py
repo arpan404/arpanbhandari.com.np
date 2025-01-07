@@ -14,6 +14,7 @@ class User(Model):
 
 
 class Chat(Model):
+    id = fields.IntField(pk=True, generated=True, auto_increment=True, unique=True)
     uid = fields.UUIDField(default=uuid.uuid4, unique=False)
     chats = fields.JSONField(required=True)
     email = fields.CharField(max_length=100, required=True)
