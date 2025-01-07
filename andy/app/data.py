@@ -6,6 +6,7 @@ from app.logger import log
 
 cache = TTLCache(maxsize=20, ttl=3600)
 
+
 class Data:
     def __init__(self):
         self.host = os.getenv("STRAPI_HOST")
@@ -46,7 +47,6 @@ class Data:
             name
             uid
             shortDescription: short_description
-            longDescription: long_description
             liveURL
             codeURL
             technologiesUsed: technologies_used {
@@ -90,7 +90,7 @@ class Data:
                                       for projectType in project['projectType'] if projectType and projectType['skill']]
         cache['projects'] = projects
         return projects
-    
+
     async def get_a_project(self, uid: str):
         cache_name = f'project-${uid}'
         if cache_name in cache:
@@ -143,7 +143,7 @@ class Data:
         project['projectType'] = [projectType['skill']['name']
                                   for projectType in project['projectType'] if projectType and projectType['skill']]
         cache[cache_name] = project
-        return project     
+        return project
 
     async def get_skills(self):
         if 'skills' in cache:
@@ -201,11 +201,6 @@ class Data:
             description
             uid
             title
-            createdAt
-            type: article_type {
-              name: type
-              uid
-            }
           }
         }
         """

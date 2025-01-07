@@ -8,7 +8,7 @@ from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
 from dotenv import load_dotenv
 from app.database.config import close_db, init_db
-from app.chat import chat, gen_uid
+from app.chat import chat, gen_uid as generate_uid
 from app.logger import log
 from app.data import Data
 import app.validator as validator
@@ -67,10 +67,7 @@ async def gen_uid(request: Request):
         logger.info(f"UID generation endpoint accessed by {client_ip}")
         validator.referrer_validator(request)
         json_data = await validator.user_json_validator(request)
-        response = await gen_uid(json_data)
-        logger.info(
-            f"Successfully processed UID generation request from {client_ip}")
-        return response
+        return await generate_uid(request, json_data)
     except HTTPException as e:
         raise e
     except Exception as e:
@@ -185,4 +182,14 @@ async def get_project(request: Request, uid: str):
     return JSONResponse(
         status_code=200,
         content=await Data().get_a_project(uid)
+    )
+
+
+@app.get("/projects")
+async def get_projects(request: Request):
+    client_ip = request.client.host
+    logger.info(f"Projects endpoint accessed by {client_ip}")
+    return JSONResponse(
+        status_code=200,
+        content=await Data().get_projects()
     )

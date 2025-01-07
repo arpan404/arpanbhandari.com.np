@@ -93,6 +93,13 @@ async def user_json_validator(request):
 async def message_api_data_validaror(request: Request, json_data):
     client_ip = request.client.host
 
+    if not json_data.get("chat_uid"):
+        logger.error(f"Empty chat_uid received from {client_ip}")
+        raise HTTPException(
+            status_code=400,
+            detail="ChatUID missing in request"
+        )
+
     if not json_data.get("message"):
         logger.error(f"Empty message received from {client_ip}")
         raise HTTPException(
