@@ -14,9 +14,9 @@ class User(Model):
 
 
 class Chat(Model):
-    uid = fields.UUIDField(required=True, unique=True, pk=True)
-    chatUID = fields.UUIDField(default=uuid.uuid4, unique=False)
-    chat = fields.JSONField(required=True)
+    uid = fields.UUIDField(default=uuid.uuid4, unique=False)
+    chats = fields.JSONField(required=True)
+    email = fields.CharField(max_length=100, required=True)
 
     class Meta:
         table = "andy_chats"

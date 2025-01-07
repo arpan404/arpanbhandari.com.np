@@ -8,7 +8,8 @@ from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
 from dotenv import load_dotenv
 from app.database.config import close_db, init_db
-from app.chat import chat, gen_uid as generate_uid
+from app.chat import chat
+from app.uid import gen_uid as generate_uid
 from app.logger import log
 from app.data import Data
 import app.validator as validator

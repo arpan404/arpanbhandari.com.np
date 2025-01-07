@@ -27,25 +27,26 @@ async def chatgpt(messages: List) -> str:
     try:
         client = openai.AsyncOpenAI()
         logger.info(f"ChatGPT request: {messages}")
-        print(SYSTEM_PROMPT)
-        return "he"
         response = await client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 SYSTEM_PROMPT, *[message for message in messages]
             ],
+            response_format={
+                "type": "text"
+            },
             tools=[
                 {
                     "type": "function",
                     "function": {
                         "name": "get_projects",
-                        "description": "Returns all the projects that Arpan has worked on in json format with minimum details",
+                        "strict": False,
                         "parameters": {
                             "type": "object",
                             "required": [],
                             "properties": {}
                         },
-                        "strict": False
+                        "description": "Returns all the projects that Arpan has worked on in json format"
                     }
                 },
                 {
@@ -111,27 +112,49 @@ async def chatgpt(messages: List) -> str:
                 {
                     "type": "function",
                     "function": {
-                        "name": "get_a_project",
-                        "description": "Get the detail of a project with provided uid",
+                        "name": "send_message",
+                        "description": "User can send message to the developer via this",
                         "parameters": {
                             "type": "object",
-                            "required": [
-                                "uid"
-                            ],
                             "properties": {
-                                "uid": {
+                                "subject": {
                                     "type": "string",
-                                    "description": "uid of the project"
+                                    "description": "Topic user want to discuss about with the developer"
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "description": "Message user want to send to the developer"
                                 }
                             },
-                            "additionalProperties": False
+                            "required": [
+                                "subject",
+                                "message"
+                            ]
                         },
-                        "strict": True
+                        "strict": False
+                    }
+                },
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "schedule_meeting",
+                        "description": "User can schedule a meeting with the developer. User will be contacted by the developer once the meeting is schedule. User will get the details about meeting through mail.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "topic": {
+                                    "type": "string",
+                                    "description": "What user want to discuss about in meeting"
+                                }
+                            },
+                            "required": []
+                        },
+                        "strict": False
                     }
                 }
             ],
             temperature=0.8,
-            max_completion_tokens=1000,
+            max_completion_tokens=500,
             top_p=1,
             frequency_penalty=0.3,
             presence_penalty=0.25
