@@ -154,9 +154,6 @@ class Data:
         query getSkills{
           skills {
             name: skillName
-            type: skillType {
-              name: skillType
-            }
           }
         }
       """
@@ -179,14 +176,9 @@ class Data:
 
         skills = response['data']['skills']
         self.logger.info("Skills fetched from graphql endpoint, caching them")
-
-        for skill in skills:
-            if not skill['type']:
-                skill['type'] = ''
-            else:
-                skill['type'] = skill['type']['name']
         if not skills or len(skills) == 0:
             return []
+        skills = [skill['name'] for skill in skills]
         cache['skills'] = skills
         return skills
 
@@ -267,3 +259,38 @@ class Data:
         cache[cache_name] = response['data']['articles'][0]
 
         return cache[cache_name]
+
+    async def get_resume(self):
+        if 'resume' in cache:
+            self.logger.info("Resume fetched from cache")
+            return cache['resume']
+        query = """
+        query getResume{
+          resume {
+            resume: file {
+              url
+            }
+          }
+        }
+        """
+        response = await self.__fetch_graphql(query)
+        if not response:
+            self.logger.error("Error fetching resume, response is None")
+            return None
+        if not response['data']:
+            self.logger.error("Error fetching resume, data is None")
+            return None
+        if not response['data']['resume']:
+            self.logger.error("Error fetching resume, resume is None")
+            return None
+        if not response['data']['resume']['resume']:
+            self.logger.error("Error fetching resume, resume is None")
+            return None
+        if not response['data']['resume']['resume']['url']:
+            self.logger.error("Error fetching resume, url is None")
+            return None
+        resume = os.getenv("STRAPI_HOST") + \
+            response['data']['resume']['resume']['url']
+        self.logger.info("Resume fetched from graphql endpoint, caching it")
+        cache['resume'] = resume
+        return resume

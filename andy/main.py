@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 from pathlib import Path
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import Limiter
@@ -82,7 +82,7 @@ async def gen_uid(request: Request):
 
 @app.post("/chat")
 @limiter.limit("10/minute")
-async def andy_chat(request: Request):
+async def andy_chat(request: Request, background_tasks: BackgroundTasks):
     client_ip = request.client.host
     logger.info(f"Chat endpoint accessed by {client_ip}")
 
@@ -91,7 +91,7 @@ async def andy_chat(request: Request):
         logger.info(f"Received chat request from {client_ip}")
         json_data = await validator.user_json_validator(request)
         await validator.message_api_data_validaror(request, json_data)
-        response = await chat(request, json_data)
+        response = await chat(request, json_data, background_tasks)
         logger.info(f"Successfully processed chat request from {client_ip}")
         return response
 
@@ -193,4 +193,14 @@ async def get_projects(request: Request):
     return JSONResponse(
         status_code=200,
         content=await Data().get_projects()
+    )
+
+
+@app.get("/resume")
+async def get_resume(request: Request):
+    client_ip = request.client.host
+    logger.info(f"Resume endpoint accessed by {client_ip}")
+    return JSONResponse(
+        status_code=200,
+        content=await Data().get_resume()
     )
