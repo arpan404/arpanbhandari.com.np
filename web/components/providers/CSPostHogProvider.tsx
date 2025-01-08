@@ -8,6 +8,6 @@ if (typeof window !== 'undefined') {
     person_profiles: 'always',
   });
 }
-export function CSPostHogProvider({ children }: { children: React.ReactNode }) { 
+export function CSPostHogProvider({ children }: { children: React.ReactNode }) {
   return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
 }
