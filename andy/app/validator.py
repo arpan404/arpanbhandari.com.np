@@ -92,7 +92,7 @@ async def message_api_data_validaror(request: Request, json_data):
         logger.error(f"Empty message received from {client_ip}")
         raise HTTPException(status_code=400, detail="Message missing in request")
     message = json_data.get("message")
-    if len(message) > 500:
+    if len(message) > 1000:
         logger.error(
             f"Message received from {
                      client_ip} has more than 500 characters"

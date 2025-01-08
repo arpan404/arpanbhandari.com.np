@@ -20,6 +20,9 @@ export default function useAndy() {
    const messageContainerRef = useRef<HTMLDivElement>(null);
 
    const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      if (e.target.value.length > 1000) {
+         e.target.value = e.target.value.slice(0, 1000);
+      }
       setValue(e.target.value);
       if (textareaRef.current) {
          textareaRef.current.style.height = 'auto';
@@ -56,7 +59,7 @@ export default function useAndy() {
          const response = await axios.post(
             process.env.NEXT_PUBLIC_ANDY_API_URL + 'chat',
             {
-               message: JSON.stringify(msgValue),
+               message: msgValue,
                chat_uid: convoUID,
                user_details: {
                   name: userDetails?.name,

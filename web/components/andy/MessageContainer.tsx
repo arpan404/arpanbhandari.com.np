@@ -79,9 +79,9 @@ export default function MessageContainer() {
                         }
                      }
                   }}
-                  className="rounded-2xl pr-11 h-14 min-h-14 max-h-40 focus-visible:ring-0 bg-secondary/80 text-sm"
-                  maxLength={1000}
-                  style={{ overflow: 'hidden', resize: 'none' }}
+                  className="rounded-2xl pr-11 h-14 min-h-14 max-h-40 focus-visible:ring-0 bg-secondary text-sm overflow-y-scroll scrollbar-hide"
+                  maxLength={1200}
+                  style={{ resize: 'none' }}
                   placeholder="Ask me anything..."
                />
 
