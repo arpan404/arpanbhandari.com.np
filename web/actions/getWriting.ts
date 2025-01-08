@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
-import { WritingQueryResponse } from '@/types/response';
 import fetchGraphQL from '@/actions/fetchGraphQL';
+import { WritingQueryResponse } from '@/types/response';
 
 const query = gql`
   query getWriting($uid: String!) {
@@ -21,7 +21,11 @@ const query = gql`
     }
   }
 `;
-
+/**
+ * Fetches the writing from the API
+ * @param {string} uid
+ * @returns {Promise<WritingQueryResponse>}
+ */
 const getWriting = async (uid: string): Promise<WritingQueryResponse> => {
   try {
     const data = await fetchGraphQL<WritingQueryResponse>(

@@ -12,7 +12,10 @@ const query = gql`
     }
   }
 `;
-
+/**
+ * Fetches the background music from the API
+ * @returns {Promise<MusicQueryResponse>}
+ * */
 const getMusic = async (): Promise<MusicQueryResponse> => {
   try {
     const data = await fetchGraphQL<MusicQueryResponse>(

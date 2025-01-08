@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
-import { FeaturedSkillsQueryResponse } from '@/types/response';
 import fetchGraphQL from '@/actions/fetchGraphQL';
+import { FeaturedSkillsQueryResponse } from '@/types/response';
 
 const query = gql`
   query getFeaturedSkills {
@@ -15,6 +15,10 @@ const query = gql`
   }
 `;
 
+/**
+ * Fetches the featured skills from the API
+ * @returns {Promise<FeaturedSkillsQueryResponse>}
+ */
 const getFeaturedSkills = async (): Promise<FeaturedSkillsQueryResponse> => {
   try {
     const data = await fetchGraphQL<FeaturedSkillsQueryResponse>(

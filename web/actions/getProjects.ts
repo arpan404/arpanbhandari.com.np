@@ -78,6 +78,11 @@ const query = gql`
   }
 `;
 
+/**
+ * Fetches the projects from the API
+ * @param {string} tag - The tag to filter the projects by
+ * @returns {Promise<ProjectsQueryResponse>}
+ */
 const getProjects = async (tag?: string): Promise<ProjectsQueryResponse> => {
   try {
     if (tag) {

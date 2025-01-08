@@ -13,6 +13,10 @@ const query = gql`
   }
 `;
 
+/**
+ * Fetches the resume from the API
+ * @returns {Promise<ResumeQueryResponse>}
+ * */
 const getResume = async (): Promise<ResumeQueryResponse> => {
   try {
     const data = await fetchGraphQL<ResumeQueryResponse>(

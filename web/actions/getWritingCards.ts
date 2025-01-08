@@ -44,7 +44,12 @@ const specificQuery = gql`
   }
 `;
 
-const getWritings = async (
+/**
+ * Fetches the data for writing cards from the API
+ * @param {string} type
+ * @returns {Promise<WritingCardsQueryResponse>}
+ * */
+const getWritingCards = async (
   type?: string
 ): Promise<WritingCardsQueryResponse> => {
   try {
@@ -80,4 +85,4 @@ const getWritings = async (
   }
 };
 
-export default getWritings;
+export default getWritingCards;

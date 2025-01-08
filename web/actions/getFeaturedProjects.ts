@@ -40,6 +40,10 @@ const query = gql`
   }
 `;
 
+/**
+ * Fetches the featured projects from the API
+ * @returns {Promise<FeaturedProjectsQueryResponse>}
+ */
 const getFeaturedProjects =
   async (): Promise<FeaturedProjectsQueryResponse> => {
     try {

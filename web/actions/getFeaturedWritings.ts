@@ -21,6 +21,10 @@ const query = gql`
     }
   }
 `;
+/**
+ * Fetches the featured writings from the API
+ * @returns {Promise<WritingCardsQueryResponse>}
+ * */
 
 const getFeaturedWritings = async (): Promise<WritingCardsQueryResponse> => {
   try {

@@ -1,5 +1,9 @@
 'use server';
-
+/**
+ * Server action to send a contact message to the API
+ * Sends a contact message to the API
+ * @returns {Promise<boolean>}
+ * */
 const sendContactMessage = async (data: {
   name: string;
   email: string;

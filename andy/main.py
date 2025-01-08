@@ -78,7 +78,6 @@ async def gen_uid(request: Request):
             detail="Internal server error"
         )
 
-
 @app.post("/chat")
 @limiter.limit("10/minute")
 async def andy_chat(request: Request, background_tasks: BackgroundTasks):
