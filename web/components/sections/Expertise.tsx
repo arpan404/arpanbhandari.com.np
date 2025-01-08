@@ -3,7 +3,7 @@ import Link from 'next/link';
 import getResume from '@/actions/getResume';
 import Skill from '@/components/buttons/Skill';
 import { Button } from '@/components/ui/button';
-import PdfViewer from '@/components/common/PdfViewer';
+import PdfViewer from '@/components/modals/PdfViewer';
 import getFeaturedSkills from '@/actions/getFeaturedSkills';
 
 export default async function Expertise() {

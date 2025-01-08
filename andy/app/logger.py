@@ -6,10 +6,10 @@ def log(
     logger_name: str = "app_logger",
     log_file: str = "app.log",
     log_level: int = logging.INFO,
-    log_format: str = '%(asctime)s - %(levelname)s - [%(name)s] - %(message)s',
+    log_format: str = "%(asctime)s - %(levelname)s - [%(name)s] - %(message)s",
     log_dir: str = "logs",
-    file_mode: str = 'a',
-    encoding: str = 'utf-8'
+    file_mode: str = "a",
+    encoding: str = "utf-8",
 ) -> logging.Logger:
 
     log_path = Path(log_dir)
@@ -18,9 +18,7 @@ def log(
     if not logger.handlers:
         logger.setLevel(log_level)
         file_handler = logging.FileHandler(
-            log_path / log_file,
-            mode=file_mode,
-            encoding=encoding
+            log_path / log_file, mode=file_mode, encoding=encoding
         )
         file_handler.setLevel(log_level)
         formatter = logging.Formatter(log_format)

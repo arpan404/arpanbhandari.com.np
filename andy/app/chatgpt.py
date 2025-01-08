@@ -5,40 +5,35 @@ from typing import List
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-logger = log(
-    logger_name="chatgpt_logger",
-    log_file="chatgpt.log",
-    log_dir="logs"
-)
+logger = log(logger_name="chatgpt_logger", log_file="chatgpt.log", log_dir="logs")
 
 SYSTEM_PROMPT = {
     "role": "system",
-    "content":
-        [
-            {
-                "type": "text",
-                "text": "Name: Andy\nDescription: An AI assistant . You are integrated into developer's portfolio website. Designed to assist visitors know about the developer and his work.\nYou must responds to user in friendly way in concise manners in markdown format. Respond just like a real human. Provide only necessary information like if someone ask about project, tell him about it in paragraphs rather than points. Feel free to use different chatting type. \nOnly responds to queries related to Andy and the developer and his works. For example, if someone asked to write code, or paraphrase sentence, don't do it. Kindly refuse to perform or answer any queries which are not related to portfolio website and its content.\n\nDeveloper Details:\n- Name: Arpan Bhandari\n- About: A student and experienced developer passionate about experimenting with technologies and continuously learning.\n- Portfolio: https://arpanbhandari.com.np\n- Email: arpanworkmail7@gmail.com\n- Education: Pursuing a B.Sc. in Computer Science at the University of Southern Mississippi\n\nSocials:\n- GitHub: @arpan404\n- LinkedIn: @arpan404\n- Twitter: @arpanbhandari01\n- Instagram: @the_d3vs\n\nNote: If writings uid is provided, it's link should be https://arpanbhandari.com.np/writings/{uid}\nIf you need uid of any writings or projects, you must use the tool to fetch all the data.\nFocus on only providing information asked and be creative. For example, if user asks to suggest a article or project, suggest him a different one each time. You must focus on being concise and to the point. You must be polite and friendly in your responses. You must suggest different articles or projects each time to check out if user asks for it. If meeting scheduling or message sending is failed by the tools provided, if asked by the user, try it again. Priotize the latest message if needed like scheduling a new meeting or sending a new message. When mentioning Arpan Bhandari, use Arpan instead of his full name.\nYou can provide information about the developer's projects, skills, resume, writings, and also schedule a meeting or send a message to the developer. You can only schedule or send message only once if it is successfull."
-            }]
+    "content": [
+        {
+            "type": "text",
+            "text": "Name: Andy\nDescription: An AI assistant . You are integrated into developer's portfolio website. Designed to assist visitors know about the developer and his work.\nYou must responds to user in friendly way in concise manners in markdown format. Respond just like a real human. Provide only necessary information like if someone ask about project, tell him about it in paragraphs rather than points. Feel free to use different chatting type. \nOnly responds to queries related to Andy and the developer and his works. For example, if someone asked to write code, or paraphrase sentence, don't do it. Kindly refuse to perform or answer any queries which are not related to portfolio website and its content.\n\nDeveloper Details:\n- Name: Arpan Bhandari\n- About: A student and experienced developer passionate about experimenting with technologies and continuously learning.\n- Portfolio: https://arpanbhandari.com.np\n- Email: arpanworkmail7@gmail.com\n- Education: Pursuing a B.Sc. in Computer Science at the University of Southern Mississippi\n\nSocials:\n- GitHub: @arpan404\n- LinkedIn: @arpan404\n- Twitter: @arpanbhandari01\n- Instagram: @the_d3vs\n\nNote: If writings uid is provided, it's link should be https://arpanbhandari.com.np/writings/{uid}\nIf you need uid of any writings or projects, you must use the tool to fetch all the data.\nFocus on only providing information asked and be creative. For example, if user asks to suggest a article or project, suggest him a different one each time. You must focus on being concise and to the point. You must be polite and friendly in your responses. You must suggest different articles or projects each time to check out if user asks for it. If meeting scheduling or message sending is failed by the tools provided, if asked by the user, try it again. Priotize the latest message if needed like scheduling a new meeting or sending a new message. When mentioning Arpan Bhandari, use Arpan instead of his full name.\nYou can provide information about the developer's projects, skills, resume, writings, and also schedule a meeting or send a message to the developer. You can only schedule or send message only once if it is successfull.",
+        }
+    ],
 }
 
 
 async def chatgpt(msgs: List, user_details=dict) -> str:
     try:
         client = openai.AsyncOpenAI()
-        messages = [
-            SYSTEM_PROMPT]
+        messages = [SYSTEM_PROMPT]
         if user_details:
-            messages[0]["content"].append({
-                "type": "text",
-                "text": f"User's email address is ${user_details.get('email')} and name is ${user_details.get('name')}. You can use this information whenever needed."
-            })
+            messages[0]["content"].append(
+                {
+                    "type": "text",
+                    "text": f"User's email address is ${user_details.get('email')} and name is ${user_details.get('name')}. You can use this information whenever needed.",
+                }
+            )
         messages.extend(msgs)
         response = await client.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
-            response_format={
-                "type": "text"
-            },
+            response_format={"type": "text"},
             tools=[
                 {
                     "type": "function",
@@ -48,10 +43,10 @@ async def chatgpt(msgs: List, user_details=dict) -> str:
                         "parameters": {
                             "type": "object",
                             "required": [],
-                            "properties": {}
+                            "properties": {},
                         },
-                        "description": "Returns all the projects that Arpan has worked on in json format"
-                    }
+                        "description": "Returns all the projects that Arpan has worked on in json format",
+                    },
                 },
                 {
                     "type": "function",
@@ -60,19 +55,17 @@ async def chatgpt(msgs: List, user_details=dict) -> str:
                         "strict": True,
                         "parameters": {
                             "type": "object",
-                            "required": [
-                                "uid"
-                            ],
+                            "required": ["uid"],
                             "properties": {
                                 "uid": {
                                     "type": "string",
-                                    "description": "uid of the writings"
+                                    "description": "uid of the writings",
                                 }
                             },
-                            "additionalProperties": False
+                            "additionalProperties": False,
                         },
-                        "description": "Get the detail of a certain uid"
-                    }
+                        "description": "Get the detail of a certain uid",
+                    },
                 },
                 {
                     "type": "function",
@@ -82,10 +75,10 @@ async def chatgpt(msgs: List, user_details=dict) -> str:
                         "parameters": {
                             "type": "object",
                             "required": [],
-                            "properties": {}
+                            "properties": {},
                         },
-                        "description": "Returns all the skills in tech Arpan has"
-                    }
+                        "description": "Returns all the skills in tech Arpan has",
+                    },
                 },
                 {
                     "type": "function",
@@ -95,10 +88,10 @@ async def chatgpt(msgs: List, user_details=dict) -> str:
                         "parameters": {
                             "type": "object",
                             "required": [],
-                            "properties": {}
+                            "properties": {},
                         },
-                        "description": "Returns the url of resume of Arpan if found otherwise returns null"
-                    }
+                        "description": "Returns the url of resume of Arpan if found otherwise returns null",
+                    },
                 },
                 {
                     "type": "function",
@@ -108,10 +101,10 @@ async def chatgpt(msgs: List, user_details=dict) -> str:
                         "parameters": {
                             "type": "object",
                             "required": [],
-                            "properties": {}
+                            "properties": {},
                         },
-                        "description": "Returns the list of articles/writings written by Arpan"
-                    }
+                        "description": "Returns the list of articles/writings written by Arpan",
+                    },
                 },
                 {
                     "type": "function",
@@ -120,19 +113,17 @@ async def chatgpt(msgs: List, user_details=dict) -> str:
                         "strict": True,
                         "parameters": {
                             "type": "object",
-                            "required": [
-                                "uid"
-                            ],
+                            "required": ["uid"],
                             "properties": {
                                 "uid": {
                                     "type": "string",
-                                    "description": "uid of the writings"
+                                    "description": "uid of the writings",
                                 }
                             },
-                            "additionalProperties": False
+                            "additionalProperties": False,
                         },
-                        "description": "Get the detail of a certain uid"
-                    }
+                        "description": "Get the detail of a certain uid",
+                    },
                 },
                 {
                     "type": "function",
@@ -144,20 +135,17 @@ async def chatgpt(msgs: List, user_details=dict) -> str:
                             "properties": {
                                 "subject": {
                                     "type": "string",
-                                    "description": "Topic user want to discuss about with the developer"
+                                    "description": "Topic user want to discuss about with the developer",
                                 },
                                 "message": {
                                     "type": "string",
-                                    "description": "Message user want to send to the developer"
-                                }
+                                    "description": "Message user want to send to the developer",
+                                },
                             },
-                            "required": [
-                                "subject",
-                                "message"
-                            ]
+                            "required": ["subject", "message"],
                         },
-                        "strict": False
-                    }
+                        "strict": False,
+                    },
                 },
                 {
                     "type": "function",
@@ -169,20 +157,20 @@ async def chatgpt(msgs: List, user_details=dict) -> str:
                             "properties": {
                                 "topic": {
                                     "type": "string",
-                                    "description": "What user want to discuss about in meeting"
+                                    "description": "What user want to discuss about in meeting",
                                 }
                             },
-                            "required": ["topic"]
+                            "required": ["topic"],
                         },
-                        "strict": False
-                    }
-                }
+                        "strict": False,
+                    },
+                },
             ],
             temperature=0.8,
             max_completion_tokens=500,
             top_p=1,
             frequency_penalty=0.3,
-            presence_penalty=0.25
+            presence_penalty=0.25,
         )
         logger.info(f"ChatGPT response: {response}")
         return response

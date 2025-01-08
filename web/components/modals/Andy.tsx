@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import useStore from '@/lib/store';
 import AndyWelcome from '@/components/andy/AndyWelcome';
-import MessageContainer from '@/components/common/MessageContainer';
+import MessageContainer from '@/components/andy/MessageContainer';
 import {
    Sheet,
    SheetContent,
