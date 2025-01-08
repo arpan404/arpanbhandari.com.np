@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
+import Link from 'next/link';
 export default function AndyChatBubble({ message }: { message: string }) {
   return (
     <div className="flex max-w-[95%] items-start p-2 rounded-lg gap-1">
@@ -17,14 +18,14 @@ export default function AndyChatBubble({ message }: { message: string }) {
           className={'writing_body'}
           components={{
             a: ({ href, children, ...props }) => (
-              <a
+              <Link
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 {...props}
               >
                 {children}
-              </a>
+              </Link>
             ),
           }}
         >

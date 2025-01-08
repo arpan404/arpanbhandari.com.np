@@ -86,6 +86,8 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     --link: #006eff;
+    --selection: rgb(255, 82, 13);
+    --selection-text: #ffffff;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -113,6 +115,8 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
     --link: #5e83ff;
+    --selection: rgb(255, 110, 26);
+    --selection-text: #000000;
   }
 }
 
@@ -380,4 +384,9 @@ html {
 .andy_message ul ol,
 .andy_message ol ol {
   list-style-type: decimal !important;
+}
+
+::selection {
+  background-color: var(--selection);
+  color: var(--selection-text);
 }
