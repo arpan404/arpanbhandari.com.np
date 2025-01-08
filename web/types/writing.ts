@@ -16,4 +16,13 @@ interface Writing {
 
 type WritingCard = Omit<Writing, 'body'>;
 
-export type { Writing, WritingCard };
+interface ReadingTimeOptions {
+  wordsPerMinute?: number;
+  wordsPerMinuteForCode?: number;
+  secondsPerImage?: number;
+  customContentTypes?: {
+    [selector: string]: (elements: NodeListOf<Element>) => number;
+  };
+}
+
+export type { Writing, WritingCard, ReadingTimeOptions };

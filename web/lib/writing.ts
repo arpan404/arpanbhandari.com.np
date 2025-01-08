@@ -1,12 +1,11 @@
-interface ReadingTimeOptions {
-  wordsPerMinute?: number;
-  wordsPerMinuteForCode?: number;
-  secondsPerImage?: number;
-  customContentTypes?: {
-    [selector: string]: (elements: NodeListOf<Element>) => number;
-  };
-}
+import { ReadingTimeOptions } from '@/types/writing';
 
+/**
+ * Calculate the reading time of a given HTML string
+ * @param {string} htmlString
+ * @param {ReadingTimeOptions} options
+ * @returns {number} - The reading time in minutes
+ * */
 export default function getReadingTime(
   htmlString: string,
   options: ReadingTimeOptions = {}

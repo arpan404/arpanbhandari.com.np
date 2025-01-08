@@ -1,6 +1,7 @@
-import StoreState from '@/types/store';
 import { create } from 'zustand';
+import StoreState from '@/types/store';
 
+// Global State stays here
 const useStore = create<StoreState>(set => ({
   userDetails: null,
   messages: [],
