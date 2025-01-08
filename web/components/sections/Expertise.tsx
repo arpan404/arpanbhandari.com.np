@@ -1,7 +1,8 @@
-import Skill from '@/components/buttons/Skill';
-import getResume from '@/actions/getResume';
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+
+import getResume from '@/actions/getResume';
+import Skill from '@/components/buttons/Skill';
+import { Button } from '@/components/ui/button';
 import PdfViewer from '@/components/common/PdfViewer';
 import getFeaturedSkills from '@/actions/getFeaturedSkills';
 

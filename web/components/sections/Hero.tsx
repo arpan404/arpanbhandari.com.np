@@ -1,7 +1,7 @@
 import Github from '@/components/buttons/Github';
 import Linkedin from '@/components/buttons/Linkedin';
-import AnimatedBackground from '@/components/common/AnimatedBackground';
 import ScrollHint from '@/components/common/ScrollHint';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 export default function Hero() {
   return (

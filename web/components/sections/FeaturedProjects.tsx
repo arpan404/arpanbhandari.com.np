@@ -1,8 +1,9 @@
-import getFeaturedProjects from '@/actions/getFeaturedProjects';
-import ProjectCard from '@/components/cards/ProjectCard';
-import HorizontalScroll from '@/components/common/HorizontalScroll';
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
+
+import ProjectCard from '@/components/cards/ProjectCard';
+import getFeaturedProjects from '@/actions/getFeaturedProjects';
+import HorizontalScroll from '@/components/common/HorizontalScroll';
 
 export default async function FeaturedProjects() {
   const projects = await getFeaturedProjects();

@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import React from 'react';
-import WritingCard from '../cards/WritingCard';
+
+import WritingCard from '@/components/cards/WritingCard';
 import getFeaturedWritings from '@/actions/getFeaturedWritings';
-import HorizontalScroll from '../common/HorizontalScroll';
+import HorizontalScroll from '@/components/common/HorizontalScroll';
 
 export default async function FeaturedWritings() {
   const writings = await getFeaturedWritings();

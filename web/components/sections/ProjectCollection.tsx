@@ -1,8 +1,9 @@
 'use client';
-import Project from '@/types/project';
-import ProjectCard from '@/components/cards/ProjectCard';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+
+import Project from '@/types/project';
+import ProjectCard from '@/components/cards/ProjectCard';
 
 export default function ProjectCollection({
   projects,

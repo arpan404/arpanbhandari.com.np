@@ -1,6 +1,7 @@
-import { WritingCardsQueryResponse } from '@/types/response';
 import React from 'react';
+
 import WritingCard from '@/components/cards/WritingCard';
+import { WritingCardsQueryResponse } from '@/types/response';
 
 export default function WritingCollection({
   data,
