@@ -78,7 +78,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
         )
 
     try:
-        previous_chat = await Chat.filter(uid=json_data.get("chat_uid"), email=json_data.get("user_details")["email"]).order_by('-id').limit(21) or []
+        previous_chat = await Chat.filter(uid=json_data.get("chat_uid"), email=json_data.get("user_details")["email"]).order_by('-id').limit(12) or []
         previous_chat.reverse()
     except Exception as e:
         logger.error(f"Error fetching chat from database: {str(e)}")

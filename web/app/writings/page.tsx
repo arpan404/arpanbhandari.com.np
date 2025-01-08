@@ -1,12 +1,14 @@
-import getWritings from '@/actions/getWritingCards';
-import WritingCollection from '@/components/sections/WritingCollection';
-import { Button } from '@/components/ui/button';
-import { ChevronLeft, FilterX } from 'lucide-react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import React from 'react';
+import { ChevronLeft, FilterX } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import getWritings from '@/actions/getWritingCards';
+import WritingCollection from '@/components/sections/WritingCollection';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://arpanbhandari.com.np'),
   title: 'Writings - Arpan Bhandari (The Developer)',
   description: `Explore Diaries, Blueprints, and Personal Perspectives—insightful and intriguing writings on software engineering, personal experiences, and general topics you'll love to read.`,
   keywords:
@@ -17,7 +19,13 @@ export const metadata: Metadata = {
     title: 'Writings - Arpan Bhandari (The Developer)',
     description: `Explore Diaries, Blueprints, and Personal Perspectives—insightful and intriguing writings on software engineering, personal experiences, and general topics you'll love to read.`,
     siteName: "Arpan Bhandari's Writing Space",
-    images: ['/images/writings-opengraph.png'],
+    images: [
+      {
+        url: '/images/writings-opengraph.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
     locale: 'en_US',
   },
 };

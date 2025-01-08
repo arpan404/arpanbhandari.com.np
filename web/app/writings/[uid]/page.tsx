@@ -23,11 +23,12 @@ export const generateMetadata = async (props: {
   params: Promise<{ uid: string }>;
 }) => {
   const params = await props.params;
-  const uid = await params.uid;
+  const uid = params.uid;
   if (!uid) return notFoundMetadata;
   const data = await getWriting(params.uid);
   if (!data) return notFoundMetadata;
   return {
+    metadataBase: new URL('https://arpanbhandari.com.np'),
     title: data.articles[0].title + ' | Arpan Bhandari (The Developer)',
     description: data.articles[0].description,
     openGraph: {
@@ -37,7 +38,11 @@ export const generateMetadata = async (props: {
       description: data.articles[0].description,
       siteName: "Arpan Bhandari's Porfolio",
       images: [
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.articles[0].thumbnail.url}`,
+        {
+          url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.articles[0].thumbnail.url}`,
+          width: 1920,
+          height: 1080,
+        }
       ],
       locale: 'en_US',
     },

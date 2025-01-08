@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://arpanbhandari.com.np'),
   title: 'Not Found ☹️ | Arpan Bhandari',
   description:
     'Oops! The page you are looking for cannot be found. It might have been moved or deleted.',
@@ -18,7 +19,13 @@ export const metadata: Metadata = {
     description:
       'Oops! The page you are looking for cannot be found. It might have been moved or deleted.',
     siteName: "Arpan Bhandari's Portfolio",
-    images: ['/images/not-found-opengraph.png'],
+    images: [
+      {
+        url: '/images/not-found-opengraph.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
     locale: 'en_US',
   },
 };

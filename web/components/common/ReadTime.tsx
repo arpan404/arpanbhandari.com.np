@@ -1,6 +1,6 @@
 'use client';
-import getReadingTime from '@/lib/writing';
 import { useMemo } from 'react';
+import getReadingTime from '@/lib/writing';
 
 export default function ReadTime({ html }: { html: string }) {
   const time = useMemo(() => {

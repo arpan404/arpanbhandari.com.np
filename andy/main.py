@@ -80,6 +80,7 @@ async def gen_uid(request: Request):
 
 @app.post("/chat")
 @limiter.limit("10/minute")
+@limiter.limit("200/day")
 async def andy_chat(request: Request, background_tasks: BackgroundTasks):
     client_ip = request.client.host
     logger.info(f"Chat endpoint accessed by {client_ip}")

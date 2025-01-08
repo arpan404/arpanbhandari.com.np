@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import ProjectCollection from '@/components/sections/ProjectCollection';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://arpanbhandari.com.np'),
   title: 'Projects - Arpan Bhandari (The Developer)',
   description:
     'Explore the groundbreaking projects developed by Arpan Bhandari, a passionate and versatile developer with expertise in web development, software engineering, and creative solutions. From cutting-edge web applications to software innovations, discover the technical achievements and forward-thinking approaches driving his work.',
@@ -19,7 +20,13 @@ export const metadata: Metadata = {
     description:
       'Explore the groundbreaking projects developed by Arpan Bhandari, a passionate and versatile developer with expertise in web development, software engineering, and creative solutions. From cutting-edge web applications to software innovations, discover the technical achievements and forward-thinking approaches driving his work.',
     siteName: "Arpan Bhandari's Project Portfolio",
-    images: ['/images/projects-opengraph.png'],
+    images: [
+      {
+        url: '/images/projects-opengraph.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
     locale: 'en_US',
   },
 };
