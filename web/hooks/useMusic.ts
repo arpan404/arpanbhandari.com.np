@@ -1,6 +1,13 @@
+import { useEffect, useState } from 'react';
 import getMusic from '@/actions/getMusic';
 import { addCookie, getCookie } from '@/lib/cookie';
-import { useEffect, useState } from 'react';
+
+/**
+ * - musicPlaying: Indictaes if the music is playing or not
+ * - toggleMusic: Toggles the music playing state
+ * - currentMusic: Url of current music that is playing
+ * - setCurrentMusic: Sets the url of the current music
+ */
 
 export default function useMusic() {
   const [musicPlaying, setMusicPlaying] = useState<boolean>(false);
