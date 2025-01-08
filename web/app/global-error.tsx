@@ -2,7 +2,7 @@
 
 import AnimatedBackground from '@/components/common/AnimatedBackground';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, RefreshCw } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 
 export default function GlobalError({

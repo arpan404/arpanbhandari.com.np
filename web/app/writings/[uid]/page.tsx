@@ -42,7 +42,7 @@ export const generateMetadata = async (props: {
           url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.articles[0].thumbnail.url}`,
           width: 1920,
           height: 1080,
-        }
+        },
       ],
       locale: 'en_US',
     },
