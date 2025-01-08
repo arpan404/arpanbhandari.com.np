@@ -3,7 +3,6 @@ from fastapi.responses import JSONResponse
 from uuid import uuid4
 from app.database.models import Chat, User
 from app.logger import log
-from app.chatgpt import chatgpt
 
 logger = log(logger_name="api_uid_logger", log_file="api.log", log_dir="logs")
 
@@ -52,16 +51,3 @@ async def gen_uid(request: Request, json_data: dict):
             status_code=500,
             content={"message": "Internal server error"},
         )
-
-
-async def validate_chat_uid(json_data: dict):
-    if not json_data.get("chat_uid"):
-        logger.error("Chat UID missing in request")
-        raise HTTPException(status_code=400, detail="Chat UID missing in request")
-    user = await User.get_or_none(email=json_data.get("user_details")["email"])
-    if not user:
-        logger.error("User not found")
-        raise HTTPException(status_code=400, detail="User not found")
-    if json_data.get("chat_uid") not in user.assigned_chats:
-        logger.error("Chat UID not assigned to user")
-        raise HTTPException(status_code=400, detail="Chat UID not assigned to user")

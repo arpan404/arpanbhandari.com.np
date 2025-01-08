@@ -9,9 +9,9 @@ from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
 
 from app.chat import chat
 from app.logger import log
-import app.validator as validator
 from app.uid import gen_uid as generate_uid
 from app.database.config import close_db, init_db
+from app.validation import validate_origin, validate_json, validate_message
 
 logger = log(logger_name="api_logger", log_file="api.log", log_dir="logs")
 
@@ -59,15 +59,15 @@ async def gen_uid(request: Request):
     try:
         client_ip = request.client.host
         logger.info(f"UID generation endpoint accessed by {client_ip}")
-        validator.referrer_validator(request)
-        json_data = await validator.user_json_validator(request)
+        validate_origin(request)
+        json_data = await validate_json(request)
         return await generate_uid(request, json_data)
     except HTTPException as e:
         raise e
     except Exception as e:
         logger.error(
             f"Internal server error for {
-                     client_ip}: {str(e)}",
+                client_ip}: {str(e)}",
             exc_info=True,
         )
         raise HTTPException(status_code=500, detail="Internal server error")
@@ -80,11 +80,11 @@ async def andy_chat(request: Request, background_tasks: BackgroundTasks):
     client_ip = request.client.host
     logger.info(f"Chat endpoint accessed by {client_ip}")
 
-    validator.referrer_validator(request)
+    validate_origin(request)
     try:
         logger.info(f"Received chat request from {client_ip}")
-        json_data = await validator.user_json_validator(request)
-        await validator.message_api_data_validaror(request, json_data)
+        json_data = await validate_json(request)
+        validate_message(request, json_data)
         response = await chat(request, json_data, background_tasks)
         logger.info(f"Successfully processed chat request from {client_ip}")
         return response
@@ -95,7 +95,7 @@ async def andy_chat(request: Request, background_tasks: BackgroundTasks):
     except Exception as e:
         logger.error(
             f"Internal server error for {
-                     client_ip}: {str(e)}",
+                client_ip}: {str(e)}",
             exc_info=True,
         )
         raise HTTPException(status_code=500, detail="Internal server error")
@@ -125,7 +125,7 @@ async def rate_limit_exceeded_handler(request: Request, exc):
 async def custom_404_handler(request: Request, exc: HTTPException):
     logger.warning(
         f"404 Not Found: {request.url} accessed by {
-                   request.client.host}"
+            request.client.host}"
     )
     return JSONResponse(
         status_code=404,
@@ -146,7 +146,7 @@ async def internal_server_error_handler(request: Request, exc):
 async def method_not_allowed_handler(request: Request, exc: HTTPException):
     logger.warning(
         f"405 Method Not Allowed: {request.method} at {
-                   request.url} accessed by {request.client.host}"
+            request.url} accessed by {request.client.host}"
     )
     return JSONResponse(
         status_code=405,

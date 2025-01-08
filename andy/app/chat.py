@@ -8,7 +8,7 @@ from app.data import Data
 from app.logger import log
 from app.chatgpt import chatgpt
 from app.database.models import Chat
-from app.uid import validate_chat_uid
+from app.validation import validate_chat_uid
 
 logger = log(logger_name="api_logger", log_file="api.log", log_dir="logs")
 
@@ -63,7 +63,8 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
             content={"message": e.detail},
         )
     except Exception as e:
-        logger.error(f"Internal server error while validating chat uid: {str(e)}")
+        logger.error(
+            f"Internal server error while validating chat uid: {str(e)}")
         return JSONResponse(
             status_code=500,
             content={"message": "Internal server error"},
@@ -112,7 +113,8 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
             if response:
                 if response.choices[0].message.content:
                     logger.info(
-                        f"ChatGPT response: {response.choices[0].message.content}"
+                        f"ChatGPT response: {
+                            response.choices[0].message.content}"
                     )
                     background_tasks.add_task(
                         save_chats_in_background,
@@ -123,7 +125,8 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
 
                     return JSONResponse(
                         status_code=200,
-                        content={"message": response.choices[0].message.content},
+                        content={
+                            "message": response.choices[0].message.content},
                     )
                 else:
                     logger.info("ChatGPT response: No content")
@@ -146,7 +149,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 message_to_save.append(function_message)
                                 logger.info(
                                     f"Function message: {
-                                            function_message}"
+                                        function_message}"
                                 )
 
                             case "get_skills":
@@ -155,7 +158,8 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 function_message = {
                                     "role": "tool",
                                     "content": [
-                                        {"type": "text", "text": json.dumps(data)}
+                                        {"type": "text",
+                                            "text": json.dumps(data)}
                                     ],
                                     "tool_call_id": first_tool_call.id,
                                 }
@@ -179,7 +183,8 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 function_message = {
                                     "role": "tool",
                                     "content": [
-                                        {"type": "text", "text": json.dumps(data)}
+                                        {"type": "text",
+                                            "text": json.dumps(data)}
                                     ],
                                     "tool_call_id": first_tool_call.id,
                                 }
@@ -197,7 +202,8 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 function_message = {
                                     "role": "tool",
                                     "content": [
-                                        {"type": "text", "text": json.dumps(data)}
+                                        {"type": "text",
+                                            "text": json.dumps(data)}
                                     ],
                                     "tool_call_id": first_tool_call.id,
                                 }
@@ -215,7 +221,8 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 function_message = {
                                     "role": "tool",
                                     "content": [
-                                        {"type": "text", "text": json.dumps(data)}
+                                        {"type": "text",
+                                            "text": json.dumps(data)}
                                     ],
                                     "tool_call_id": first_tool_call.id,
                                 }
@@ -230,7 +237,8 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 meeting_message = arguments.get("topic")
                                 meeting_status = await send_message_to_developer(
                                     name=json_data.get("user_details")["name"],
-                                    email=json_data.get("user_details")["email"],
+                                    email=json_data.get("user_details")[
+                                        "email"],
                                     message="Appointment requested for a meeting",
                                     subject="#Meeting: " + meeting_message,
                                     ip=request.client.host,
@@ -269,7 +277,8 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 s_subject = arguments.get("subject")
                                 s_status = await send_message_to_developer(
                                     name=json_data.get("user_details")["name"],
-                                    email=json_data.get("user_details")["email"],
+                                    email=json_data.get("user_details")[
+                                        "email"],
                                     message=s_message,
                                     subject=s_subject,
                                     ip=request.client.host,
