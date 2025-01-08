@@ -1,15 +1,17 @@
 'use client';
-import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
+
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { Check, Copy } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
+
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '../ui/tooltip';
-import { Check, Copy } from 'lucide-react';
+} from '@/components/ui/tooltip';
 
 export default function WritingShare({ title }: { title: string }) {
   const [linkCopied, setLinkCopied] = useState(false);

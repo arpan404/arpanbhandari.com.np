@@ -1,24 +1,26 @@
 'use client';
+
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
-import ReadBlueprints from '@/components/buttons/ReadBlueprints';
+
+import Project from '@/types/project';
 import ViewCode from '@/components/buttons/ViewCode';
 import ViewProject from '@/components/buttons/ViewProject';
+import ReadBlueprints from '@/components/buttons/ReadBlueprints';
+import ProjectCategory from '@/components/buttons/ProjectCategory';
+import TechnologiesTooltip from '@/components/common/TechnologiesTooltip';
 import {
   Modal,
   ModalBody,
   ModalContent,
   ModalTrigger,
 } from '@/components/modals/ProjectModal';
-import TechnologiesTooltip from '@/components/common/TechnologiesTooltip';
 import {
   Card,
   CardContent,
   CardDescription,
   CardTitle,
 } from '@/components/ui/card';
-import ProjectCategory from '@/components/buttons/ProjectCategory';
-import Project from '@/types/project';
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (

@@ -1,10 +1,13 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import Image from 'next/image';
+'use client';
+
 import Link from 'next/link';
-import { formatTimestamp } from '@/lib/date';
-import { WritingCard as WritingCardType } from '@/types/writing';
+import Image from 'next/image';
 import { Tag } from 'lucide-react';
+
+import { formatTimestamp } from '@/lib/date';
 import { Button } from '@/components/ui/button';
+import { WritingCard as WritingCardType } from '@/types/writing';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Tooltip,
   TooltipContent,
