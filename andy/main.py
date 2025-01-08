@@ -37,7 +37,7 @@ app = FastAPI(lifespan=lifespan)
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://arpanbhandari.com.np"],
+    allow_origins=["https://arpanbhandari.com.np", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -58,7 +58,6 @@ async def read_root(request: Request):
         status_code=200,
         content={"message": "Hey there! Andy is busy serving the users."},
     )
-
 
 @app.post("/gen-uid")
 @limiter.limit("5/minute")
@@ -153,54 +152,4 @@ async def method_not_allowed_handler(request: Request, exc: HTTPException):
     return JSONResponse(
         status_code=405,
         content={"message": "Method Not Allowed. Please check the request method."},
-    )
-
-
-@app.get("/writings")
-async def get_writings(request: Request):
-    client_ip = request.client.host
-    logger.info(f"Writings endpoint accessed by {client_ip}")
-    return JSONResponse(
-        status_code=200,
-        content=await Data().get_all_writings()
-    )
-
-
-@app.get("/writings/{uid}")
-async def get_writing(request: Request, uid: str):
-    client_ip = request.client.host
-    logger.info(f"Writing endpoint accessed by {client_ip}")
-    return JSONResponse(
-        status_code=200,
-        content=await Data().get_a_writings(uid)
-    )
-
-
-@app.get("/projects/{uid}")
-async def get_project(request: Request, uid: str):
-    client_ip = request.client.host
-    logger.info(f"Project endpoint accessed by {client_ip}")
-    return JSONResponse(
-        status_code=200,
-        content=await Data().get_a_project(uid)
-    )
-
-
-@app.get("/projects")
-async def get_projects(request: Request):
-    client_ip = request.client.host
-    logger.info(f"Projects endpoint accessed by {client_ip}")
-    return JSONResponse(
-        status_code=200,
-        content=await Data().get_projects()
-    )
-
-
-@app.get("/resume")
-async def get_resume(request: Request):
-    client_ip = request.client.host
-    logger.info(f"Resume endpoint accessed by {client_ip}")
-    return JSONResponse(
-        status_code=200,
-        content=await Data().get_resume()
     )

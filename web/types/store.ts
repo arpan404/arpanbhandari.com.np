@@ -10,6 +10,8 @@ interface StoreState {
         from: string;
         message: string;
       }>;
+  chatUID: string | null;
+  setChatUID: (uid: StoreState['chatUID']) => void;
   setUserDetails: (data: StoreState['userDetails']) => void;
   addMessage: (message: StoreState['messages'][0]) => void;
   setMessages: (message: StoreState['messages'] | []) => void;

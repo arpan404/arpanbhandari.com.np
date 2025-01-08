@@ -117,7 +117,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
         ]
         max_iteration = 3
         while max_iteration > 0:
-            response = await chatgpt(messages)
+            response = await chatgpt(messages, user_details=json_data.get("user_details"))
             if response:
                 if response.choices[0].message.content:
                     logger.info(

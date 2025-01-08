@@ -11,8 +11,9 @@ logger = log(
 
 def referrer_validator(request: Request):
     client_ip = request.client.host
-    referrer = request.headers.get("referer")
-    if referrer != "https://arpanbhandari.com.np":
+    referrer = request.headers.get("origin")
+    if not (referrer == "https://arpanbhandari.com.np" or referrer == "http://localhost:3000"):
+        print("Forbidden", referrer)
         logger.warning(f"Forbidden access attempt from {
                        client_ip} with referrer: {referrer}")
         raise HTTPException(status_code=403, detail="Forbidden")
@@ -113,18 +114,4 @@ async def message_api_data_validaror(request: Request, json_data):
         raise HTTPException(
             status_code=400,
             detail="Message must have at most 500 characters"
-        )
-
-    current_url = json_data.get("current_url")
-    if not current_url:
-        logger.error(f"Empty current_url received from {client_ip}")
-        raise HTTPException(
-            status_code=400,
-            detail="CurrentURL missing in request"
-        )
-    if not current_url.startswith("https://arpanbhandari.com.np"):
-        logger.error(f"Invalid current_url received from {client_ip}")
-        raise HTTPException(
-            status_code=400,
-            detail="Invalid current_url"
         )
