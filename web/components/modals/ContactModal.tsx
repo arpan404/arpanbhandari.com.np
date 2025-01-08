@@ -157,7 +157,7 @@ export default function ContactModal() {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          className="text-xs md:text-sm font-medium rounded-full px-6 py-3 hover:scale-110 transition-all ease-in delay-75"
+          className="text-xs md:text-sm font-medium rounded-full px-6 py-3 hover:scale-110 transition-all ease-in delay-75 select-none"
           onClick={() => {
             setValues({
               name: '',

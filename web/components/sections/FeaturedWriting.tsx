@@ -15,7 +15,7 @@ export default async function FeaturedWritings() {
     >
       <div className="container px-2 md:px-8">
         <div className="">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center select-none">
             What did{' '}
             <span className="dark:text-[#ff7d37] text-[#ff6730] saturate-[110%]">
               I Write?
@@ -24,7 +24,7 @@ export default async function FeaturedWritings() {
         </div>
         <div className="flex justify-center mt-4 md:mt-6">
           <p>
-            <span className="text-base md:text-lg font-semibold text-primary opacity-80">
+            <span className="text-base md:text-lg font-semibold text-primary/80">
               I try my hand at writing sometimes—here are a few of my latest
               pieces!
             </span>
@@ -38,7 +38,7 @@ export default async function FeaturedWritings() {
             ))}
           </HorizontalScroll>
         </div>
-        <div className="mt-4 md:mt-6 flex justify-center md:justify-endh">
+        <div className="mt-4 md:mt-6 flex justify-center select-none">
           <h3>
             Want to see more?{' '}
             <Link

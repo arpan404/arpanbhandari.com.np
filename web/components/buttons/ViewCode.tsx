@@ -12,7 +12,7 @@ export default function ViewCode({ url }: { url: string }) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Link href={url} target="_blank">
+          <Link href={url} target="_blank" className='select-none'>
             <Button
               variant={'outline'}
               size={'icon'}

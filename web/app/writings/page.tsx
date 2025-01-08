@@ -34,7 +34,10 @@ export default async function page({
     <main className="bg-background min-h-[calc(100dvh-68px)] pt-[52px]">
       <div className="px-2 py-2">
         <Link href="/">
-          <Button variant={'link'} className="px-2 rounded-full font-semibold">
+          <Button
+            variant={'link'}
+            className="px-2 rounded-full font-semibold select-none"
+          >
             <ChevronLeft size={20} /> Home
             <span className="sr-only">Go back to home</span>
           </Button>
@@ -42,10 +45,10 @@ export default async function page({
       </div>
       <section className="container mx-auto px-2">
         <div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-primary">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-primary select-none">
             Writing Space
           </h1>
-          <h2 className="text-lg font-semibold text-primary text-center opacity-80 mt-2">
+          <h2 className="text-lg font-semibold text-primary/80 text-center mt-2">
             A collection of my writings on various topics and genres.
           </h2>
         </div>
@@ -64,7 +67,10 @@ export default async function page({
             </div>
             <div>
               <Link href="/writings">
-                <Button variant={'outline'} className="rounded-full h-8">
+                <Button
+                  variant={'outline'}
+                  className="rounded-full h-8 select-none"
+                >
                   <FilterX size={20} /> Clear Filter
                 </Button>
               </Link>
@@ -78,7 +84,7 @@ export default async function page({
               type ? 'min-h-[calc(100dvh-317px)]' : 'min-h-[calc(100dvh-260px)]'
             } flex items-center justify-center `}
           >
-            <div className="relative -top-10">
+            <div className="relative -top-10 select-none">
               <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-center dark:text-[#ff7d37] text-[#ff6730] saturate-[130%]">
                 OOPS!
               </h2>

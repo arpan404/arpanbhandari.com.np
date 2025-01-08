@@ -13,13 +13,17 @@ export default function WritingBreadcrumb() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/">Home</Link>
+            <Link href="/" className="select-none">
+              Home
+            </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/writings">Writings</Link>
+            <Link href="/writings" className="select-none">
+              Writings
+            </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
       </BreadcrumbList>

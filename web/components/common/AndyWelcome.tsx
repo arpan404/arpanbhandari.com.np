@@ -1,10 +1,11 @@
 import { useState, useCallback } from 'react';
+import { ArrowRight } from 'lucide-react';
+
+import useStore from '@/lib/store';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
-import AndyAvatar from './AndyAvatar';
-import useStore from '@/lib/store';
+import AndyAvatar from '@/components/common/AndyAvatar';
 
 export default function AndyWelcome() {
   const [name, setName] = useState('');

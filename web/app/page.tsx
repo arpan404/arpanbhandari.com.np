@@ -1,9 +1,9 @@
+import { Metadata } from 'next';
+import { Suspense } from 'react';
 import About from '@/components/sections/About';
 import Hero from '@/components/sections/Hero';
-import { Metadata } from 'next';
 import Expertise from '@/components/sections/Expertise';
 import FeaturedProjects from '@/components/sections/FeaturedProjects';
-import { Suspense } from 'react';
 import FeaturedWritings from '@/components/sections/FeaturedWriting';
 import Contact from '@/components/sections/Contact';
 import { Toaster } from '@/components/ui/toaster';

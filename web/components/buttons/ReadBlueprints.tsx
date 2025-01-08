@@ -12,7 +12,7 @@ export default function ReadBlueprints({ url }: { url: string }) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Link href={url} target="_blank">
+          <Link href={url} target="_blank" className='select-none'>
             <Button
               className="rounded-xl h-10 w-10 sm:w-fit px-0 sm:px-4 md:px-6 text-sm"
               variant={'default'}

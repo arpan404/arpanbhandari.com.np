@@ -6,7 +6,7 @@ export default function About() {
   return (
     <section className="py-10 sm:py-16 md:py-20 bg-background px-4" id="about">
       <div className="">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center select-none">
           Who am{' '}
           <span className="dark:text-[#ff7d37] text-[#ff6730] saturate-[110%]">
             I?
@@ -15,7 +15,7 @@ export default function About() {
       </div>
       <div className="flex justify-center mt-5 md:mt-8">
         <div className="container flex justify-between items-center flex-wrap gap-10">
-          <div className="flex items-center justify-center md:flex-1 w-full ">
+          <div className="flex items-center justify-center md:flex-1 w-full select-none">
             <Image
               src={'/images/thinking.png'}
               alt="Thinking"
@@ -28,7 +28,7 @@ export default function About() {
           </div>
           <div className="md:flex-1 space-y-2 md:space-y-6">
             <p>
-              <span className="text-lg font-semibold text-primary opacity-80">
+              <span className="text-lg font-semibold text-primary/80">
                 In short, a person who loves tech and is intrigued by its
                 endless possibilities.
               </span>

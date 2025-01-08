@@ -1,8 +1,9 @@
-import { Button } from '@/components/ui/button';
-import { ChevronLeft, FilterX } from 'lucide-react';
-import Link from 'next/link';
-import getProjects from '@/actions/getProjects';
 import { Metadata } from 'next';
+import Link from 'next/link';
+import { ChevronLeft, FilterX } from 'lucide-react';
+
+import getProjects from '@/actions/getProjects';
+import { Button } from '@/components/ui/button';
 import ProjectCollection from '@/components/sections/ProjectCollection';
 
 export const metadata: Metadata = {

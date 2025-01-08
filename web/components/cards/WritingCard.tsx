@@ -19,7 +19,7 @@ export default function WritingCard(props: WritingCardType) {
         <div className="flex justify-center h-[170px] rounded-t-2xl overflow-hidden">
           <Link href={`/writings/${props.uid}`} className="w-full h-full">
             <Image
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover select-none"
               src={process.env.NEXT_PUBLIC_STRAPI_URL + props.thumbnail.url}
               height={320}
               width={320}
@@ -56,7 +56,7 @@ export default function WritingCard(props: WritingCardType) {
                     className="rounded-full text-[0.6rem] w-fit font-medium px-2 py-1 h-fit mx-1 text-primary/80"
                   >
                     <Tag size={8} className="text-[0.5rem]" />
-                    <span className="">{props.type.name}</span>
+                    <span className="select-none">{props.type.name}</span>
                   </Button>
                 </Link>
               </TooltipTrigger>

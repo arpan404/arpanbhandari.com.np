@@ -32,7 +32,7 @@ export default function TechnologiesTooltip({
   };
 
   return (
-    <div className="flex flex-row items-center justify-start w-full flex-wrap gap-1">
+    <div className="flex flex-row items-center justify-start w-full flex-wrap gap-1 select-none">
       {data.map(
         (item: {
           skill: { uid: string; name: string; logo?: { url: string } };

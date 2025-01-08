@@ -142,7 +142,7 @@ export default function PdfViewer({
                 </div>
               )}
               <div className="flex items-center relative flex-1 justify-center">
-                <span className="text-primary opacity-80 font-medium text-sm">
+                <span className="text-primary/80 font-medium text-sm">
                   {pageNumber} / {numPages}
                 </span>
               </div>

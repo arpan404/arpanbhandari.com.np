@@ -1,12 +1,14 @@
-import getWriting from '@/actions/getWriting';
-import { redirect } from 'next/navigation';
 import React from 'react';
-import { metadata as notFoundMetadata } from '@/app/not-found';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import ReadTime from '@/components/common/ReadTime';
-import { formatTimestamp } from '@/lib/date';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { Calendar, Dot, Tag } from 'lucide-react';
+
+import { formatTimestamp } from '@/lib/date';
+import getWriting from '@/actions/getWriting';
+import { metadata as notFoundMetadata } from '@/app/not-found';
+import ReadTime from '@/components/common/ReadTime';
 import WritingBreadcrumb from '@/components/navs/WritingBreadcrumb';
 import WritingShare from '@/components/cards/WritingShare';
 import { Button } from '@/components/ui/button';
@@ -16,7 +18,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import Link from 'next/link';
 
 export const generateMetadata = async (props: {
   params: Promise<{ uid: string }>;
@@ -66,7 +67,7 @@ export default async function Page(props: {
               alt="thumbnail"
               height={1080 / 2}
               width={1920 / 2}
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full select-none"
               draggable={false}
               loading="lazy"
             />
@@ -78,7 +79,7 @@ export default async function Page(props: {
               </h1>
             </div>
             <div className="pt-6 md:pt-8">
-              <div className="flex justify-start gap-2 flex-wrap items-center">
+              <div className="flex justify-start gap-2 flex-wrap items-center select-none">
                 <div className="flex gap-0 items-center">
                   <div className="text-primary/70 font-medium text-sm flex items-center gap-1">
                     <Calendar size={16} />
@@ -111,7 +112,6 @@ export default async function Page(props: {
                   </Tooltip>
                 </TooltipProvider>
               </div>
-
               <div className="flex justify-end pt-4">
                 <WritingShare title={article.title} />
               </div>

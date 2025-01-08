@@ -33,12 +33,12 @@ export default function ProjectCard({ project }: { project: Project }) {
               height={200}
               draggable={false}
               priority={true}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover select-none"
             />
           </ModalTrigger>
         </div>
         <CardContent className="p-0">
-          <CardTitle className="p-0">
+          <CardTitle className="p-0 rounded-none md:rounded-none select-none">
             <ModalTrigger className="p-0 mx-2 opacity-90 hover:opacity-100 hover:underline underline-offset-2 mt-2">
               <h3 className="text-base font-semibold">{project.name}</h3>
             </ModalTrigger>
@@ -61,7 +61,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 height={700}
                 draggable={false}
                 priority={true}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover select-none"
               />
             </div>
             <div className="relative bg-background rounded-t-lg -top-10 px-4 pt-6">
@@ -103,7 +103,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               </div>
               {project.technologiesUsed &&
                 project.technologiesUsed.length > 0 && (
-                  <div className="mt-4">
+                  <div className="mt-4 select-none">
                     <h3 className="text-lg font-medium text-primary/85">
                       Tech Stack
                     </h3>
@@ -114,7 +114,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 )}
 
               {project.projectType && project.projectType.length > 0 && (
-                <div className="mt-4">
+                <div className="mt-4 select-none">
                   <h3 className="text-lg font-medium text-primary/85">
                     Category
                   </h3>

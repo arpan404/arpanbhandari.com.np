@@ -1,8 +1,8 @@
-import AnimatedBackground from '@/components/common/AnimatedBackground';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
-import { Metadata } from 'next';
 import Link from 'next/link';
+import { Metadata } from 'next';
+import { ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 export const metadata: Metadata = {
   title: 'Not Found ☹️ | Arpan Bhandari',
@@ -36,8 +36,8 @@ export default function NotFound() {
             Page Not Found
           </h2>
           <p className="text-center text-primary mt-2 md:mt-4 text-sm sm:text-base md:text-lg">
-            Oops! It seems the page you&apos;re looking for has taken a detour or
-            decided to retire.
+            Oops! It seems the page you&apos;re looking for has taken a detour
+            or decided to retire.
           </p>
           <Link href="/" className="mt-2 md:mt-4">
             <Button className="px-4 md:px-6 rounded-full" variant={'outline'}>

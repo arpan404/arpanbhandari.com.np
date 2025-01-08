@@ -9,13 +9,13 @@ export default async function Contact() {
     <section className="flex justify-center pt-10 sm:pt-16 md:pt-20 pb-5 sm:pb-8 md:pb-10 bg-background">
       <div className="container px-2 md:px-8">
         <div className="">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center select-none">
             Let&apos;s Connect!
           </h2>
         </div>
         <div className="flex justify-center mt-4 md:mt-6">
           <p>
-            <span className="text-base md:text-lg font-semibold text-primary opacity-80">
+            <span className="text-base md:text-lg font-semibold text-primary/80">
               Want to collaborate or just say hi? Feel free to reach out to me
               at:
             </span>

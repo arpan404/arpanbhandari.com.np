@@ -390,3 +390,8 @@ html {
   background-color: var(--selection);
   color: var(--selection-text);
 }
+
+p:empty {
+  user-select: none;
+  pointer-events: none;
+}
