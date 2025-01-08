@@ -1,15 +1,17 @@
 'use client';
+import { useEffect, useRef } from 'react';
+import { SettingsIcon } from 'lucide-react';
+import ReactAudioPlayer from 'react-audio-player';
+
+import useMusic from '@/hooks/useMusic';
+import useTheme from '@/hooks/useTheme';
+
 import {
   DropdownMenu,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import ReactAudioPlayer from 'react-audio-player';
-import { SettingsIcon } from 'lucide-react';
-import useTheme from '@/hooks/useTheme';
-import useMusic from '@/hooks/useMusic';
-import { useEffect, useRef } from 'react';
-import SettingDropDownContent from '../modals/SettingDropDownContent';
+import SettingDropDownContent from '@/components/modals/SettingDropDownContent';
 
 export default function Settings() {
   const { currentTheme, changeTheme } = useTheme();

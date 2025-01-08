@@ -1,13 +1,14 @@
-import Project from '@/types/project';
 import Link from 'next/link';
+import { Fragment } from 'react';
+
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import Project from '@/types/project';
 import { Button } from '@/components/ui/button';
-import { Fragment } from 'react';
 
 export default function ProjectCategory({
   tags,

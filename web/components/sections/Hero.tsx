@@ -29,7 +29,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex justify-center gap-4 mt-6 flex-wrap">
+        <div className="flex justify-center gap-4 mt-6 flex-wrap select-none">
           <Linkedin url="https://www.linkedin.com/in/arpan404/" />
           <Github url="https://github.com/arpan404/" />
         </div>

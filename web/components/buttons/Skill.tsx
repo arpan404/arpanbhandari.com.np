@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export default function Skill({ name, uid }: { name: string; uid: string }) {
   return (

@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { Code } from 'lucide-react';
+
 import {
   Tooltip,
   TooltipContent,
@@ -6,13 +8,13 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
-import { Code } from 'lucide-react';
+
 export default function ViewCode({ url }: { url: string }) {
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Link href={url} target="_blank" className='select-none'>
+          <Link href={url} target="_blank" className="select-none">
             <Button
               variant={'outline'}
               size={'icon'}
