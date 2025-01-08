@@ -1,123 +1,121 @@
 {
-  "kind": "collectionType",
-  "collectionName": "projects",
-  "info": {
-    "singularName": "project",
-    "pluralName": "projects",
-    "displayName": "Project",
-    "description": ""
-  },
-  "options": {
-    "draftAndPublish": true
-  },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
-  "attributes": {
-    "name": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "uid": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "uid",
-      "required": true,
-      "targetField": "name"
-    },
-    "short_description": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "text",
-      "required": true
-    },
-    "thumbnail": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
+   "kind": "collectionType",
+   "collectionName": "projects",
+   "info": {
+      "singularName": "project",
+      "pluralName": "projects",
+      "displayName": "Project",
+      "description": ""
+   },
+   "options": {
+      "draftAndPublish": true
+   },
+   "pluginOptions": {
+      "i18n": {
+         "localized": true
       }
-    },
-    "article": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::article.article"
-    },
-    "codeURL": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
+   },
+   "attributes": {
+      "name": {
+         "pluginOptions": {
+            "i18n": {
+               "localized": true
+            }
+         },
+         "type": "string",
+         "required": true,
+         "unique": true
       },
-      "type": "string",
-      "required": false
-    },
-    "liveURL": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
+      "uid": {
+         "pluginOptions": {
+            "i18n": {
+               "localized": true
+            }
+         },
+         "type": "uid",
+         "required": true,
+         "targetField": "name"
       },
-      "type": "string",
-      "required": false
-    },
-    "long_description": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
+      "short_description": {
+         "pluginOptions": {
+            "i18n": {
+               "localized": true
+            }
+         },
+         "type": "text",
+         "required": true
       },
-      "type": "richtext",
-      "required": true
-    },
-    "technologies_used": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
+      "thumbnail": {
+         "type": "media",
+         "multiple": false,
+         "required": true,
+         "allowedTypes": ["images"],
+         "pluginOptions": {
+            "i18n": {
+               "localized": true
+            }
+         }
       },
-      "component": "projects.tags"
-    },
-    "project_type": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
+      "article": {
+         "type": "relation",
+         "relation": "oneToOne",
+         "target": "api::article.article"
       },
-      "component": "projects.tags"
-    },
-    "completed_date": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
+      "codeURL": {
+         "pluginOptions": {
+            "i18n": {
+               "localized": true
+            }
+         },
+         "type": "string",
+         "required": false
       },
-      "type": "date",
-      "required": true
-    }
-  }
+      "liveURL": {
+         "pluginOptions": {
+            "i18n": {
+               "localized": true
+            }
+         },
+         "type": "string",
+         "required": false
+      },
+      "long_description": {
+         "pluginOptions": {
+            "i18n": {
+               "localized": true
+            }
+         },
+         "type": "richtext",
+         "required": true
+      },
+      "technologies_used": {
+         "type": "component",
+         "repeatable": true,
+         "pluginOptions": {
+            "i18n": {
+               "localized": true
+            }
+         },
+         "component": "projects.tags"
+      },
+      "project_type": {
+         "type": "component",
+         "repeatable": true,
+         "pluginOptions": {
+            "i18n": {
+               "localized": true
+            }
+         },
+         "component": "projects.tags"
+      },
+      "completed_date": {
+         "pluginOptions": {
+            "i18n": {
+               "localized": true
+            }
+         },
+         "type": "date",
+         "required": true
+      }
+   }
 }

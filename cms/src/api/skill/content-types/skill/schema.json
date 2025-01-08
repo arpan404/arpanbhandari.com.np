@@ -1,41 +1,36 @@
 {
-  "kind": "collectionType",
-  "collectionName": "skills",
-  "info": {
-    "singularName": "skill",
-    "pluralName": "skills",
-    "displayName": "Skill",
-    "description": ""
-  },
-  "options": {
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
-  "attributes": {
-    "skillName": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "skillUID": {
-      "type": "uid",
-      "targetField": "skillName"
-    },
-    "skillType": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::skill-type.skill-type"
-    },
-    "logo": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    }
-  }
+   "kind": "collectionType",
+   "collectionName": "skills",
+   "info": {
+      "singularName": "skill",
+      "pluralName": "skills",
+      "displayName": "Skill",
+      "description": ""
+   },
+   "options": {
+      "draftAndPublish": true
+   },
+   "pluginOptions": {},
+   "attributes": {
+      "skillName": {
+         "type": "string",
+         "required": true,
+         "unique": true
+      },
+      "skillUID": {
+         "type": "uid",
+         "targetField": "skillName"
+      },
+      "skillType": {
+         "type": "relation",
+         "relation": "oneToOne",
+         "target": "api::skill-type.skill-type"
+      },
+      "logo": {
+         "type": "media",
+         "multiple": false,
+         "required": false,
+         "allowedTypes": ["images", "files", "videos", "audios"]
+      }
+   }
 }

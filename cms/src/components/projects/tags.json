@@ -1,16 +1,16 @@
 {
-  "collectionName": "components_projects_tags",
-  "info": {
-    "displayName": "Skills",
-    "icon": "chartBubble",
-    "description": ""
-  },
-  "options": {},
-  "attributes": {
-    "skill": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::skill.skill"
-    }
-  }
+   "collectionName": "components_projects_tags",
+   "info": {
+      "displayName": "Skills",
+      "icon": "chartBubble",
+      "description": ""
+   },
+   "options": {},
+   "attributes": {
+      "skill": {
+         "type": "relation",
+         "relation": "oneToOne",
+         "target": "api::skill.skill"
+      }
+   }
 }

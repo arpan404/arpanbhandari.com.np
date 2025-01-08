@@ -1,20 +1,20 @@
 {
-  "kind": "singleType",
-  "collectionName": "feature_skills",
-  "info": {
-    "singularName": "feature-skill",
-    "pluralName": "feature-skills",
-    "displayName": "Feature Skill"
-  },
-  "options": {
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
-  "attributes": {
-    "skills": {
-      "type": "component",
-      "repeatable": true,
-      "component": "projects.tags"
-    }
-  }
+   "kind": "singleType",
+   "collectionName": "feature_skills",
+   "info": {
+      "singularName": "feature-skill",
+      "pluralName": "feature-skills",
+      "displayName": "Feature Skill"
+   },
+   "options": {
+      "draftAndPublish": true
+   },
+   "pluginOptions": {},
+   "attributes": {
+      "skills": {
+         "type": "component",
+         "repeatable": true,
+         "component": "projects.tags"
+      }
+   }
 }
