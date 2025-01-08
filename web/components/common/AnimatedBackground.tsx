@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { loadSlim } from '@tsparticles/slim';
 import { Particles } from '@tsparticles/react';
+import { useCallback, useEffect, useState } from 'react';
 import { initParticlesEngine } from '@tsparticles/react';
 import type { Container, Engine, ISourceOptions } from '@tsparticles/engine';
-import { loadSlim } from '@tsparticles/slim';
 
 export default function AnimatedBackground() {
   const [init, setInit] = useState(false);

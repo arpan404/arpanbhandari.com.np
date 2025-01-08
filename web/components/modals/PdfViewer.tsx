@@ -1,5 +1,12 @@
 'use client';
 
+import 'react-pdf/dist/esm/Page/TextLayer.css';
+import { pdfjs, Document, Page } from 'react-pdf';
+import { useEffect, useState, useRef } from 'react';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import { ChevronLeft, ChevronRight, CloudDownload } from 'lucide-react';
+
+
 import { cn } from '@/lib/utils';
 import {
   Modal,
@@ -7,20 +14,12 @@ import {
   ModalContent,
   ModalTrigger,
 } from '@/components/ui/animated-modal';
-
-import { ChevronLeft, ChevronRight, CloudDownload } from 'lucide-react';
-
 import {
   Tooltip,
   TooltipTrigger,
   TooltipProvider,
   TooltipContent,
 } from '@/components/ui/tooltip';
-
-import { pdfjs, Document, Page } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
-import { useEffect, useState, useRef } from 'react';
 
 export default function PdfViewer({
   modalTriggerClassName,

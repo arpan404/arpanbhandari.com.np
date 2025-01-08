@@ -1,14 +1,15 @@
 import React from 'react';
+import { Monitor, Sun, Moon, Music, VolumeOffIcon } from 'lucide-react';
+
+import { Theme as ThemeType } from '@/types/theme';
+import { DropdownMenuContent } from '@/components/ui/dropdown-menu';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { DropdownMenuContent } from '../ui/dropdown-menu';
-import { Monitor, Sun, Moon, Music, VolumeOffIcon } from 'lucide-react';
 
-import { Theme as ThemeType } from '@/types/theme';
 export default function SettingDropDownContent({
   changeTheme,
   currentTheme,

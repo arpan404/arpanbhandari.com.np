@@ -1,6 +1,7 @@
 'use client';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+
 import { useRef, useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function HorizontalScroll({
   children,

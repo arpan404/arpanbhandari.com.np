@@ -1,6 +1,7 @@
-import Project from '@/types/project';
+'use client';
+
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   motion,
   useTransform,
@@ -8,6 +9,8 @@ import {
   useMotionValue,
   useSpring,
 } from 'framer-motion';
+
+import Project from '@/types/project';
 
 export default function TechnologiesTooltip({
   data,
@@ -28,7 +31,7 @@ export default function TechnologiesTooltip({
   );
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const halfWidth = event.currentTarget.offsetWidth / 2;
-    x.set(event.nativeEvent.offsetX - halfWidth); // set the x value, which is then used in transform and rotate
+    x.set(event.nativeEvent.offsetX - halfWidth);
   };
 
   return (

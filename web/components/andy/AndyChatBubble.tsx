@@ -1,6 +1,9 @@
+'use client';
+
 import Image from 'next/image';
-import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+
 export default function AndyChatBubble({ message }: { message: string }) {
   return (
     <div className="flex max-w-[95%] items-start p-2 rounded-lg gap-1">

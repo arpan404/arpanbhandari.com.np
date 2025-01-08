@@ -1,16 +1,18 @@
 'use client';
+
+import { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+import { cn } from '@/lib/utils';
+import useStore from '@/lib/store';
+import AndyWelcome from '@/components/andy/AndyWelcome';
+import MessageContainer from '@/components/common/MessageContainer';
 import {
   Sheet,
   SheetContent,
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { cn } from '@/lib/utils';
-import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import useStore from '@/lib/store';
-import MessageContainer from '@/components/common/MessageContainer';
-import AndyWelcome from '@/components/common/AndyWelcome';
 
 export default function Andy({
   buttonText,

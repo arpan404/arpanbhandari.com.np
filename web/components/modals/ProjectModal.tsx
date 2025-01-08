@@ -1,8 +1,9 @@
 'use client';
-import { useOutsideClick } from '@/hooks/useOutsideClick';
-import { cn } from '@/lib/utils';
-import { AnimatePresence, motion } from 'framer-motion';
+
+// This file is meant to be only be used to project modal, so all code is written in this file except useOutsideClick hook.
+
 import { X } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, {
   ReactNode,
   createContext,
@@ -11,6 +12,9 @@ import React, {
   useRef,
   useState,
 } from 'react';
+
+import { cn } from '@/lib/utils';
+import { useOutsideClick } from '@/hooks/useOutsideClick';
 
 interface ModalContextType {
   open: boolean;

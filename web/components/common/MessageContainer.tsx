@@ -10,7 +10,7 @@ import {
 import { TooltipTrigger } from '@radix-ui/react-tooltip';
 import useStore from '@/lib/store';
 import UserChatBubble from '@/components/common/UserChatBubble';
-import AndyChatBubble from '@/components/common/AndyChatBubble';
+import AndyChatBubble from '@/components/andy/AndyChatBubble';
 import AndyTyping from '@/components/common/AndyTyping';
 import axios from 'axios';
 
