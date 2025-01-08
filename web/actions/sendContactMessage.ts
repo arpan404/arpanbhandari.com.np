@@ -26,7 +26,6 @@ const sendContactMessage = async (data: {
         data: data,
       }),
     });
-    console.log(response);
     if (!response.ok) {
       return false;
     }
