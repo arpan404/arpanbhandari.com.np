@@ -130,7 +130,6 @@ export const LinkPreview = ({
                 style={{
                   x: translateX,
                 }}
-                
               >
                 <Link
                   href={url}

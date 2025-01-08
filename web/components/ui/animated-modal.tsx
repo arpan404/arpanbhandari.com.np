@@ -1,7 +1,7 @@
-"use client";
-import { useOutsideClick } from "@/hooks/useOutsideClick";
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
+'use client';
+import { useOutsideClick } from '@/hooks/useOutsideClick';
+import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, {
   ReactNode,
   createContext,
@@ -9,7 +9,7 @@ import React, {
   useEffect,
   useRef,
   useState,
-} from "react";
+} from 'react';
 
 interface ModalContextType {
   open: boolean;
@@ -31,7 +31,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
 export const useModal = () => {
   const context = useContext(ModalContext);
   if (!context) {
-    throw new Error("useModal must be used within a ModalProvider");
+    throw new Error('useModal must be used within a ModalProvider');
   }
   return context;
 };
@@ -51,7 +51,7 @@ export const ModalTrigger = ({
   return (
     <button
       className={cn(
-        "px-4 py-2 rounded-md text-black dark:text-white text-center relative overflow-hidden",
+        'px-4 py-2 rounded-md text-black dark:text-white text-center relative overflow-hidden',
         className
       )}
       onClick={() => setOpen(true)}
@@ -72,9 +72,9 @@ export const ModalBody = ({
 
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     }
   }, [open]);
 
@@ -91,11 +91,11 @@ export const ModalBody = ({
           }}
           animate={{
             opacity: 1,
-            backdropFilter: "blur(10px)",
+            backdropFilter: 'blur(10px)',
           }}
           exit={{
             opacity: 0,
-            backdropFilter: "blur(0px)",
+            backdropFilter: 'blur(0px)',
           }}
           className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-[200]"
         >
@@ -104,7 +104,7 @@ export const ModalBody = ({
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[80%] max-h-[90%] md:max-w-[70%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
+              'min-h-[80%] max-h-[90%] md:max-w-[70%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden',
               className
             )}
             initial={{
@@ -125,7 +125,7 @@ export const ModalBody = ({
               rotateX: 10,
             }}
             transition={{
-              type: "spring",
+              type: 'spring',
               stiffness: 260,
               damping: 15,
             }}
@@ -147,7 +147,7 @@ export const ModalContent = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("flex flex-col flex-1 p-8 md:p-10", className)}>
+    <div className={cn('flex flex-col flex-1 p-8 md:p-10', className)}>
       {children}
     </div>
   );
@@ -163,7 +163,7 @@ export const ModalFooter = ({
   return (
     <div
       className={cn(
-        "flex justify-end p-4 bg-gray-100 dark:bg-neutral-900",
+        'flex justify-end p-4 bg-gray-100 dark:bg-neutral-900',
         className
       )}
     >
@@ -180,11 +180,11 @@ const Overlay = ({ className }: { className?: string }) => {
       }}
       animate={{
         opacity: 1,
-        backdropFilter: "blur(10px)",
+        backdropFilter: 'blur(10px)',
       }}
       exit={{
         opacity: 0,
-        backdropFilter: "blur(0px)",
+        backdropFilter: 'blur(0px)',
       }}
       className={`fixed inset-0 h-full w-full bg-black bg-opacity-50 z-50 ${className}`}
     ></motion.div>
