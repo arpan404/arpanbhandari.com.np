@@ -4,13 +4,13 @@ import fetchGraphQL from '@/actions/fetchGraphQL';
 import { ResumeQueryResponse } from '@/types/response';
 
 const query = gql`
-  query {
-    resume {
-      file {
-        url
+   query {
+      resume {
+         file {
+            url
+         }
       }
-    }
-  }
+   }
 `;
 
 /**
@@ -18,23 +18,23 @@ const query = gql`
  * @returns {Promise<ResumeQueryResponse>}
  * */
 const getResume = async (): Promise<ResumeQueryResponse> => {
-  try {
-    const data = await fetchGraphQL<ResumeQueryResponse>(
-      query,
-      'resume',
-      60 * 60 * 2 // 2 hours
-    );
+   try {
+      const data = await fetchGraphQL<ResumeQueryResponse>(
+         query,
+         'resume',
+         60 * 60 * 2 // 2 hours
+      );
 
-    if (data) {
-      if (!data.resume.file) {
-        return null;
+      if (data) {
+         if (!data.resume.file) {
+            return null;
+         }
       }
-    }
-    return data;
-  } catch (e: unknown) {
-    console.error(e);
-    return null;
-  }
+      return data;
+   } catch (e: unknown) {
+      console.error(e);
+      return null;
+   }
 };
 
 export default getResume;

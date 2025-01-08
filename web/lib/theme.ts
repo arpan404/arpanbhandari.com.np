@@ -5,11 +5,11 @@ import { Theme } from '@/types/theme';
  * @returns value in 'theme' cookie [ default = 'system']
  */
 const getCurrentTheme = () => {
-  const theme = getCookie('theme');
-  if (theme === 'light' || theme === 'dark') {
-    return theme;
-  }
-  return 'system';
+   const theme = getCookie('theme');
+   if (theme === 'light' || theme === 'dark') {
+      return theme;
+   }
+   return 'system';
 };
 
 /**
@@ -19,19 +19,19 @@ const getCurrentTheme = () => {
  * - Also sets 'data-theme' to the actual theme passed.
  */
 const updateTheme = (theme: Theme) => {
-  let newTheme = theme === 'system' ? '' : theme;
-  if (theme === 'system') {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    if (mediaQuery.matches) {
-      newTheme = 'dark';
-    } else {
-      newTheme = 'light';
-    }
-  }
-  document.documentElement.classList.remove('dark', 'light');
-  document.documentElement.classList.add(newTheme);
-  document.documentElement.setAttribute('data-theme', theme);
-  addCookie('theme', theme);
+   let newTheme = theme === 'system' ? '' : theme;
+   if (theme === 'system') {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      if (mediaQuery.matches) {
+         newTheme = 'dark';
+      } else {
+         newTheme = 'light';
+      }
+   }
+   document.documentElement.classList.remove('dark', 'light');
+   document.documentElement.classList.add(newTheme);
+   document.documentElement.setAttribute('data-theme', theme);
+   addCookie('theme', theme);
 };
 
 export { getCurrentTheme, updateTheme };

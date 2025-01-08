@@ -3,55 +3,55 @@ import Skill from '@/types/skill';
 import { Writing, WritingCard } from '@/types/writing';
 
 type MusicQueryResponse = null | {
-  music: {
-    audio: null | {
-      url: string;
-    };
-  };
+   music: {
+      audio: null | {
+         url: string;
+      };
+   };
 };
 
 type ResumeQueryResponse = null | {
-  resume: {
-    file: null | {
-      url: string;
-    };
-  };
+   resume: {
+      file: null | {
+         url: string;
+      };
+   };
 };
 
 type FeaturedProjectsQueryResponse = null | {
-  featuredProjects: null | {
-    projects: Array<{
-      project: Project;
-    }>;
-  };
+   featuredProjects: null | {
+      projects: Array<{
+         project: Project;
+      }>;
+   };
 };
 
 type ProjectsQueryResponse = null | {
-  projects: Array<Project>;
+   projects: Array<Project>;
 };
 
 type WritingCardsQueryResponse = null | {
-  articles: Array<WritingCard>;
+   articles: Array<WritingCard>;
 };
 
 type WritingQueryResponse = null | {
-  articles: Array<Writing>;
+   articles: Array<Writing>;
 };
 
 type FeaturedSkillsQueryResponse = null | {
-  featuredSkills: null | {
-    skills: Array<{
-      skill: Pick<Skill, 'name' | 'uid'>;
-    }>;
-  };
+   featuredSkills: null | {
+      skills: Array<{
+         skill: Pick<Skill, 'name' | 'uid'>;
+      }>;
+   };
 };
 
 export type {
-  MusicQueryResponse,
-  ResumeQueryResponse,
-  FeaturedProjectsQueryResponse,
-  FeaturedSkillsQueryResponse,
-  WritingCardsQueryResponse,
-  WritingQueryResponse,
-  ProjectsQueryResponse,
+   MusicQueryResponse,
+   ResumeQueryResponse,
+   FeaturedProjectsQueryResponse,
+   FeaturedSkillsQueryResponse,
+   WritingCardsQueryResponse,
+   WritingQueryResponse,
+   ProjectsQueryResponse,
 };

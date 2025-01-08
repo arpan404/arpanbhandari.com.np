@@ -14,35 +14,35 @@ import client from '@/lib/graphql';
  */
 
 const fetchGraphQL = async <T>(
-  query: DocumentNode,
-  queryHash: string,
-  staleTime: number = 3600, // default to 1 minute
-  variableValues: Record<string, unknown> = {}
+   query: DocumentNode,
+   queryHash: string,
+   staleTime: number = 3600, // default to 1 minute
+   variableValues: Record<string, unknown> = {}
 ): Promise<T> => {
-  try {
-    // First check if the data is in the cache
-    const cachedData = await redis.get(queryHash);
-    if (cachedData) {
-      return JSON.parse(cachedData) as T;
-    }
+   try {
+      // First check if the data is in the cache
+      const cachedData = await redis.get(queryHash);
+      if (cachedData) {
+         return JSON.parse(cachedData) as T;
+      }
 
-    // If not, fetch the data from the API
-    const response = await client.query({
-      query: query,
-      fetchPolicy: 'network-only',
-      variables: variableValues,
-    });
+      // If not, fetch the data from the API
+      const response = await client.query({
+         query: query,
+         fetchPolicy: 'network-only',
+         variables: variableValues,
+      });
 
-    const data = response.data;
+      const data = response.data;
 
-    // Store the data in the cache
-    await redis.set(queryHash, JSON.stringify(data), 'EX', staleTime);
+      // Store the data in the cache
+      await redis.set(queryHash, JSON.stringify(data), 'EX', staleTime);
 
-    return data as T;
-  } catch (e: unknown) {
-    console.error(e);
-    return null as T;
-  }
+      return data as T;
+   } catch (e: unknown) {
+      console.error(e);
+      return null as T;
+   }
 };
 
 export default fetchGraphQL;

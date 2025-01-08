@@ -6,23 +6,23 @@ import ProgressBarProvider from '@/components/providers/ProgressBarProvider';
 import { CSPostHogProvider } from '@/components/providers/CSPostHogProvider';
 
 export default async function RootLayout({
-  children,
+   children,
 }: Readonly<{
-  children: React.ReactNode;
+   children: React.ReactNode;
 }>) {
-  const [theme] = await Promise.all([getTheme()]);
-  const currentThemeMode = theme === 'system' ? 'dark' : theme;
-  return (
-    <html lang="en" className={`${currentThemeMode}`} data-theme={theme}>
-      <CSPostHogProvider>
-        <body className="custom_page_scroll">
-          <ProgressBarProvider>
-            <Header />
-            {children}
-            <Footer />
-          </ProgressBarProvider>
-        </body>
-      </CSPostHogProvider>
-    </html>
-  );
+   const [theme] = await Promise.all([getTheme()]);
+   const currentThemeMode = theme === 'system' ? 'dark' : theme;
+   return (
+      <html lang="en" className={`${currentThemeMode}`} data-theme={theme}>
+         <CSPostHogProvider>
+            <body className="custom_page_scroll">
+               <ProgressBarProvider>
+                  <Header />
+                  {children}
+                  <Footer />
+               </ProgressBarProvider>
+            </body>
+         </CSPostHogProvider>
+      </html>
+   );
 }
