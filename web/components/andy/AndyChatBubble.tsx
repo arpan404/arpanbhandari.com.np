@@ -22,7 +22,7 @@ export default function AndyChatBubble({ message }: { message: string }) {
                components={{
                   a: ({ href, children, ...props }) => (
                      <Link
-                        href={href}
+                        href={href || '#'}
                         target="_blank"
                         rel="noopener noreferrer"
                         {...props}
