@@ -12,7 +12,7 @@ export default function GlobalError() {
             <title>Something went wrong!</title>
          </head>
          <body>
-            <main className="bg-transparent pt-[52px] h-[calc(100dvh-68px)] flex items-center justify-center">
+            <main className="bg-transparent pt-[52px] h-[calc(100dvh-68px)] flex items-center justify-center select-none">
                <div className="container px-2">
                   <AnimatedBackground />
                   <div className="flex flex-col items-center justify-center">

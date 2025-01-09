@@ -95,7 +95,7 @@ export default async function page({
                         : 'min-h-[calc(100dvh-260px)]'
                   } flex items-center justify-center`}
                >
-                  <div className="relative -top-10">
+                  <div className="relative -top-10 select-none">
                      <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-center dark:text-[#ff7d37] text-[#ff6730] saturate-[130%]">
                         OOPS!
                      </h2>
