@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
             protocol: 'https',
             hostname: 'via.placeholder.com',
          },
+         {
+            protocol: 'https',
+            hostname: 'arpan404.socioy.com',
+         },
       ],
    },
    experimental: {
@@ -24,6 +28,10 @@ const nextConfig: NextConfig = {
             canvas: './empty-module.ts',
          },
       },
+   },
+   webpack: config => {
+      config.cache = false;
+      return config;
    },
 };
 
