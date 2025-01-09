@@ -5,14 +5,7 @@ import { Button } from '@/components/ui/button';
 import { RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 
-export default function GlobalError({
-   error,
-   reset,
-}: {
-   error: Error & { digest?: string };
-   reset: () => void;
-}) {
-   console.error(error);
+export default function GlobalError() {
    return (
       <html lang="en">
          <head>
@@ -37,7 +30,7 @@ export default function GlobalError({
                         <Button
                            className="px-4 md:px-6 rounded-full"
                            variant={'outline'}
-                           onClick={reset}
+                           onClick={() => window.location.reload()}
                         >
                            <RefreshCw /> Refresh
                         </Button>
