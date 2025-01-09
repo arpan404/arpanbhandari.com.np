@@ -19,10 +19,18 @@ SYSTEM_PROMPT = {
 
 
 async def chatgpt(msgs: List, user_details=dict) -> str:
+    """
+    A function to interact with OpenAI's ChatGPT API
+    :param msgs: List of messages to send to ChatGPT
+    :param user_details: User details like email and name
+    :return: Response from ChatGPT
+    :raises: Exception if any error occurs
+    """
     try:
         client = openai.AsyncOpenAI()
         messages = [SYSTEM_PROMPT]
         if user_details:
+            # Add user details to the system prompt message which will be used by ChatGPT to address the user
             messages[0]["content"].append(
                 {
                     "type": "text",

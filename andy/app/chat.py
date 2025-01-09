@@ -14,11 +14,18 @@ logger = log(logger_name="api_logger", log_file="api.log", log_dir="logs")
 
 
 async def save_chats_in_background(chat_uid, email, messages):
+    """
+    Function to save the chat messages in the database in the background
+    """
     for message in messages:
         await Chat.create(uid=chat_uid, email=email, chats=message)
 
 
 async def send_message_to_developer(subject, message, name, email, ip):
+    """
+    Function to send a message to the developer
+    Returns True if the message is sent successfully else False
+    """
     try:
         api_url = os.getenv("STRAPI_HOST") + "/api/contacts"
         token = os.getenv("STRAPI_TOKEN")
@@ -56,6 +63,7 @@ async def send_message_to_developer(subject, message, name, email, ip):
 
 async def chat(request: Request, json_data: dict, background_tasks: BackgroundTasks):
     try:
+        # Validate chat uid - if user is assigned the chat uid
         await validate_chat_uid(json_data)
     except HTTPException as e:
         return JSONResponse(
@@ -63,14 +71,15 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
             content={"message": e.detail},
         )
     except Exception as e:
-        logger.error(
-            f"Internal server error while validating chat uid: {str(e)}")
+        logger.error(f"Internal server error while validating chat uid: {str(e)}")
         return JSONResponse(
             status_code=500,
             content={"message": "Internal server error"},
         )
 
     try:
+        # Fetch last 12 messages from the database with given chat uid
+        # using only 12 messages to avoid large input token consumption at cost of short conversation context
         previous_chat = (
             await Chat.filter(
                 uid=json_data.get("chat_uid"),
@@ -80,6 +89,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
             .limit(12)
             or []
         )
+        # sorting the last 12 messages in ascending order
         previous_chat.reverse()
     except Exception as e:
         logger.error(f"Error fetching chat from database: {str(e)}")
@@ -88,10 +98,14 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
         )
     try:
         if previous_chat:
+            # only storing the message column from the previous chat
             previous_chat = [chat.chats for chat in previous_chat]
+
+            # removing the first message if it is from the tool; if not chatgpt will throw an error
             if previous_chat[0]["role"] == "tool":
                 previous_chat.pop(0)
 
+        # appending the new user message to the previous chat and sending it to ChatGPT
         messages = previous_chat or []
         messages.append(
             {
@@ -99,12 +113,21 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                 "content": [{"type": "text", "text": json_data.get("message")}],
             }
         )
+
+        # this list will be used to store the new message between sytem and chatgpt which needs to be saved in the database
         message_to_save = [
             {
                 "role": "user",
                 "content": [{"type": "text", "text": json_data.get("message")}],
             }
         ]
+
+        # setting a maximum iteration to avoid infinite loop, following is the response loop intended here
+        """
+        User -> ChatGPT [1] (if tool asked, go down)
+        Tool -> ChatGPT [2] (if tool asked, go down)
+        Tool -> ChatGPT [3] (if message send, else send could not process)
+        """
         max_iteration = 3
         while max_iteration > 0:
             response = await chatgpt(
@@ -116,6 +139,18 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                         f"ChatGPT response: {
                             response.choices[0].message.content}"
                     )
+                    message_to_save.append(
+                        {
+                            "role": "assistant",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": response.choices[0].message.content,
+                                }
+                            ],
+                        }
+                    )
+                    # saving the chat in the database
                     background_tasks.add_task(
                         save_chats_in_background,
                         json_data.get("chat_uid"),
@@ -125,11 +160,10 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
 
                     return JSONResponse(
                         status_code=200,
-                        content={
-                            "message": response.choices[0].message.content},
+                        content={"message": response.choices[0].message.content},
                     )
                 else:
-                    logger.info("ChatGPT response: No content")
+                    logger.info("ChatGPT response: No content1")
                     if (
                         response.choices[0].finish_reason == "tool_calls"
                         and response.choices[0].message.tool_calls
@@ -158,8 +192,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 function_message = {
                                     "role": "tool",
                                     "content": [
-                                        {"type": "text",
-                                            "text": json.dumps(data)}
+                                        {"type": "text", "text": json.dumps(data)}
                                     ],
                                     "tool_call_id": first_tool_call.id,
                                 }
@@ -183,8 +216,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 function_message = {
                                     "role": "tool",
                                     "content": [
-                                        {"type": "text",
-                                            "text": json.dumps(data)}
+                                        {"type": "text", "text": json.dumps(data)}
                                     ],
                                     "tool_call_id": first_tool_call.id,
                                 }
@@ -202,8 +234,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 function_message = {
                                     "role": "tool",
                                     "content": [
-                                        {"type": "text",
-                                            "text": json.dumps(data)}
+                                        {"type": "text", "text": json.dumps(data)}
                                     ],
                                     "tool_call_id": first_tool_call.id,
                                 }
@@ -221,8 +252,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 function_message = {
                                     "role": "tool",
                                     "content": [
-                                        {"type": "text",
-                                            "text": json.dumps(data)}
+                                        {"type": "text", "text": json.dumps(data)}
                                     ],
                                     "tool_call_id": first_tool_call.id,
                                 }
@@ -237,8 +267,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 meeting_message = arguments.get("topic")
                                 meeting_status = await send_message_to_developer(
                                     name=json_data.get("user_details")["name"],
-                                    email=json_data.get("user_details")[
-                                        "email"],
+                                    email=json_data.get("user_details")["email"],
                                     message="Appointment requested for a meeting",
                                     subject="#Meeting: " + meeting_message,
                                     ip=request.client.host,
@@ -277,8 +306,7 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                 s_subject = arguments.get("subject")
                                 s_status = await send_message_to_developer(
                                     name=json_data.get("user_details")["name"],
-                                    email=json_data.get("user_details")[
-                                        "email"],
+                                    email=json_data.get("user_details")["email"],
                                     message=s_message,
                                     subject=s_subject,
                                     ip=request.client.host,
@@ -332,7 +360,12 @@ async def chat(request: Request, json_data: dict, background_tasks: BackgroundTa
                                         "message": "I am unsure of what you are asking. Ask me something else."
                                     },
                                 )
-
+                    else:
+                        logger.info("ChatGPT response: No content2")
+                        break
+            else:
+                logger.info("ChatGPT response: No content3")
+                break
             max_iteration -= 1
 
         message_to_save.append(
