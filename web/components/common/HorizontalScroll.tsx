@@ -36,16 +36,14 @@ export default function HorizontalScroll({
    };
 
    useEffect(() => {
+      const currentScrollRef = scrollRef.current;
       updateScrollButtons();
-      if (scrollRef.current) {
-         scrollRef.current.addEventListener('scroll', updateScrollButtons);
+      if (currentScrollRef) {
+         currentScrollRef.addEventListener('scroll', updateScrollButtons);
       }
       return () => {
-         if (scrollRef.current) {
-            scrollRef.current.removeEventListener(
-               'scroll',
-               updateScrollButtons
-            );
+         if (currentScrollRef) {
+            currentScrollRef.removeEventListener('scroll', updateScrollButtons);
          }
       };
    }, []);

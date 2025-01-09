@@ -27,7 +27,8 @@ export default function Andy({
          if (userDetails) {
             try {
                setUserDetails(JSON.parse(userDetails));
-            } catch (e) {
+            } catch (e: unknown) {
+               console.error('Error parsing user details from localStorage', e);
                localStorage.removeItem('userDetails');
             }
          }
