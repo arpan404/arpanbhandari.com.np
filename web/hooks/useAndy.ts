@@ -101,6 +101,34 @@ export default function useAndy() {
       setChatUID(null);
    };
 
+   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      type SourceCapabilities = {
+         firesTouchEvents?: boolean;
+      };
+
+      const hasSourceCapabilities = (
+         event: React.KeyboardEvent<HTMLTextAreaElement>
+      ): event is React.KeyboardEvent<HTMLTextAreaElement> & {
+         sourceCapabilities: SourceCapabilities;
+      } => {
+         return 'sourceCapabilities' in event;
+      };
+
+      if (
+         e.key === 'Enter' &&
+         !e.shiftKey &&
+         e.isTrusted &&
+         !e.nativeEvent.isComposing &&
+         hasSourceCapabilities(e) &&
+         !e.sourceCapabilities.firesTouchEvents
+      ) {
+         e.preventDefault();
+         if (sendButtonRef.current) {
+            sendButtonRef.current.click();
+         }
+      }
+   };
+
    useEffect(() => {
       if (messageContainerRef.current) {
          messageContainerRef.current.scrollTop =
@@ -114,6 +142,7 @@ export default function useAndy() {
       andyTyping,
       textareaRef,
       handleDelete,
+      handleKeyDown,
       sendButtonRef,
       handleInputChange,
       messageContainerRef,

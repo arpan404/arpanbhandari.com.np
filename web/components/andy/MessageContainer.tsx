@@ -15,15 +15,16 @@ import useAndy from '@/hooks/useAndy';
 
 export default function MessageContainer() {
    const {
-      handleDelete,
-      messages,
       value,
-      handleInputChange,
-      handleSendButtonClick,
+      messages,
       andyTyping,
       textareaRef,
-      messageContainerRef,
+      handleDelete,
+      handleKeyDown,
       sendButtonRef,
+      handleInputChange,
+      messageContainerRef,
+      handleSendButtonClick,
    } = useAndy();
    return (
       <div className="p-2 h-full my-2 pt-10">
@@ -71,22 +72,15 @@ export default function MessageContainer() {
                   ref={textareaRef}
                   value={value}
                   onChange={handleInputChange}
-                  onKeyDown={e => {
-                     if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        if (sendButtonRef.current) {
-                           sendButtonRef.current.click();
-                        }
-                     }
-                  }}
-                  className="rounded-2xl pr-11 h-14 min-h-14 max-h-40 focus-visible:ring-0 bg-secondary text-sm overflow-y-scroll scrollbar-hide"
+                  onKeyDown={handleKeyDown}
+                  className="rounded-2xl pr-11 h-16 min-h-16 max-h-40 focus-visible:ring-0 bg-secondary text-sm overflow-y-scroll scrollbar-hide placeholder:text-sm"
                   maxLength={1200}
-                  style={{ resize: 'none' }}
+                  style={{ resize: 'none', fontSize: '16px' }}
                   placeholder="Ask me anything..."
                />
 
                <Button
-                  className="absolute bottom-2 right-2 rounded-full"
+                  className="absolute bottom-3 right-2 rounded-full"
                   variant={'default'}
                   size={'icon'}
                   onClick={handleSendButtonClick}
