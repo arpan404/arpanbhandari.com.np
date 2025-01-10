@@ -34,7 +34,7 @@ export const generateMetadata = async (props: {
       openGraph: {
          type: 'website',
          url: `https://arpanbhandari.com.np/${params.uid}`,
-         title: 'data.articles[0].title ' + ' | Arpan Bhandari (The Developer)',
+         title: data.articles[0].title  + ' | Arpan Bhandari (The Developer)',
          description: data.articles[0].description,
          siteName: "Arpan Bhandari's Porfolio",
          images: [
