@@ -73,9 +73,9 @@ export default function MessageContainer() {
                   value={value}
                   onChange={handleInputChange}
                   onKeyDown={handleKeyDown}
-                  className="rounded-2xl pr-11 h-16 min-h-16 max-h-40 focus-visible:ring-0 bg-secondary text-sm overflow-y-scroll scrollbar-hide placeholder:text-sm"
+                  className="rounded-2xl pr-11 h-16 min-h-16 max-h-40 focus-visible:ring-0 bg-secondary overflow-y-scroll scrollbar-hide placeholder:text-sm md:text-sm text-base"
                   maxLength={1200}
-                  style={{ resize: 'none', fontSize: '16px' }}
+                  style={{ resize: 'none' }}
                   placeholder="Ask me anything..."
                />
 
@@ -84,7 +84,7 @@ export default function MessageContainer() {
                   variant={'default'}
                   size={'icon'}
                   onClick={handleSendButtonClick}
-                  disabled={!value || andyTyping}
+                  disabled={!value || value.trim().length == 0 || andyTyping}
                   ref={sendButtonRef}
                >
                   <Send size={20} />

@@ -34,8 +34,9 @@ export default function useAndy() {
       const uid = Date.now().toString() + Math.random().toString();
       try {
          if (!value) return;
-         const msgValue = value;
-         addMessage({ uid: uid, from: 'user', message: value });
+         const msgValue = value.trim();
+         if(!msgValue) return;
+         addMessage({ uid: uid, from: 'user', message: msgValue });
          setValue('');
          if (textareaRef.current) {
             textareaRef.current.style.height = 'auto';
@@ -122,6 +123,11 @@ export default function useAndy() {
          hasSourceCapabilities(e) &&
          !e.sourceCapabilities.firesTouchEvents
       ) {
+         e.preventDefault();
+         if (sendButtonRef.current) {
+            sendButtonRef.current.click();
+         }
+      } else if (e.key === 'Enter' && !e.shiftKey) {
          e.preventDefault();
          if (sendButtonRef.current) {
             sendButtonRef.current.click();
