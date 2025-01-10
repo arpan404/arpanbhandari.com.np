@@ -26,12 +26,12 @@ async def lifespan(app: FastAPI):
     await close_db()
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
 
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://arpanbhandari.com.np", "http://localhost:3000"],
+    allow_origins=["https://www.arpanbhandari.com.np", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
