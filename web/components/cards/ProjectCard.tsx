@@ -34,7 +34,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                      width={300}
                      height={200}
                      draggable={false}
-                     priority={true}
+                     priority={false}
                      className="w-full h-full object-cover select-none"
                   />
                </ModalTrigger>
