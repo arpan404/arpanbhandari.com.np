@@ -150,10 +150,6 @@ summary,
    cursor: url("/cursors/pointer.png"), pointer !important;
 }
 
-html {
-   scroll-behavior: smooth !important;
-}
-
 .custom_page_scroll::-webkit-scrollbar {
    width: 5px;
 }
