@@ -24,7 +24,7 @@ export default function GlobalError() {
                      </h2>
                      <p className="text-center text-primary mt-2 md:mt-4 text-sm sm:text-base md:text-lg">
                         Something unexpected occurred while trying to load the
-                        page. Please try refresshing the page.
+                        page. Please try refreshing the page.
                      </p>
                      <Link href="#" className="mt-2 md:mt-4">
                         <Button
