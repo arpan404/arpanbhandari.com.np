@@ -37,10 +37,7 @@ export default function PdfViewer({
    const [width, setWidth] = useState<number>(0);
 
    useEffect(() => {
-      pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-         `${process.env.NEXT_PUBLIC_WEBSITE_URL}/pdf.worker.min.mjs`,
-         import.meta.url
-      ).toString();
+      pdfjs.GlobalWorkerOptions.workerSrc = pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/pdf.worker.min.mjs`;
    }, []);
 
    useEffect(() => {
