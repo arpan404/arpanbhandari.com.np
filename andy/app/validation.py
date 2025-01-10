@@ -16,7 +16,7 @@ def validate_origin(request: Request):
     origin = request.headers.get("origin")
 
     valid_orgins = [
-        "https://arpanbhandari.com.np",
+        "https://www.arpanbhandari.com.np",
         "http://localhost:3000",
     ]
     if origin not in valid_orgins:

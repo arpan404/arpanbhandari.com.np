@@ -3,5 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "cd cms && npm run dev & cd web && npm run dev & cd andy && python server.py"
+  },
+  "dependencies": {
+    "graphql": "^16.10.0"
   }
 }
