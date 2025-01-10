@@ -1,3 +1,4 @@
+"use client";
 import { ReadingTimeOptions } from '@/types/writing';
 
 /**
