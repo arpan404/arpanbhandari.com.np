@@ -26,7 +26,7 @@ export const generateMetadata = async (props: {
    const params = await props.params;
    const uid = params.uid;
    if (!uid) return notFoundMetadata;
-   const data = await fetchNextAPI<WritingQueryResponse>("/api/writing?uid=" + uid);
+   const data = await fetchNextAPI<WritingQueryResponse>("/api/writing?uid=" + uid + `&token=${process.env.NEXT_INTERNAL_API_TOKEN}`);
    if (!data) return notFoundMetadata;
    return {
       metadataBase: new URL('https://arpanbhandari.com.np'),
