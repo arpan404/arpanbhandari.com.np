@@ -53,6 +53,7 @@ export default function useAndy() {
                   },
                }
             );
+            if(!response.data.uid) throw new Error('No UID returned from server');
             convoUID = response.data.uid;
             setChatUID(response.data.uid);
          }
