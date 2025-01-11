@@ -19,6 +19,7 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	go andy.Build(ch)
+
 	go func() {
 		err := <-ch
 		if err != nil {
