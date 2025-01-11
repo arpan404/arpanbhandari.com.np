@@ -7,7 +7,7 @@ import { WritingCardsQueryResponse } from '@/types/response';
 
 export default async function FeaturedWritings() {
    const writings = await fetchNextAPI<WritingCardsQueryResponse>(
-      '/api/featuredWritings',
+      `/api/featuredWritings?token=${process.env.NEXT_INTERNAL_API_TOKEN}`,
       7200
    );
    if (!writings || writings.articles.length === 0) return <></>;

@@ -57,7 +57,7 @@ export default async function Page(props: {
    const uid = params.uid;
    if (!uid) redirect('/notfound');
 
-   const data = await fetchNextAPI<WritingQueryResponse>("/api/writing?uid=" + uid);
+   const data = await fetchNextAPI<WritingQueryResponse>("/api/writing?uid=" + uid + `&token=${process.env.NEXT_INTERNAL_API_TOKEN}`);
    if (!data) redirect('/notfound');
    const article = data.articles[0];
    return (

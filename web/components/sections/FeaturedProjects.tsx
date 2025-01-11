@@ -8,7 +8,7 @@ import { FeaturedProjectsQueryResponse } from '@/types/response';
 
 export default async function FeaturedProjects() {
    const projects = await fetchNextAPI<FeaturedProjectsQueryResponse>(
-      '/api/featuredProjects',
+      `/api/featuredProjects?token=${process.env.NEXT_INTERNAL_API_TOKEN}`,
       7200
    );
    if (

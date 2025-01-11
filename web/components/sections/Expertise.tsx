@@ -11,8 +11,8 @@ import {
 
 export default async function Expertise() {
    const [skillsData, resumeData] = await Promise.all([
-      fetchNextAPI<FeaturedSkillsQueryResponse>('/api/featuredSkills', 7200),
-      fetchNextAPI<ResumeQueryResponse>('/api/resume', 7200 * 2),
+      fetchNextAPI<FeaturedSkillsQueryResponse>(`/api/featuredSkills?token=${process.env.NEXT_INTERNAL_API_TOKEN}`, 7200),
+      fetchNextAPI<ResumeQueryResponse>(`/api/resume?token=${process.env.NEXT_INTERNAL_API_TOKEN}`, 7200 * 2),
    ]);
 
    return (

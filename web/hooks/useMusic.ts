@@ -23,7 +23,7 @@ export default function useMusic() {
    useEffect(() => {
       const getMusicData = async () => {
          const data = await fetchNextAPI<MusicQueryResponse>(
-            '/api/music',
+            `/api/music?token=${process.env.NEXT_PUBLIC_INTERNAL_API_TOKEN}`,
             7200 * 2
          );
          const musicCookie = getCookie('musicPlaying');

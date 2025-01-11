@@ -39,7 +39,11 @@ export default async function page({
    const { type } = await searchParams;
 
    const data = await fetchNextAPI<WritingCardsQueryResponse>(
-      `/api/writings${type ? `?type=${type}` : ''}`,
+      `/api/writings${
+         type
+            ? `?type=${type}&token=${process.env.NEXT_INTERNAL_API_TOKEN}`
+            : `?token=${process.env.NEXT_INTERNAL_API_TOKEN}`
+      }`,
       7200
    );
    return (

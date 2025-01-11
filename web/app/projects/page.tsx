@@ -39,7 +39,7 @@ export default async function page({
 }) {
    const { tag } = await searchParams;
    const data = await fetchNextAPI<ProjectsQueryResponse>(
-      `/api/projects${tag ? `?tag=${tag}` : ''}`,
+      `/api/projects${tag ? `?tag=${tag}&token=${process.env.NEXT_INTERNAL_API_TOKEN}` : `?token=${process.env.NEXT_INTERNAL_API_TOKEN}`}`,
       7200
    );
 
