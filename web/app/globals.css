@@ -236,8 +236,8 @@ summary,
 
 .writing_body p {
    display: block !important;
-   margin-block-start: 0.7em !important;
-   margin-block-end: 0.7em !important;
+   margin-block-start: 1em !important;
+   margin-block-end: 1em !important;
    margin-inline-start: 0px !important;
    margin-inline-end: 0px !important;
 }
@@ -391,4 +391,32 @@ summary,
 p:empty {
    user-select: none;
    pointer-events: none;
+}
+
+.writing_body blockquote {
+   font-family: "Georgia", serif !important;
+   color: var(--primary) !important;
+   line-height: 1.6 !important;
+   margin: 20px 0 !important;
+   padding: 15px 20px !important;
+   border-left: 4px solid var(--selection) !important; 
+   background-color: var(--secondary) !important;
+}
+
+.writing_body blockquote::before {
+   content: "“" !important; 
+   font-size: 2em !important;
+   line-height: 0 !important;
+   vertical-align: -0.4em !important;
+   color: #ff5c2b!important;
+   margin-right: 10px !important;
+}
+
+.writing_body blockquote::after {
+   content: "”" !important; 
+   font-size: 2em !important;
+   line-height: 0 !important;
+   vertical-align: -0.4em !important;
+   color: #ff5c2b !important;
+   margin-left: 10px !important;
 }
