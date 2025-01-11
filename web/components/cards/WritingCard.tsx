@@ -34,7 +34,7 @@ export default function WritingCard(props: WritingCardType) {
                   />
                </Link>
             </div>
-            <CardTitle className="font-medium pb-0 px-4 py-2 min-h-[88px]">
+            <CardTitle className="font-medium pb-0 px-4 py-2">
                <Link
                   href={`/writings/${props.uid}`}
                   className="hover:underline underline-offset-2 line-clamp-3 text-base text-primary/90 transition-all ease-in-out delay-100"
