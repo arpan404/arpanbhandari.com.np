@@ -10,6 +10,7 @@ export default async function RootLayout({
 }: Readonly<{
    children: React.ReactNode;
 }>) {
+   
    const [theme] = await Promise.all([getTheme()]);
    const currentThemeMode = theme === 'system' ? 'dark' : theme;
    return (

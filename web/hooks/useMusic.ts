@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import getMusic from '@/actions/getMusic';
+
+import fetchNextAPI from '@/actions/fetchNextAPI';
 import { addCookie, getCookie } from '@/lib/cookie';
+import { MusicQueryResponse } from '@/types/response';
 
 /**
  * - musicPlaying: Indictaes if the music is playing or not
@@ -20,7 +22,10 @@ export default function useMusic() {
 
    useEffect(() => {
       const getMusicData = async () => {
-         const data = await getMusic();
+         const data = await fetchNextAPI<MusicQueryResponse>(
+            '/api/music',
+            7200 * 2
+         );
          const musicCookie = getCookie('musicPlaying');
          if (musicCookie === null) {
             setMusicPlaying(true);

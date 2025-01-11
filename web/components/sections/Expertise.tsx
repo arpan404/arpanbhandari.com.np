@@ -1,15 +1,18 @@
 import Link from 'next/link';
 
-import getResume from '@/actions/getResume';
 import Skill from '@/components/buttons/Skill';
 import { Button } from '@/components/ui/button';
+import fetchNextAPI from '@/actions/fetchNextAPI';
 import PdfViewer from '@/components/modals/PdfViewer';
-import getFeaturedSkills from '@/actions/getFeaturedSkills';
+import {
+   FeaturedSkillsQueryResponse,
+   ResumeQueryResponse,
+} from '@/types/response';
 
 export default async function Expertise() {
    const [skillsData, resumeData] = await Promise.all([
-      getFeaturedSkills(),
-      getResume(),
+      fetchNextAPI<FeaturedSkillsQueryResponse>('/api/featuredSkills', 7200),
+      fetchNextAPI<ResumeQueryResponse>('/api/resume', 7200 * 2),
    ]);
 
    return (

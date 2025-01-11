@@ -1,11 +1,15 @@
 import Link from 'next/link';
 
+import fetchNextAPI from '@/actions/fetchNextAPI';
 import WritingCard from '@/components/cards/WritingCard';
-import getFeaturedWritings from '@/actions/getFeaturedWritings';
 import HorizontalScroll from '@/components/common/HorizontalScroll';
+import { WritingCardsQueryResponse } from '@/types/response';
 
 export default async function FeaturedWritings() {
-   const writings = await getFeaturedWritings();
+   const writings = await fetchNextAPI<WritingCardsQueryResponse>(
+      '/api/featuredWritings',
+      7200
+   );
    if (!writings || writings.articles.length === 0) return <></>;
 
    return (

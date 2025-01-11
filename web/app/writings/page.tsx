@@ -6,6 +6,8 @@ import { ChevronLeft, FilterX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import getWritings from '@/actions/getWritingCards';
 import WritingCollection from '@/components/sections/WritingCollection';
+import fetchNextAPI from '@/actions/fetchNextAPI';
+import { WritingCardsQueryResponse } from '@/types/response';
 
 export const metadata: Metadata = {
    metadataBase: new URL('https://arpanbhandari.com.np'),
@@ -36,8 +38,11 @@ export default async function page({
    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
    const { type } = await searchParams;
-   const data = await getWritings(type ? (type as string) : undefined);
 
+   const data = await fetchNextAPI<WritingCardsQueryResponse>(
+      `/api/writings${type ? `?type=${type}` : ''}`,
+      7200
+   );
    return (
       <main className="bg-background min-h-[calc(100dvh-68px)] pt-[52px]">
          <div className="px-2 py-2">

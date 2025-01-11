@@ -6,10 +6,6 @@ import { redirect } from 'next/navigation';
 import { Calendar, Dot, Tag } from 'lucide-react';
 
 import getWriting from '@/actions/getWriting';
-import { metadata as notFoundMetadata } from '@/app/not-found';
-import ReadTime from '@/components/common/ReadTime';
-import WritingBreadcrumb from '@/components/navs/WritingBreadcrumb';
-import WritingShare from '@/components/cards/WritingShare';
 import { Button } from '@/components/ui/button';
 import {
    Tooltip,
@@ -17,7 +13,13 @@ import {
    TooltipProvider,
    TooltipTrigger,
 } from '@/components/ui/tooltip';
+import fetchNextAPI from '@/actions/fetchNextAPI';
+import ReadTime from '@/components/common/ReadTime';
+import { WritingQueryResponse } from '@/types/response';
+import WritingShare from '@/components/cards/WritingShare';
 import FormattedDate from '@/components/common/FormattedDate';
+import { metadata as notFoundMetadata } from '@/app/not-found';
+import WritingBreadcrumb from '@/components/navs/WritingBreadcrumb';
 
 export const generateMetadata = async (props: {
    params: Promise<{ uid: string }>;
@@ -25,7 +27,7 @@ export const generateMetadata = async (props: {
    const params = await props.params;
    const uid = params.uid;
    if (!uid) return notFoundMetadata;
-   const data = await getWriting(params.uid);
+   const data = await fetchNextAPI<WritingQueryResponse>("/api/writing?uid=" + uid);
    if (!data) return notFoundMetadata;
    return {
       metadataBase: new URL('https://arpanbhandari.com.np'),
@@ -56,7 +58,7 @@ export default async function Page(props: {
    const uid = params.uid;
    if (!uid) redirect('/notfound');
 
-   const data = await getWriting(uid);
+   const data = await fetchNextAPI<WritingQueryResponse>("/api/writing?uid=" + uid);
    if (!data) redirect('/notfound');
    const article = data.articles[0];
    return (

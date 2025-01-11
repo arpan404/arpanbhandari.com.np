@@ -11,8 +11,6 @@ const formatTimestamp = (isoTimestamp: string): string => {
       day: 'numeric',
    };
    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
-   console.log(isoTimestamp);
-   console.log(formattedDate);
    return formattedDate;
 };
 

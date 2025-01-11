@@ -1,12 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
 
+import fetchNextAPI from '@/actions/fetchNextAPI';
 import ProjectCard from '@/components/cards/ProjectCard';
-import getFeaturedProjects from '@/actions/getFeaturedProjects';
 import HorizontalScroll from '@/components/common/HorizontalScroll';
+import { FeaturedProjectsQueryResponse } from '@/types/response';
 
 export default async function FeaturedProjects() {
-   const projects = await getFeaturedProjects();
+   const projects = await fetchNextAPI<FeaturedProjectsQueryResponse>(
+      '/api/featuredProjects',
+      7200
+   );
    if (
       !projects ||
       !projects.featuredProjects ||

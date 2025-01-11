@@ -2,8 +2,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronLeft, FilterX } from 'lucide-react';
 
-import getProjects from '@/actions/getProjects';
 import { Button } from '@/components/ui/button';
+import fetchNextAPI from '@/actions/fetchNextAPI';
+import { ProjectsQueryResponse } from '@/types/response';
 import ProjectCollection from '@/components/sections/ProjectCollection';
 
 export const metadata: Metadata = {
@@ -37,7 +38,10 @@ export default async function page({
    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
    const { tag } = await searchParams;
-   const data = await getProjects(tag ? (tag as string) : undefined);
+   const data = await fetchNextAPI<ProjectsQueryResponse>(
+      `/api/projects${tag ? `?tag=${tag}` : ''}`,
+      7200
+   );
 
    return (
       <main className="bg-background min-h-[calc(100dvh-68px)] pt-[52px]">
