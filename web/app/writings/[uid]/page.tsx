@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Calendar, Dot, Tag } from 'lucide-react';
 
-import { formatTimestamp } from '@/lib/date';
 import getWriting from '@/actions/getWriting';
 import { metadata as notFoundMetadata } from '@/app/not-found';
 import ReadTime from '@/components/common/ReadTime';
@@ -18,6 +17,7 @@ import {
    TooltipProvider,
    TooltipTrigger,
 } from '@/components/ui/tooltip';
+import FormattedDate from '@/components/common/FormattedDate';
 
 export const generateMetadata = async (props: {
    params: Promise<{ uid: string }>;
@@ -89,7 +89,7 @@ export default async function Page(props: {
                            <div className="text-primary/70 font-medium text-sm flex items-center gap-1">
                               <Calendar size={16} />
                               <span className="block">
-                                 {formatTimestamp(article.createdAt)}
+                                 <FormattedDate date={article.createdAt} />
                               </span>
                            </div>
                            <span className="block">
@@ -133,7 +133,7 @@ export default async function Page(props: {
                      className="writing_body mt-4 md:mt-8"
                   />
                   <div className="flex justify-end relative top-[80px] py-4 sm:py-0 text-sm font-medium text-primary/70">
-                     Last Updated: {formatTimestamp(article.updatedAt)}
+                     Last Updated: <FormattedDate date={article.updatedAt} />
                   </div>
                </div>
             </div>

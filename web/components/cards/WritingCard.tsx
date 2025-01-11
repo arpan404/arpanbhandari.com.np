@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Tag } from 'lucide-react';
 
-import { formatTimestamp } from '@/lib/date';
 import { Button } from '@/components/ui/button';
 import { WritingCard as WritingCardType } from '@/types/writing';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,6 +13,7 @@ import {
    TooltipProvider,
    TooltipTrigger,
 } from '@/components/ui/tooltip';
+import FormattedDate from '@/components/common/FormattedDate';
 
 export default function WritingCard(props: WritingCardType) {
    return (
@@ -49,7 +49,7 @@ export default function WritingCard(props: WritingCardType) {
             </p>
             <div className="flex justify-between items-center mt-3">
                <span className="text-xs text-primary/70 font-medium block">
-                  {formatTimestamp(props.createdAt)}
+                  <FormattedDate date={props.createdAt} />
                </span>
                <TooltipProvider>
                   <Tooltip>
