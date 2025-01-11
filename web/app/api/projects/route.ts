@@ -1,6 +1,5 @@
 import getProjects from '@/actions/getProjects';
 
-export const revalidate = 7200;
 
 export async function GET(request: Request) {
    const { searchParams } = new URL(request.url);

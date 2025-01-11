@@ -1,7 +1,5 @@
 import getWritingCards from '@/actions/getWritingCards';
 
-export const revalidate = 7200;
-
 export async function GET(request: Request) {
    const { searchParams } = new URL(request.url);
    const type = searchParams.get('type');

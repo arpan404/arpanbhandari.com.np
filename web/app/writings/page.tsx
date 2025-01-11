@@ -4,10 +4,9 @@ import Link from 'next/link';
 import { ChevronLeft, FilterX } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import getWritings from '@/actions/getWritingCards';
-import WritingCollection from '@/components/sections/WritingCollection';
 import fetchNextAPI from '@/actions/fetchNextAPI';
 import { WritingCardsQueryResponse } from '@/types/response';
+import WritingCollection from '@/components/sections/WritingCollection';
 
 export const metadata: Metadata = {
    metadataBase: new URL('https://arpanbhandari.com.np'),

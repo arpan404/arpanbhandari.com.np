@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Calendar, Dot, Tag } from 'lucide-react';
 
-import getWriting from '@/actions/getWriting';
 import { Button } from '@/components/ui/button';
 import {
    Tooltip,

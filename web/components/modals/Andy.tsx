@@ -33,7 +33,7 @@ export default function Andy({
             }
          }
       }
-   }, []);
+   }, [userDetails, setUserDetails]);
 
    const slideVariants = {
       initial: (direction: number) => ({
