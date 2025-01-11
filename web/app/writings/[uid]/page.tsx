@@ -75,6 +75,7 @@ export default async function Page(props: {
                      className="object-cover w-full h-full select-none"
                      draggable={false}
                      priority={true}
+                     loading="eager"
                   />
                </div>
                <div className="relative -top-[80px] sm:-top-[120px] md:-top-[160px] lg:-top-[200px] bg-background py-4 md:py-8 w-[95%] sm:w-[90%] mx-auto rounded-t-lg sm:rounded-t-xl md:rounded-t-2xl px-4 sm:px-6 md:px-8">

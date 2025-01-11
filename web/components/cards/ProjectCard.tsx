@@ -63,6 +63,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                         height={700}
                         draggable={false}
                         priority={true}
+                        loading="eager"
                         className="w-full h-full object-cover select-none"
                      />
                   </div>
