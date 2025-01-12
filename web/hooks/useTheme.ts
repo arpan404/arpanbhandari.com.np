@@ -8,7 +8,7 @@ import { Theme as ThemeType } from '@/types/theme';
  */
 export default function useTheme() {
    const [currentTheme, setCurrentTheme] = useState<ThemeType>('system');
-
+ 
    useEffect(() => {
       const theme = getCurrentTheme();
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');

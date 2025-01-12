@@ -10,3 +10,4 @@ app.use("/", createProxyMiddleware({ target: TARGET, changeOrigin: true }));
 app.listen(PORT, () => {
   console.log(`Proxy server running at http://localhost:${PORT}`);
 });
+

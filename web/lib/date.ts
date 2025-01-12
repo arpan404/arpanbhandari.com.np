@@ -13,5 +13,4 @@ const formatTimestamp = (isoTimestamp: string): string => {
    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
    return formattedDate;
 };
-
 export { formatTimestamp };

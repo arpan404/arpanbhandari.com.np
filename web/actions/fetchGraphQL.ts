@@ -1,6 +1,7 @@
 import { DocumentNode } from 'graphql';
 import redis from '@/lib/redis';
 import client from '@/lib/graphql';
+import { warn } from 'console';
 
 /**
  * Fetches data from a GraphQL API and caches it using Redis.

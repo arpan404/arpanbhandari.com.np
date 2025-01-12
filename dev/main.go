@@ -1,6 +1,7 @@
 package main
 
 import (
+	"arpan404/internals/cms"
 	"arpan404/internals/proxy"
 	"fmt"
 	"os"
@@ -19,6 +20,7 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	// go andy.Build(ch)
+  go cms.Build(ch)
 	go proxy.Build(ch)
 	go func() {
 		err := <-ch
@@ -30,6 +32,7 @@ func main() {
 	wg.Wait()
 	print("Build the project successfully for production!!!")
 }
+
 
 func makeProductionFolder() error {
 	currentDir, err := os.Getwd()
@@ -63,3 +66,4 @@ func makeProductionFolder() error {
 	}
 	return nil
 }
+

@@ -2,7 +2,6 @@ import os
 from dotenv import load_dotenv
 from tortoise import Tortoise
 
-
 load_dotenv()
 
 DATABASE_CONFIG = {
