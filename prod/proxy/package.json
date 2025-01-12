@@ -1,0 +1,11 @@
+{
+  "name": "andy-proxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Aroan Bhandari",
+  "description": "A simple proxy server to host FastAPI in async mode in cPanel",
+  "dependencies": {
+    "express": "^4.21.2",
+    "http-proxy-middleware": "^3.0.3"
+  }
+}

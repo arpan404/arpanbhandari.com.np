@@ -52,9 +52,6 @@ func createProxyFolder() (string, error) {
 
 	parentDir := filepath.Dir(orginalPath)
 
-	if err != nil {
-		return "", fmt.Errorf("failed to get parent directory: %w", err)
-	}
 	absolutePath := filepath.Join(parentDir, "prod", "proxy")
 
 	proxyFolder := fs.Directory(absolutePath)
