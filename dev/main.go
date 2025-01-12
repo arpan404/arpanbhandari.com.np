@@ -1,7 +1,7 @@
 package main
 
 import (
-	"arpan404/internals/andy"
+	"arpan404/internals/proxy"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -18,8 +18,8 @@ func main() {
 	ch := make(chan error)
 	var wg sync.WaitGroup
 	wg.Add(1)
-	go andy.Build(ch)
-
+	// go andy.Build(ch)
+	go proxy.Build(ch)
 	go func() {
 		err := <-ch
 		if err != nil {

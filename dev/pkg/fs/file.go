@@ -6,30 +6,39 @@ import (
 	"os"
 )
 
-type File struct {
-	OrgPath  string
-	DestPath string
+type file struct {
+	path string
 }
 
-func (f *File) Copy() error {
-	var exits = doesExists(f.OrgPath)
+func File(path string) *file {
+	return &file{path: path}
+}
 
-	if !exits {
-		return fmt.Errorf("source %v does not exist", f.OrgPath)
+func (f *file) DeleteFile() error {
+	err := os.Remove(f.path)
+	if err != nil {
+		return fmt.Errorf("failed to delete %v", f.path)
+	}
+	return nil
+}
+
+func (f *file) CopyFile(dest *file) error {
+	srcExists := DoesExists(f.path)
+	if !srcExists {
+		return fmt.Errorf("source %v does not exist", f.path)
 	}
 
-	var destExists = doesExists(f.DestPath)
-
+	destExists := DoesExists(dest.path)
 	if destExists {
-		return fmt.Errorf("destination %v already exists", f.DestPath)
+		return fmt.Errorf("destination %v already exists", dest)
 	}
-	srcFile, err := os.Open(f.OrgPath)
+	srcFile, err := os.Open(f.path)
 	if err != nil {
 		return err
 	}
 	defer srcFile.Close()
 
-	destFile, err := os.Create(f.DestPath)
+	destFile, err := os.Create(dest.path)
 	if err != nil {
 		return err
 	}
@@ -42,10 +51,14 @@ func (f *File) Copy() error {
 	return nil
 }
 
-func deleteFile(path string) error {
-	err := os.Remove(path)
+func (f *file) MoveFile(dest *file) error {
+	err := f.CopyFile(dest)
 	if err != nil {
-		return fmt.Errorf("failed to delete %v", path)
+		return err
+	}
+	err = f.DeleteFile()
+	if err != nil {
+		return err
 	}
 	return nil
 }

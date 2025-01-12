@@ -59,7 +59,7 @@ func MoveFiles(src, dest string) error {
 	return nil
 }
 
-func doesExists(path string) bool {
+func DoesExists(path string) bool {
 	_, err := os.Stat(path)
 	if err != nil {
 		return false
