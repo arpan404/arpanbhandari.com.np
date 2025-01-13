@@ -4,10 +4,10 @@ import (
 	"arpan404/internals/andy"
 	"arpan404/internals/cms"
 	"arpan404/internals/proxy"
+	"arpan404/internals/web"
 	"fmt"
 	"os"
 	"path/filepath"
-	"sync"
 )
 
 func main() {
@@ -18,57 +18,34 @@ func main() {
 	}
 	fmt.Println("Production folder created...")
 
-	var wg sync.WaitGroup
-	wg.Add(3)
-
-	var errors []error
-	var mu sync.Mutex
-
-	go func() {
-		defer wg.Done()
-		err := cms.Build()
-		if err != nil {
-			mu.Lock()
-			errors = append(errors, fmt.Errorf("cms build failed: %w", err))
-			mu.Unlock()
-		} else {
-			fmt.Println("CMS build completed successfully.")
-		}
-	}()
-
-	go func() {
-		defer wg.Done()
-		err := proxy.Build()
-		if err != nil {
-			mu.Lock()
-			errors = append(errors, fmt.Errorf("proxy build failed: %w", err))
-			mu.Unlock()
-		} else {
-			fmt.Println("Proxy build completed successfully.")
-		}
-	}()
-
-	go func() {
-		defer wg.Done()
-		err := andy.Build()
-		if err != nil {
-			mu.Lock()
-			errors = append(errors, fmt.Errorf("andy build failed: %w", err))
-			mu.Unlock()
-		} else {
-			fmt.Println("Andy build completed successfully.")
-		}
-	}()
-
-	wg.Wait()
-
-	if len(errors) > 0 {
-		fmt.Println("Build process encountered errors:")
-		for _, err := range errors {
-			fmt.Println(err)
-		}
+	// Sequential execution of build functions
+	err = cms.Build()
+	if err != nil {
+		fmt.Printf("CMS build failed: %v\n", err)
 		os.Exit(1)
 	}
+	fmt.Println("CMS build completed successfully.")
+
+	err = proxy.Build()
+	if err != nil {
+		fmt.Printf("Proxy build failed: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Println("Proxy build completed successfully.")
+
+	err = andy.Build()
+	if err != nil {
+		fmt.Printf("Andy build failed: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Println("Andy build completed successfully.")
+
+	err = web.Build()
+	if err != nil {
+		fmt.Printf("Web build failed: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Println("Web build completed successfully.")
 
 	fmt.Println("Build the project successfully for production!!!")
 }

@@ -62,6 +62,7 @@ func createCmsFolder() (string, error) {
 
 func buildAndCopyCms(sourceDir string) error {
 	cmd := exec.Command("npm", "run", "build")
+
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
@@ -104,10 +105,8 @@ func buildAndCopyCms(sourceDir string) error {
 
 	for _, folder := range foldersToCopy {
 		sourceFolder := fs.Directory(path.Join(sourceDir, folder))
-		fmt.Println(sourceFolder)
 		destinationFolder := fs.Directory(path.Join(destinationDir, folder))
 		err = sourceFolder.Copy(destinationFolder)
-		fmt.Println(sourceFolder, destinationFolder)
 		if err != nil {
 			return fmt.Errorf("failed to copy %s folder: %w", folder, err)
 		}
