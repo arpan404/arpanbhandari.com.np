@@ -1,0 +1,20 @@
+{
+    "kind": "singleType",
+    "collectionName": "top_skills",
+    "info": {
+        "singularName": "top-skill",
+        "pluralName": "top-skills",
+        "displayName": "Top Skill"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "skill_details": {
+            "type": "dynamiczone",
+            "components": ["projects.tags"],
+            "required": true
+        }
+    }
+}

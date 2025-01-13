@@ -1,0 +1,22 @@
+{
+   "kind": "singleType",
+   "collectionName": "resumes",
+   "info": {
+      "singularName": "resume",
+      "pluralName": "resumes",
+      "displayName": "resume",
+      "description": ""
+   },
+   "options": {
+      "draftAndPublish": true
+   },
+   "pluginOptions": {},
+   "attributes": {
+      "file": {
+         "type": "media",
+         "multiple": false,
+         "required": true,
+         "allowedTypes": ["files"]
+      }
+   }
+}

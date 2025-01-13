@@ -1,0 +1,29 @@
+{
+    "kind": "collectionType",
+    "collectionName": "article_types",
+    "info": {
+        "singularName": "article-type",
+        "pluralName": "article-types",
+        "displayName": "Article Type",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "type": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "uid": {
+            "type": "uid",
+            "targetField": "type"
+        },
+        "description": {
+            "type": "string",
+            "required": true
+        }
+    }
+}

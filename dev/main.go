@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -16,23 +17,49 @@ func main() {
 		panic(err)
 	}
 	fmt.Println("Production folder created...")
-	ch := make(chan error)
-	var wg sync.WaitGroup
-	wg.Add(1)
-	// go andy.Build(ch)
-  go cms.Build(ch)
-	go proxy.Build(ch)
-	go func() {
-		err := <-ch
-		if err != nil {
-			panic(err)
-		}
-		wg.Done()
-	}()
-	wg.Wait()
-	print("Build the project successfully for production!!!")
-}
 
+	var wg sync.WaitGroup
+	wg.Add(2)
+  
+	var errors []error
+	var mu sync.Mutex
+
+	go func() {
+		defer wg.Done()
+		err := cms.Build()
+		if err != nil {
+			mu.Lock()
+			errors = append(errors, fmt.Errorf("CMS build failed: %w", err))
+			mu.Unlock()
+		} else {
+			fmt.Println("CMS build completed successfully.")
+		}
+	}()
+
+	go func() {
+		defer wg.Done()
+		err := proxy.Build()
+		if err != nil {
+			mu.Lock()
+			errors = append(errors, fmt.Errorf("Proxy build failed: %w", err))
+			mu.Unlock()
+		} else {
+			fmt.Println("Proxy build completed successfully.")
+		}
+	}()
+
+	wg.Wait()
+
+	if len(errors) > 0 {
+		fmt.Println("Build process encountered errors:")
+		for _, err := range errors {
+			fmt.Println(err)
+		}
+		os.Exit(1)
+	}
+
+	fmt.Println("Build the project successfully for production!!!")
+}
 
 func makeProductionFolder() error {
 	currentDir, err := os.Getwd()
@@ -66,4 +93,3 @@ func makeProductionFolder() error {
 	}
 	return nil
 }
-

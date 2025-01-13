@@ -1,0 +1,21 @@
+{
+   "kind": "singleType",
+   "collectionName": "featured_projects",
+   "info": {
+      "singularName": "featured-project",
+      "pluralName": "featured-projects",
+      "displayName": "Featured Project",
+      "description": ""
+   },
+   "options": {
+      "draftAndPublish": true
+   },
+   "pluginOptions": {},
+   "attributes": {
+      "projects": {
+         "type": "component",
+         "repeatable": true,
+         "component": "projects.project"
+      }
+   }
+}

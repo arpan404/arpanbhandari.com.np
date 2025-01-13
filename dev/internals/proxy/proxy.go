@@ -7,12 +7,11 @@ import (
 	"path/filepath"
 )
 
-func Build(ch chan error) {
+func Build() error{
 	fmt.Println("Building the proxy...")
 	proxyPath, err := createProxyFolder()
 	if err != nil {
-		ch <- fmt.Errorf("failed to create proxy folder: %w", err)
-		return
+		return fmt.Errorf("failed to create proxy folder: %w", err)
 	}
 	var fileToCopy []string = []string{
 		"package.json",
@@ -21,8 +20,7 @@ func Build(ch chan error) {
 
 	sourceFolder, err := os.Getwd()
 	if err != nil {
-		ch <- fmt.Errorf("failed to get current directory: %w", err)
-		return
+		return fmt.Errorf("failed to get current directory: %w", err)
 	}
 
 	sourceFolder = filepath.Dir(sourceFolder)
@@ -31,17 +29,14 @@ func Build(ch chan error) {
 	for _, file := range fileToCopy {
 		src := fs.File(filepath.Join(sourceFolder, file))
 		dest := fs.File(filepath.Join(proxyPath, file))
-		err := src.CopyFile(dest)
+		err := src.Copy(dest)
 
 		if err != nil {
-			ch <- fmt.Errorf("failed to copy %v to %v: %w", src, dest, err)
-			return
+			return fmt.Errorf("failed to copy %v to %v: %w", src, dest, err)
 		}
 	}
 
-	ch <- nil
-	return
-
+	return nil
 }
 
 func createProxyFolder() (string, error) {

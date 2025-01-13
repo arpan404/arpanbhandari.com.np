@@ -3,6 +3,7 @@ package fs
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 type directory struct {
@@ -44,4 +45,32 @@ func (d *directory) CreateDirectory(clean bool) error {
 		return err
 	}
 	return nil
+}
+
+func (source *directory) Copy(dest * directory) error{
+  return filepath.WalkDir(source.path, func(path string, d os.DirEntry, err error) error{
+    if err != nil{
+      return fmt.Errorf("error accessing path %s: %w", path, err)
+    }
+
+  relativePath, err := filepath.Rel(source.path, path)
+    if err != nil {
+  return fmt.Errorf("error getting relative path: %w", err)
+  }
+  destPath := filepath.Join(dest.path, relativePath)
+
+  if d.IsDir(){
+  if err := os.MkdirAll(destPath, os.ModePerm); err != nil {
+    return fmt.Errorf("error creating directory %s: %w", destPath, err)
+  }
+}else{
+  sourceFile := File(path)
+    destFile := File(destPath)
+
+if err:= sourceFile.Copy(destFile); err != nil{
+    return fmt.Errorf("error copying file %s: %w", path, err)
+    }
+}
+  return nil
+})
 }
