@@ -89,7 +89,7 @@ func buildAndCopyCms(sourceDir string) error {
 		destinationDir.CreateDirectory(true)
 	}
 
-	filesToCopy := []string{"favicon.ico", "package.json", "tsconfig.json", "server.js", filepath.Join("public", "uploads", ".gitkeep"), filepath.Join("public", "robots.txt")}
+	filesToCopy := []string{"favicon.ico", "package.json", "tsconfig.json", "server.js", ".gitignore", filepath.Join("public", "uploads", ".gitkeep"), filepath.Join("public", "robots.txt")}
 
 	for _, file := range filesToCopy {
 		sourceFile := fs.File(filepath.Join(sourceDir, file))
