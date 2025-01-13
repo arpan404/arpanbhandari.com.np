@@ -1,12 +1,15 @@
-# RULES
+# Introduction
+This is the frontend of the portfolio, built using Next.js 15 with the app router.
 
--  every functions other than react components or hooks should be arrow functions
+## Getting Started
 
--  Git commit message tags:
-   -  #feat: Added some feature
-   -  #fix : Fixed logical or programming bug
-   -  #design: Changed designed
-   -  #add: Added non-feature files
-   -  #refactor: Refactored code base including formatting
-   -  #del: Deleted files
-   -  #chore : Other
+To install dependencies and run the development server, use the following commands:
+
+```bash
+npm install
+npm run dev
+```
+
+# Rules
+
+- All functions, except for React components or hooks, should be written as arrow functions.
