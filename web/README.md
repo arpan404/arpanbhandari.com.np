@@ -10,23 +10,19 @@ npm install
 npm run dev
 ```
 
-## Other Dependencies
+## Dependencies
 
 ### Redis
-You can install Redis using the official documentation. For a local machine, Redis runs on port 6379 by default, so add `redis://localhost:6379` in your `.env.local` file.
+Install Redis using the official documentation. For a local machine, Redis runs on port 6379 by default. Add `redis://localhost:6379` to your `.env.local` file.
 
 ### PostHog
 - **API Key**: Used for analytics.
 
-Before running this web project, ensure you have the CMS and Andy servers running.
+Before running this project, ensure the CMS and Andy servers are running.
 
-## Note
+## Configuration
+
 Create a `.env.local` file based on the `.env.example` file and populate it with the relevant data.
-
-# Rules
-
-- All functions, except for React components or hooks, should be written as arrow functions.
-
 
 ### .env.local File Explained
 
@@ -42,3 +38,7 @@ NEXT_PUBLIC_INTERNAL_API_TOKEN=internal_api_token # Used to verify if the API re
 ```
 
 **Note:** All URLs except the Andy API URL must not have a trailing slash.
+
+## Coding Guidelines
+
+- All functions, except for React components or hooks, should be written as arrow functions.
