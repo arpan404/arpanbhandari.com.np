@@ -35,45 +35,11 @@ export default function PdfViewer({
    const [pageNumber, setPageNumber] = useState(1);
    const pdfViewerRef = useRef<HTMLDivElement>(null);
    const [width, setWidth] = useState<number>(0);
-   const [pdfBlob, setPdfBlob] = useState<string | null>(null);
-   const [isLoading, setIsLoading] = useState(false);
 
    useEffect(() => {
-      pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/pdf.worker.min.mjs`;
+      pdfjs.GlobalWorkerOptions.workerSrc =
+         pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/pdf.worker.min.mjs`;
    }, []);
-
-   useEffect(() => {
-      const fetchPdf = async () => {
-         try {
-            setIsLoading(true);
-            const response = await fetch(pdfUrl, {
-               mode: 'cors',
-               credentials: 'omit',
-               headers: {
-                  'Content-Type': 'application/pdf',
-               },
-            });
-
-            const pdfBuffer = await response.arrayBuffer();
-            const blob = new Blob([pdfBuffer], { type: 'application/pdf' });
-            const blobUrl = URL.createObjectURL(blob);
-            setPdfBlob(blobUrl);
-         } catch (error) {
-            console.error('Error fetching PDF:', error);
-         } finally {
-            setIsLoading(false);
-         }
-      };
-
-      fetchPdf();
-
-      return () => {
-         // Cleanup blob URL when component unmounts
-         if (pdfBlob) {
-            URL.revokeObjectURL(pdfBlob);
-         }
-      };
-   }, [pdfUrl]);
 
    useEffect(() => {
       const updateDimensions = () => {
@@ -178,7 +144,7 @@ export default function PdfViewer({
                         </div>
                      )}
                      <div className="flex items-center relative flex-1 justify-center">
-                        {(numPages > 0 && !isLoading) && (
+                        {numPages > 1 && (
                            <span className="text-primary/80 font-medium text-sm">
                               {pageNumber} / {numPages}
                            </span>
@@ -188,11 +154,7 @@ export default function PdfViewer({
                         <TooltipProvider>
                            <Tooltip>
                               <TooltipTrigger className="bg-secondary p-3 rounded-full opacity-80 hover:opacity-100 transition-all ease-in-out delay-75">
-                                 <a
-                                    href={pdfBlob || pdfUrl}
-                                    target="_blank"
-                                    download
-                                 >
+                                 <a href={pdfUrl} target="_blank" download>
                                     <CloudDownload size={20} />
                                     <span className="sr-only">
                                        Download this file
@@ -210,20 +172,11 @@ export default function PdfViewer({
                      className="justify-center mt-2 flex overflow-hidden"
                      ref={pdfViewerRef}
                   >
-                     {isLoading ? (
-                        <div className="flex items-center justify-center p-8">
-                           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                        </div>
-                     ) : (
-                        <div className="w-fit border-2 border-b-0 overflow-y-scroll custom_page_scroll rounded-xl rounded-b-[0px] overflow-x-hidden">
-                           <Document
-                              file={pdfBlob || pdfUrl}
-                              onLoadSuccess={onLoadSuccess}
-                           >
-                              <Page pageNumber={pageNumber} width={width} />
-                           </Document>
-                        </div>
-                     )}
+                     <div className="w-fit border-2 border-b-0 overflow-y-scroll custom_page_scroll rounded-xl rounded-b-[0px] overflow-x-hidden">
+                        <Document file={pdfUrl} onLoadSuccess={onLoadSuccess}>
+                           <Page pageNumber={pageNumber} width={width} />
+                        </Document>
+                     </div>
                   </div>
                </ModalContent>
             </ModalBody>
