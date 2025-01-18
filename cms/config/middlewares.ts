@@ -2,7 +2,15 @@ export default [
    'strapi::logger',
    'strapi::errors',
    'strapi::security',
-   'strapi::cors',
+   {
+      name: 'strapi::cors',
+      config: {
+         enabled: true,
+         origin: ['https://www.arpanbhandari.com.np'],
+         headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+         methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+      },
+   },
    'strapi::poweredBy',
    'strapi::query',
    'strapi::body',

@@ -50,7 +50,7 @@ export default function ContactModal() {
                Send Me Message
             </Button>
          </DialogTrigger>
-         <DialogContent className="w-full max-w-full md:max-w-[700px] rounded-2xl sm:rounded-3xl md:rounded-3xl lg:rounded-3xl max-h-[90dvh] overflow-y-scroll">
+         <DialogContent className="w-full max-w-full md:max-w-[700px] rounded-2xl sm:rounded-3xl md:rounded-3xl lg:rounded-3xl max-h-[90dvh] overflow-y-scroll scrollbar-hide">
             <form onSubmit={handleSubmit}>
                <DialogHeader>
                   <DialogTitle>Contact Me</DialogTitle>

@@ -31,23 +31,14 @@ export default function PdfViewer({
    pdfUrl: string;
    children: React.ReactNode;
 }) {
-   const [pdfData, setPdfData] = useState<string>('');
    const [numPages, setNumPages] = useState<number>(0);
    const [pageNumber, setPageNumber] = useState(1);
    const pdfViewerRef = useRef<HTMLDivElement>(null);
    const [width, setWidth] = useState<number>(0);
 
    useEffect(() => {
-      fetch(pdfUrl)
-         .then(response => response.blob())
-         .then(blob => {
-            const pdfUrl = URL.createObjectURL(blob);
-            setPdfData(pdfUrl);
-         })
-         .catch(error => console.error('Error fetching PDF:', error));
-   }, [pdfUrl]);
-   useEffect(() => {
-      pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/pdf.worker.min.mjs`;
+      pdfjs.GlobalWorkerOptions.workerSrc =
+         pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/pdf.worker.min.mjs`;
    }, []);
 
    useEffect(() => {
@@ -182,14 +173,9 @@ export default function PdfViewer({
                      ref={pdfViewerRef}
                   >
                      <div className="w-fit border-2 border-b-0 overflow-y-scroll custom_page_scroll rounded-xl rounded-b-[0px] overflow-x-hidden">
-                        {pdfData && (
-                           <Document
-                              file={pdfData}
-                              onLoadSuccess={onLoadSuccess}
-                           >
-                              <Page pageNumber={pageNumber} width={width} />
-                           </Document>
-                        )}
+                        <Document file={pdfUrl} onLoadSuccess={onLoadSuccess}>
+                           <Page pageNumber={pageNumber} width={width} />
+                        </Document>
                      </div>
                   </div>
                </ModalContent>

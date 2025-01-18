@@ -37,7 +37,8 @@ export default function PdfViewer({
    const [width, setWidth] = useState<number>(0);
 
    useEffect(() => {
-      pdfjs.GlobalWorkerOptions.workerSrc = pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/pdf.worker.min.mjs`;
+      pdfjs.GlobalWorkerOptions.workerSrc =
+         pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/pdf.worker.min.mjs`;
    }, []);
 
    useEffect(() => {
@@ -143,9 +144,11 @@ export default function PdfViewer({
                         </div>
                      )}
                      <div className="flex items-center relative flex-1 justify-center">
-                        <span className="text-primary/80 font-medium text-sm">
-                           {pageNumber} / {numPages}
-                        </span>
+                        {numPages > 1 && (
+                           <span className="text-primary/80 font-medium text-sm">
+                              {pageNumber} / {numPages}
+                           </span>
+                        )}
                      </div>
                      <div className="">
                         <TooltipProvider>
