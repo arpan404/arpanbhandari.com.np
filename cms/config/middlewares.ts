@@ -16,7 +16,7 @@ export default [
          },
          cors: {
             enabled: true,
-            origin: ['https://localhossst:3000'],
+            origin: ['*'],
             methods: [
                'GET',
                'POST',
