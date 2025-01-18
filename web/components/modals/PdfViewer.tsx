@@ -35,6 +35,7 @@ export default function PdfViewer({
    const [pageNumber, setPageNumber] = useState(1);
    const pdfViewerRef = useRef<HTMLDivElement>(null);
    const [width, setWidth] = useState<number>(0);
+   const [pdfBlob, setPdfBlob] = useState<string | null>(null);
 
    useEffect(() => {
       pdfjs.GlobalWorkerOptions.workerSrc =
@@ -53,6 +54,28 @@ export default function PdfViewer({
       window.addEventListener('resize', updateDimensions);
       return () => window.removeEventListener('resize', updateDimensions);
    }, [pdfViewerRef]);
+
+   useEffect(() => {
+      const fetchPdf = async () => {
+         try {
+            const response = await fetch(pdfUrl);
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            setPdfBlob(blobUrl);
+         } catch (error) {
+            console.error('Error loading PDF:', error);
+         }
+      };
+
+      fetchPdf();
+
+      return () => {
+         // Cleanup blob URL
+         if (pdfBlob) {
+            URL.revokeObjectURL(pdfBlob);
+         }
+      };
+   }, [pdfUrl]);
 
    const onLoadSuccess = ({ numPages }: { numPages: number }) => {
       setNumPages(numPages);
@@ -173,7 +196,10 @@ export default function PdfViewer({
                      ref={pdfViewerRef}
                   >
                      <div className="w-fit border-2 border-b-0 overflow-y-scroll custom_page_scroll rounded-xl rounded-b-[0px] overflow-x-hidden">
-                        <Document file={pdfUrl} onLoadSuccess={onLoadSuccess}>
+                        <Document
+                           file={pdfBlob || pdfUrl}
+                           onLoadSuccess={onLoadSuccess}
+                        >
                            <Page pageNumber={pageNumber} width={width} />
                         </Document>
                      </div>
